@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import admin from './routes/admin'
+import product from './routes/product'
 
 Vue.use(VueRouter)
 
@@ -29,6 +30,7 @@ const router = new VueRouter({
       },
     },
     ...admin,
+    ...product,
     {
       path: '/login',
       name: 'login',

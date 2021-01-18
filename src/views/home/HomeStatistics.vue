@@ -43,6 +43,38 @@
             </b-media-body>
           </b-media>
         </b-col>
+        <b-col
+          xl="3"
+          sm="6"
+        >
+          <b-media
+            no-body
+            class="cursor-pointer"
+            @click="$router.push({ name: 'products' })"
+          >
+            <b-media-aside
+              class="mr-2"
+            >
+              <b-avatar
+                size="48"
+                variant="light-info"
+              >
+                <feather-icon
+                  size="24"
+                  icon="PackageIcon"
+                />
+              </b-avatar>
+            </b-media-aside>
+            <b-media-body class="my-auto">
+              <h4 class="font-weight-bolder mb-0">
+                {{ numProducts }}
+              </h4>
+              <b-card-text class="font-small-3 mb-0">
+                Products
+              </b-card-text>
+            </b-media-body>
+          </b-media>
+        </b-col>
       </b-row>
     </b-card-body>
   </b-card>
@@ -71,6 +103,7 @@ export default {
   computed: {
     ...mapGetters({
       numAdmins: 'admin/getNumAdmins',
+      numProducts: 'product/getNumProducts',
     }),
   },
 }

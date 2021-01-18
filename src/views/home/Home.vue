@@ -19,9 +19,10 @@
 
 <script>
 import { BRow, BCol } from 'bootstrap-vue'
-import admin from '@/mixins/admin'
 import HomeWelcome from '@/views/home/HomeWelcome.vue'
 import HomeStatistics from '@/views/home/HomeStatistics.vue'
+import admin from '@/mixins/admin'
+import product from '@/mixins/product'
 
 export default {
   components: {
@@ -30,9 +31,10 @@ export default {
     HomeWelcome,
     HomeStatistics,
   },
-  mixins: [admin],
+  mixins: [admin, product],
   mounted() {
     this.getAdmins()
+    this.getProducts()
   },
 }
 </script>

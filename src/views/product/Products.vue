@@ -34,7 +34,7 @@
                 variant="primary"
                 :to="{ name: 'add-admin' }"
               >
-                <span class="text-nowrap">Add Admin</span>
+                <span class="text-nowrap">Add Product</span>
               </b-button>
             </div>
           </b-col>
@@ -42,7 +42,7 @@
       </div>
       <b-table
         class="position-relative mb-0"
-        :items="admins"
+        :items="products"
         :fields="fields"
         :per-page="perPage"
         :current-page="currentPage"
@@ -52,15 +52,15 @@
         show-empty
         @filtered="onFiltered"
       >
-        <template #cell(username)="data">
+        <template #cell(name)="data">
           <b-media vertical-align="center">
             <template #aside>
               <b-avatar
                 size="32"
                 rounded
                 src=""
-                :text="avatarText(`${data.item.firstname +' '+ data.item.lastname}`)"
-                variant="light-primary"
+                :text="avatarText(`${data.item.name}`)"
+                variant="light-info"
                 :to="{name: 'view-admin'}"
               />
             </template>
@@ -68,10 +68,13 @@
               :to="{name: 'view-admin'}"
               class="font-weight-bold d-block text-nowrap"
             >
-              {{ data.item.firstname +' '+ data.item.lastname }}
+              {{ data.item.name }}
             </b-link>
-            <small class="text-muted">@{{ data.item.username }}</small>
+            <small class="text-muted">{{ data.item.category }}</small>
           </b-media>
+        </template>
+        <template #cell(num_plans)="data">
+          {{ data.item.num_plans }} plans
         </template>
         <template #cell(status)="data">
           <b-badge
@@ -91,13 +94,13 @@
             Inactive
           </b-badge>
         </template>
-        <template #cell(since)="data">
-          {{ new Date(data.item.since).toDateString() }}
+        <template #cell(created_at)="data">
+          {{ new Date(data.item.created_at).toDateString() }}
         </template>
         <template #cell(actions)="data">
           <div class="text-nowrap">
             <feather-icon
-              :id="`view-${data.item.admin_id}`"
+              :id="`view-${data.item.product_id}`"
               v-b-tooltip.hover.top="'View'"
               icon="EyeIcon"
               size="16"
@@ -105,7 +108,7 @@
               @click="$router.push({ name: 'view-admin', params: { adminID: data.item.admin_id }})"
             />
             <feather-icon
-              :id="`edit-${data.item.admin_id}`"
+              :id="`edit-${data.item.product_id}`"
               v-b-tooltip.hover.top="'Edit'"
               icon="EditIcon"
               class="cursor-pointer"
@@ -121,7 +124,7 @@
             sm="6"
             class="d-flex align-items-center justify-content-center justify-content-sm-start"
           >
-            <span class="text-muted">There are {{ numAdmins }} admin accounts</span>
+            <span class="text-muted">There are {{ numProducts }} products</span>
           </b-col>
           <b-col
             cols="12"
@@ -146,7 +149,7 @@ import {
   BCard, BTable, BRow, BCol, BMedia, BAvatar, BBadge, BFormInput, BButton, BPagination, BLink, VBTooltip,
 } from 'bootstrap-vue'
 import vSelect from 'vue-select'
-import admin from '@/mixins/admin'
+import product from '@/mixins/product'
 import { avatarText } from '@core/utils/filter'
 import { mapGetters } from 'vuex'
 
@@ -168,7 +171,7 @@ export default {
   directives: {
     'b-tooltip': VBTooltip,
   },
-  mixins: [admin],
+  mixins: [product],
   data() {
     return {
       perPage: 5,
@@ -178,21 +181,23 @@ export default {
       currentPage: 1,
       avatarText,
       fields: [
-        { key: 'username', label: 'user', sortable: true },
-        { key: 'status', label: 'status' },
-        { key: 'since', label: 'Added', sortable: true },
+        { key: 'name', sortable: true },
+        { key: 'url', sortable: true },
+        { key: 'num_plans', label: 'number of plans', sortable: true },
+        { key: 'status' },
+        { key: 'created_at', label: 'Added', sortable: true },
         { key: 'actions' },
       ],
     }
   },
   computed: {
     ...mapGetters({
-      admins: 'admin/getAllAdmins',
-      numAdmins: 'admin/getNumAdmins',
+      products: 'product/getAllProducts',
+      numProducts: 'product/getNumProducts',
     }),
   },
   mounted() {
-    this.getAdmins()
+    this.getProducts()
   },
   methods: {
     onFiltered(filteredItems) {
