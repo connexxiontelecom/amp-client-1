@@ -1,10 +1,16 @@
 <template>
   <div>
     <b-row>
-      <b-col cols-md="12">
-        <b-card
-          title="Add New Admin"
-        >
+      <b-col
+        xl="8"
+        lg="8"
+        md="12"
+        sm="12"
+      >
+        <b-card title="Add New Admin">
+          <b-card-sub-title class="mb-2">
+            Complete the form below to add this admin account to the AMP
+          </b-card-sub-title>
           <validation-observer ref="addAdminValidation">
             <b-form
               @submit.prevent
@@ -12,7 +18,7 @@
               <b-row>
                 <b-col cols="8">
                   <b-form-group>
-                    <label for="firstname">Firstname <span style="color: red"> *</span></label>
+                    <label for="firstname">Firstname </label><span style="color: red"> *</span>
                     <validation-provider
                       #default="{ errors }"
                       name="firstname"
@@ -23,7 +29,7 @@
                         v-model="firstname"
                         :state="errors.length > 0 ? false:null"
                         name="firstname"
-                        placeholder="firstname"
+                        placeholder="Firstname"
                       />
                       <small class="text-danger">{{ errors[0] }}</small>
                     </validation-provider>
@@ -31,7 +37,7 @@
                 </b-col>
                 <b-col cols="8">
                   <b-form-group>
-                    <label for="lastname">Lastname <span style="color: red"> *</span></label>
+                    <label for="lastname">Lastname </label><span style="color: red"> *</span>
                     <validation-provider
                       #default="{ errors }"
                       name="lastname"
@@ -42,7 +48,7 @@
                         v-model="lastname"
                         :state="errors.length > 0 ? false:null"
                         name="lastname"
-                        placeholder="lastname"
+                        placeholder="Lastname"
                       />
                       <small class="text-danger">{{ errors[0] }}</small>
                     </validation-provider>
@@ -50,7 +56,7 @@
                 </b-col>
                 <b-col cols="8">
                   <b-form-group description="The admin username must be unique">
-                    <label for="username">Username <span style="color: red"> *</span></label>
+                    <label for="username">Username </label><span style="color: red"> *</span>
                     <validation-provider
                       #default="{ errors }"
                       name="username"
@@ -61,7 +67,7 @@
                         v-model="username"
                         :state="errors.length > 0 ? false:null"
                         name="username"
-                        placeholder="username"
+                        placeholder="Username"
                       />
                       <small class="text-danger">{{ errors[0] }}</small>
                     </validation-provider>
@@ -69,7 +75,7 @@
                 </b-col>
                 <b-col cols="8">
                   <b-form-group>
-                    <label for="password">Password <span style="color: red"> *</span></label>
+                    <label for="password">Password </label><span style="color: red"> *</span>
                     <validation-provider
                       #default="{ errors }"
                       name="password"
@@ -105,7 +111,10 @@
                     </b-form-checkbox>
                   </b-form-group>
                 </b-col>
-                <b-col cols="8">
+                <b-col
+                  cols="8"
+                  class="mt-2"
+                >
                   <b-button
                     v-ripple.400="'rgba(255, 255, 255, 0.15)'"
                     type="submit"
@@ -135,7 +144,7 @@
 <script>
 /* eslint-disable vue/no-unused-components */
 import {
-  BCard, BRow, BCol, BFormGroup, BFormInput, BFormCheckbox, BForm, BButton,
+  BCard, BRow, BCol, BFormGroup, BFormInput, BFormCheckbox, BForm, BButton, BCardSubTitle,
 } from 'bootstrap-vue'
 import Ripple from 'vue-ripple-directive'
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
@@ -152,6 +161,7 @@ export default {
     BFormCheckbox,
     BForm,
     BButton,
+    BCardSubTitle,
     ValidationObserver,
     ValidationProvider,
   },

@@ -15,4 +15,25 @@ export default [
       ],
     },
   },
+  {
+    path: '/products/add-product',
+    name: 'add-product',
+    component: () => import('@/views/product/AddProduct'),
+    meta: {
+      authRequired: true,
+      title: 'Add Product - AMP | Powered by Connexxion Telecom',
+      pageTitle: 'Add Product',
+      breadcrumb: [
+        {
+          text: 'Products',
+          to: '/products',
+        },
+        {
+          text: 'Products',
+          active: true,
+        },
+      ],
+      navActiveLink: 'products',
+    },
+  },
 ]

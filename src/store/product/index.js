@@ -1,4 +1,5 @@
 import axios from '@/libs/axios'
+import helpers from './product-helpers'
 
 export default {
   namespaced: true,
@@ -26,6 +27,16 @@ export default {
     getProducts({ commit }) {
       return new Promise((resolve, reject) => {
         axios({ url: 'product/all_products ', method: 'get' }).then(response => {
+          commit('SET_ALL_PRODUCTS', { allProducts: response.data })
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    addProduct({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'product/add_product', data: helpers.getAddProductForm(payload.form), method: 'post' }).then(response => {
           commit('SET_ALL_PRODUCTS', { allProducts: response.data })
           resolve(response)
         }).catch(error => {

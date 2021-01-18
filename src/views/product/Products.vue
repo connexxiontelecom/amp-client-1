@@ -32,7 +32,7 @@
               />
               <b-button
                 variant="primary"
-                :to="{ name: 'add-admin' }"
+                :to="{ name: 'add-product' }"
               >
                 <span class="text-nowrap">Add Product</span>
               </b-button>
@@ -66,12 +66,20 @@
             </template>
             <b-link
               :to="{name: 'view-admin'}"
-              class="font-weight-bold d-block text-nowrap"
+              class="font-weight-bold d-block text-nowrap text-uppercase"
             >
               {{ data.item.name }}
             </b-link>
             <small class="text-muted">{{ data.item.category }}</small>
           </b-media>
+        </template>
+        <template #cell(url)="data">
+          <a
+            :href="data.item.url"
+            target="_blank"
+          >
+            {{ data.item.url }}
+          </a>
         </template>
         <template #cell(num_plans)="data">
           {{ data.item.num_plans }} plans
@@ -183,7 +191,7 @@ export default {
       fields: [
         { key: 'name', sortable: true },
         { key: 'url', sortable: true },
-        { key: 'num_plans', label: 'number of plans', sortable: true },
+        { key: 'num_plans', label: 'product plans', sortable: true },
         { key: 'status' },
         { key: 'created_at', label: 'Added', sortable: true },
         { key: 'actions' },
