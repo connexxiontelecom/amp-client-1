@@ -32,7 +32,6 @@ export default {
       })
     },
     addPlan() {
-      // eslint-disable-next-line consistent-return
       this.$refs.addPlanValidation.validate().then(success => {
         if (success) {
           const form = {

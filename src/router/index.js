@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 import admin from './routes/admin'
 import product from './routes/product'
+import affiliate from './routes/affiliate'
 
 Vue.use(VueRouter)
 
@@ -31,6 +32,7 @@ const router = new VueRouter({
     },
     ...admin,
     ...product,
+    ...affiliate,
     {
       path: '/login',
       name: 'login',

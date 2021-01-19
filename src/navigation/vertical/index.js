@@ -25,6 +25,7 @@ export default [
   },
   {
     title: 'Affiliate Accounts',
+    route: 'affiliate-accounts',
     icon: 'UsersIcon',
   },
   {

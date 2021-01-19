@@ -8,6 +8,7 @@ import verticalMenu from './vertical-menu'
 import auth from './auth'
 import admin from './admin'
 import product from './product'
+import affiliate from './affiliate'
 
 Vue.use(Vuex)
 
@@ -19,6 +20,7 @@ export default new Vuex.Store({
     auth,
     admin,
     product,
+    affiliate,
   },
   strict: process.env.DEV,
 })
