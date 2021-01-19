@@ -31,5 +31,10 @@ export default {
         }
       })
     },
+    getAffiliate(affiliateID) {
+      this.$store.dispatch('affiliate/getAffiliate', { affiliateID }).then().catch(error => {
+        this.toast('Get Affiliate', 'BellIcon', error.response.data.messages.error, 'danger')
+      })
+    },
   },
 }

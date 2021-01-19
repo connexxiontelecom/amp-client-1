@@ -60,5 +60,15 @@ export default {
         })
       })
     },
+    getAffiliate({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({ url: `affiliate/get_affiliate/${payload.affiliateID}`, method: 'get' }).then(response => {
+          commit('SET_CURRENT_AFFILIATE', { currentAffiliate: response.data })
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
   },
 }
