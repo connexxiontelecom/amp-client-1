@@ -32,6 +32,14 @@
           <affiliate-upstream />
         </b-col>
       </b-row>
+      <b-row>
+        <b-col
+          cols="12"
+          lg="6"
+        >
+          <affiliate-info />
+        </b-col>
+      </b-row>
     </template>
   </div>
 </template>
@@ -44,6 +52,7 @@ import { mapGetters } from 'vuex'
 import affiliate from '@/mixins/affiliate'
 import AffiliateData from './AffiliateData.vue'
 import AffiliateUpstream from './AffiliateUpstream.vue'
+import AffiliateInfo from './AffiliateInfo.vue'
 
 export default {
   components: {
@@ -55,6 +64,7 @@ export default {
     BLink,
     AffiliateData,
     AffiliateUpstream,
+    AffiliateInfo,
   },
   directives: {
     'b-tooltip': VBTooltip,
