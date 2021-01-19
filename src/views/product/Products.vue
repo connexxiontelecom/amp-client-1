@@ -113,7 +113,7 @@
               icon="EyeIcon"
               size="16"
               class="cursor-pointer mx-1"
-              @click="$router.push({ name: 'view-admin', params: { adminID: data.item.admin_id }})"
+              @click="$router.push({ name: 'view-product', params: { productID: data.item.product_id }})"
             />
             <feather-icon
               :id="`edit-${data.item.product_id}`"
@@ -204,7 +204,7 @@ export default {
       numProducts: 'product/getNumProducts',
     }),
   },
-  mounted() {
+  created() {
     this.getProducts()
   },
   methods: {

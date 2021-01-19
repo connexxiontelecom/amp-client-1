@@ -6,6 +6,7 @@ export default {
     formData.append('plan_price', form.planPrice)
     formData.append('plan_link', form.planLink)
     formData.append('plan_commission', form.planCommission)
+    formData.append('plan_slug', form.planSlug)
     return formData
   },
   getEditPlanForm(form) {
@@ -16,6 +17,7 @@ export default {
     formData.append('plan_price', form.planPrice)
     formData.append('plan_link', form.planLink)
     formData.append('plan_commission', form.planCommission)
+    formData.append('plan_slug', form.planSlug)
     return formData
   },
   getAddProductForm(form) {

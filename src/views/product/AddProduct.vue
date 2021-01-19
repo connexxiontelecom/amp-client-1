@@ -14,7 +14,10 @@
           <validation-observer ref="addProductValidation">
             <b-form @submit.prevent>
               <b-row>
-                <b-col cols="8">
+                <b-col
+                  lg="8"
+                  md="12"
+                >
                   <b-form-group>
                     <label for="name">Product Name </label><span style="color: red"> *</span>
                     <validation-provider
@@ -33,7 +36,10 @@
                     </validation-provider>
                   </b-form-group>
                 </b-col>
-                <b-col cols="8">
+                <b-col
+                  lg="8"
+                  md="12"
+                >
                   <b-form-group>
                     <label for="category">Product Category </label><span style="color: red"> *</span>
                     <validation-provider
@@ -51,7 +57,10 @@
                     </validation-provider>
                   </b-form-group>
                 </b-col>
-                <b-col cols="8">
+                <b-col
+                  lg="8"
+                  md="12"
+                >
                   <b-form-group>
                     <label for="url">Product URL </label>
                     <validation-provider
@@ -70,7 +79,10 @@
                     </validation-provider>
                   </b-form-group>
                 </b-col>
-                <b-col cols="8">
+                <b-col
+                  lg="8"
+                  md="12"
+                >
                   <b-form-group>
                     <label for="description">Description</label>
                     <b-form-textarea
@@ -81,8 +93,9 @@
                   </b-form-group>
                 </b-col>
                 <b-col
-                  cols="8"
-                  class="mt-2"
+                  lg="8"
+                  md="12"
+                  mt-2
                 >
                   <b-button
                     v-ripple.400="'rgba(255, 255, 255, 0.15)'"

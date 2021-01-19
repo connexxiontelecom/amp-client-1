@@ -29,7 +29,28 @@ export default [
           to: '/products',
         },
         {
+          text: 'Add Product',
+          active: true,
+        },
+      ],
+      navActiveLink: 'products',
+    },
+  },
+  {
+    path: '/products/view-product',
+    name: 'view-product',
+    component: () => import('@/views/product/view-product/ViewProduct'),
+    meta: {
+      authRequired: true,
+      title: 'View Product - AMP | Powered by Connexxion Telecom',
+      pageTitle: 'View Product',
+      breadcrumb: [
+        {
           text: 'Products',
+          to: '/products',
+        },
+        {
+          text: 'View Product',
           active: true,
         },
       ],

@@ -16,7 +16,10 @@
               @submit.prevent
             >
               <b-row>
-                <b-col cols="8">
+                <b-col
+                  lg="8"
+                  md="12"
+                >
                   <b-form-group>
                     <label for="firstname">Firstname </label><span style="color: red"> *</span>
                     <validation-provider
@@ -35,7 +38,10 @@
                     </validation-provider>
                   </b-form-group>
                 </b-col>
-                <b-col cols="8">
+                <b-col
+                  lg="8"
+                  md="12"
+                >
                   <b-form-group>
                     <label for="lastname">Lastname </label><span style="color: red"> *</span>
                     <validation-provider
@@ -54,7 +60,10 @@
                     </validation-provider>
                   </b-form-group>
                 </b-col>
-                <b-col cols="8">
+                <b-col
+                  lg="8"
+                  md="12"
+                >
                   <b-form-group description="The admin username must be unique">
                     <label for="username">Username </label><span style="color: red"> *</span>
                     <validation-provider
@@ -73,7 +82,10 @@
                     </validation-provider>
                   </b-form-group>
                 </b-col>
-                <b-col cols="8">
+                <b-col
+                  lg="8"
+                  md="12"
+                >
                   <b-form-group>
                     <label for="password">Password </label><span style="color: red"> *</span>
                     <validation-provider
@@ -93,7 +105,10 @@
                     </validation-provider>
                   </b-form-group>
                 </b-col>
-                <b-col cols="8">
+                <b-col
+                  lg="8"
+                  md="12"
+                >
                   <b-form-group>
                     <label>Status </label><br>
                     <b-form-checkbox
@@ -112,7 +127,8 @@
                   </b-form-group>
                 </b-col>
                 <b-col
-                  cols="8"
+                  lg="8"
+                  md="12"
                   class="mt-2"
                 >
                   <b-button

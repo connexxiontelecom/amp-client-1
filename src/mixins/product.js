@@ -26,5 +26,40 @@ export default {
         }
       })
     },
+    getProduct(productID) {
+      this.$store.dispatch('product/getProduct', { productID }).then().catch(error => {
+        this.toast('Get Product Attempt', 'BellIcon', error.response.data.messages.error, 'danger')
+      })
+    },
+    addPlan() {
+      // eslint-disable-next-line consistent-return
+      this.$refs.addPlanValidation.validate().then(success => {
+        if (success) {
+          const form = {
+            productID: this.productID,
+            planName: this.planName,
+            planPrice: this.planPrice,
+            planLink: this.planLink,
+            planCommission: this.planCommission,
+            planSlug: this.planSlug,
+          }
+          this.$store.dispatch('product/addPlan', { form }).then(() => {
+            this.toast('Add Product Plan', 'BellIcon', 'You have successfully added the product plan', 'success')
+            this.$nextTick(() => {
+              this.$refs['add-plan-modal'].toggle('#add-btn')
+            })
+            this.planName = null
+            this.planPrice = null
+            this.planLink = null
+            this.planCommission = null
+            this.planSlug = null
+          }).catch(error => {
+            this.toast('Add Product Plan Attempt', 'BellIcon', error.response.data.messages.error, 'danger')
+          })
+        } else {
+          this.toast('Add Product Plan Attempt', 'BellIcon', 'You must fill in all form fields correctly', 'warning')
+        }
+      })
+    },
   },
 }

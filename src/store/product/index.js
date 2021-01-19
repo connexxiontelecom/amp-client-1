@@ -6,12 +6,16 @@ export default {
   state: {
     allProducts: [],
     numProducts: 0,
+    currentProduct: {},
+    currentProductPlans: [],
+    numProductPlans: 0,
   },
   getters: {
     getAllProducts: state => state.allProducts,
     getNumProducts: state => state.numProducts,
     getCurrentProduct: state => state.currentProduct,
     getCurrentProductPlans: state => state.currentProductPlans,
+    getNumProductPlans: state => state.numProductPlans,
   },
   mutations: {
     SET_ALL_PRODUCTS(state, payload) {
@@ -21,6 +25,7 @@ export default {
     SET_CURRENT_PRODUCT(state, payload) {
       state.currentProduct = payload.product
       state.currentProductPlans = payload.plans
+      state.numProductPlans = payload.plans.length
     },
   },
   actions: {
@@ -38,6 +43,26 @@ export default {
       return new Promise((resolve, reject) => {
         axios({ url: 'product/add_product', data: helpers.getAddProductForm(payload.form), method: 'post' }).then(response => {
           commit('SET_ALL_PRODUCTS', { allProducts: response.data })
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    getProduct({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({ url: `product/get_product/${payload.productID}`, method: 'get' }).then(response => {
+          commit('SET_CURRENT_PRODUCT', { product: response.data.product, plans: response.data.plans })
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    addPlan({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'product/add_plan', data: helpers.getAddPlanForm(payload.form), method: 'post' }).then(response => {
+          commit('SET_CURRENT_PRODUCT', { product: response.data.product, plans: response.data.plans })
           resolve(response)
         }).catch(error => {
           reject(error)

@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  mounted() {
+  created() {
     console.log(this.$router.currentRoute.params.adminID)
   },
 }

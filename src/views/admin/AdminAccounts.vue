@@ -191,7 +191,7 @@ export default {
       numAdmins: 'admin/getNumAdmins',
     }),
   },
-  mounted() {
+  created() {
     this.getAdmins()
   },
   methods: {

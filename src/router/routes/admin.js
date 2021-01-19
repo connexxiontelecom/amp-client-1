@@ -39,7 +39,7 @@ export default [
   {
     path: '/admin-accounts/view-admin',
     name: 'view-admin',
-    component: () => import('@/views/admin/ViewAdmin'),
+    component: () => import('@/views/admin/view-admin/ViewAdmin'),
     meta: {
       authRequired: true,
       title: 'View Admin - AMP | Powered by Connexxion Telecom',
