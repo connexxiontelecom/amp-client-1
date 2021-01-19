@@ -42,7 +42,17 @@ export default {
   actions: {
     getAffiliates({ commit }, payload) {
       return new Promise((resolve, reject) => {
-        axios({ url: 'affiliate/all_affiliates', payload }).then(response => {
+        axios({ url: 'affiliate/all_affiliates', method: 'get' }).then(response => {
+          commit('SET_ALL_AFFILIATES', { allAffiliates: response.data })
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    addAffiliate({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'affiliate/add_affiliate', data: helpers.getAddAffiliateForm(payload.form), method: 'post' }).then(response => {
           commit('SET_ALL_AFFILIATES', { allAffiliates: response.data })
           resolve(response)
         }).catch(error => {

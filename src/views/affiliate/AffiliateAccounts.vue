@@ -32,7 +32,7 @@
               />
               <b-button
                 variant="primary"
-                :to="{ name: 'add-admin' }"
+                :to="{ name: 'add-affiliate' }"
               >
                 <span class="text-nowrap">Add Affiliate</span>
               </b-button>

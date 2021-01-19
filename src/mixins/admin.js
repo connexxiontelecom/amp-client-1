@@ -7,7 +7,6 @@ export default {
     },
     addAdmin() {
       this.$refs.addAdminValidation.validate().then(success => {
-        // eslint-disable-next-line no-empty
         if (success) {
           const form = {
             firstname: this.firstname,
