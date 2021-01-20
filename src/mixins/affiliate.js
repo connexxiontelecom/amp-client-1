@@ -32,7 +32,9 @@ export default {
       })
     },
     getAffiliate(affiliateID) {
-      this.$store.dispatch('affiliate/getAffiliate', { affiliateID }).then().catch(error => {
+      this.$store.dispatch('affiliate/getAffiliate', { affiliateID }).then(() => {
+        this.$router.push({ name: 'view-affiliate', params: { affiliateID } }).catch()
+      }).catch(error => {
         this.toast('Get Affiliate', 'BellIcon', error.response.data.messages.error, 'danger')
       })
     },
@@ -77,6 +79,32 @@ export default {
           }
         })
       }
+    },
+    updateAffiliateAccount() {
+      this.$refs.updateAffiliateAccountValidation.validate().then(success => {
+        if (success) {
+          let upstreamAffiliate = 0
+          // eslint-disable-next-line no-unused-expressions
+          this.upstreamAffiliate !== null ? upstreamAffiliate = this.upstreamAffiliate.value : upstreamAffiliate = 0
+          const form = {
+            affiliateID: this.affiliateID,
+            firstname: this.firstname,
+            lastname: this.lastname,
+            email: this.emailAddr,
+            upstreamAffiliate,
+          }
+          this.$store.dispatch('affiliate/updateAffiliateAccount', { form }).then(() => {
+            this.toast('Update Affiliate Account', 'BellIcon', 'You have successfully updated the affiliate account', 'success')
+            this.$nextTick(() => {
+              this.$refs['update-affiliate-modal'].toggle('#edit-affiliate-btn')
+            })
+          }).catch(error => {
+            this.toast('Update Affiliate Attempt', 'BellIcon', error.response.data.messages.error, 'danger')
+          })
+        } else {
+          this.toast('Update Affiliate Attempt', 'BellIcon', 'You must fill in all form fields correctly', 'warning')
+        }
+      })
     },
   },
 }

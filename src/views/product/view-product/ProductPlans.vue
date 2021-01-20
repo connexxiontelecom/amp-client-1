@@ -128,7 +128,7 @@
       @ok="handleAddOk"
     >
       <validation-observer ref="addPlanValidation">
-        <b-form @submit.stop.prevent="handleAddSubmit">
+        <b-form @submit.stop.prevent="handleAddOk">
           <b-row>
             <b-col cols="12">
               <b-form-group>

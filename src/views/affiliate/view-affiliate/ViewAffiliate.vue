@@ -92,7 +92,6 @@ export default {
   created() {
     if (this.$router.currentRoute.params.affiliateID) {
       this.loaded = true
-      this.getAffiliate(this.$router.currentRoute.params.affiliateID)
     }
   },
 }

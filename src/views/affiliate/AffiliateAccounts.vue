@@ -61,12 +61,12 @@
                 src=""
                 :text="avatarText(`${data.item.firstname +' '+ data.item.lastname}`)"
                 variant="light-success"
-                :to="{ name: 'view-affiliate', params: { affiliateID: data.item.affiliate_id} }"
+                @click="getAffiliate(data.item.affiliate_id)"
               />
             </template>
             <b-link
-              :to="{ name: 'view-affiliate', params: { affiliateID: data.item.affiliate_id} }"
               class="font-weight-bold d-block text-nowrap"
+              @click="getAffiliate(data.item.affiliate_id)"
             >
               {{ data.item.firstname +' '+ data.item.lastname }}
             </b-link>
@@ -102,7 +102,7 @@
               icon="EyeIcon"
               size="16"
               class="cursor-pointer mx-1"
-              @click="$router.push({ name: 'view-affiliate', params: { affiliateID: data.item.affiliate_id }})"
+              @click="getAffiliate(data.item.affiliate_id)"
             />
             <feather-icon
               :id="`edit-${data.item.affiliate_id}`"
