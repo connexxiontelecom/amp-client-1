@@ -131,5 +131,28 @@ export default {
         }
       })
     },
+    updateAffiliateBank() {
+      this.$refs.updateAffiliateBankValidation.validate().then(success => {
+        if (success) {
+          const form = {
+            affiliateID: this.affiliateID,
+            bankID: this.bankID,
+            bankName: this.bankName,
+            bankAccountName: this.bankAccountName,
+            bankAccountNumber: this.bankAccountNumber,
+          }
+          this.$store.dispatch('affiliate/updateAffiliateBank', { form }).then(() => {
+            this.toast('Update Affiliate Bank', 'BellIcon', 'You have successfully updated the affiliate bank', 'success')
+            this.$nextTick(() => {
+              this.$refs['update-bank-modal'].toggle('#edit-bank-btn')
+            })
+          }).catch(error => {
+            this.toast('Update Affiliate Bank Attempt', 'BellIcon', error.response.data.messages.error, 'danger')
+          })
+        } else {
+          this.toast('Update Affiliate Bank Attempt', 'BellIcon', 'You must fill in all form fields correctly', 'warning')
+        }
+      })
+    },
   },
 }
