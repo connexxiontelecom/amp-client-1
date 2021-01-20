@@ -253,9 +253,9 @@ import {
 import { avatarText } from '@core/utils/filter'
 import { mapGetters } from 'vuex'
 import affiliate from '@/mixins/affiliate'
-import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import { required, email } from '@validations'
 import vSelect from 'vue-select'
+import { ValidationObserver, ValidationProvider } from 'vee-validate'
 
 export default {
   components: {

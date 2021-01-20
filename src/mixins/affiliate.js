@@ -106,5 +106,30 @@ export default {
         }
       })
     },
+    updateAffiliateInfo() {
+      this.$refs.updateAffiliateInformationValidation.validate().then(success => {
+        if (success) {
+          const form = {
+            affiliateID: this.affiliateID,
+            affiliateInfoID: this.affiliateInfoID,
+            dob: this.dob,
+            mobile: this.mobile,
+            gender: this.gender,
+            address: this.address,
+            country: this.country,
+          }
+          this.$store.dispatch('affiliate/updateAffiliateInformation', { form }).then(() => {
+            this.toast('Update Affiliate Information', 'BellIcon', 'You have successfully updated the affiliate information', 'success')
+            this.$nextTick(() => {
+              this.$refs['update-info-modal'].toggle('#edit-info-btn')
+            })
+          }).catch(error => {
+            this.toast('Update Affiliate Info Attempt', 'BellIcon', error.response.data.messages.error, 'danger')
+          })
+        } else {
+          this.toast('Update Affiliate Info Attempt', 'BellIcon', 'You must fill in all form fields correctly', 'warning')
+        }
+      })
+    },
   },
 }

@@ -35,7 +35,10 @@
             />
             <span class="font-weight-bold">Name</span>
           </th>
-          <td class="pb-50 text-uppercase">
+          <td
+            v-if="currentAffiliate.bank"
+            class="pb-50 text-uppercase"
+          >
             {{ currentAffiliate.bank.bank_name }}
           </td>
         </tr>
@@ -47,7 +50,10 @@
             />
             <span class="font-weight-bold">Account Name</span>
           </th>
-          <td class="pb-50">
+          <td
+            v-if="currentAffiliate.bank"
+            class="pb-50"
+          >
             {{ currentAffiliate.bank.bank_acc_name }}
           </td>
         </tr>
@@ -59,7 +65,10 @@
             />
             <span class="font-weight-bold">Account Number</span>
           </th>
-          <td class="pb-50 text-capitalize">
+          <td
+            v-if="currentAffiliate.bank"
+            class="pb-50 text-capitalize"
+          >
             {{ currentAffiliate.bank.bank_acc_number }}
           </td>
         </tr>

@@ -90,5 +90,15 @@ export default {
         })
       })
     },
+    updateAffiliateInformation({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'affiliate/update_affiliate_info', data: helpers.getUpdateAffiliateInfoForm(payload.form), method: 'post' }).then(response => {
+          commit('SET_CURRENT_AFFILIATE', { currentAffiliate: response.data })
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
   },
 }
