@@ -39,6 +39,12 @@
         >
           <affiliate-info />
         </b-col>
+        <b-col
+          cols="12"
+          lg="6"
+        >
+          <affiliate-bank />
+        </b-col>
       </b-row>
     </template>
   </div>
@@ -53,6 +59,7 @@ import affiliate from '@/mixins/affiliate'
 import AffiliateData from './AffiliateData.vue'
 import AffiliateUpstream from './AffiliateUpstream.vue'
 import AffiliateInfo from './AffiliateInfo.vue'
+import AffiliateBank from './AffiliateBank.vue'
 
 export default {
   components: {
@@ -65,6 +72,7 @@ export default {
     AffiliateData,
     AffiliateUpstream,
     AffiliateInfo,
+    AffiliateBank,
   },
   directives: {
     'b-tooltip': VBTooltip,

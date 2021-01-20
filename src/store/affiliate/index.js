@@ -70,5 +70,15 @@ export default {
         })
       })
     },
+    toggleAffiliateStatus({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({ url: `affiliate/toggle_affiliate_status/${payload.affiliateID}`, method: 'get' }).then(response => {
+          commit('SET_CURRENT_AFFILIATE', { currentAffiliate: response.data })
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
   },
 }

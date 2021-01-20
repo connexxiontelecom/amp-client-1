@@ -4,7 +4,7 @@
   >
     <b-card-header>
       <div>
-        <b-card-title>Affiliate Information</b-card-title>
+        <b-card-title>Affiliate Bank</b-card-title>
       </div>
       <b-dropdown
         variant="link"
@@ -21,7 +21,7 @@
           />
         </template>
         <b-dropdown-item :to="{ name: 'admin-accounts' }">
-          Edit Information
+          Edit Bank
         </b-dropdown-item>
       </b-dropdown>
     </b-card-header>
@@ -30,25 +30,13 @@
         <tr>
           <th class="pb-50">
             <feather-icon
-              icon="PhoneIcon"
+              icon="GridIcon"
               class="mr-75"
             />
-            <span class="font-weight-bold">Phone</span>
+            <span class="font-weight-bold">Name</span>
           </th>
           <td class="pb-50 text-uppercase">
-            {{ currentAffiliate.affiliate_info.phone }}
-          </td>
-        </tr>
-        <tr>
-          <th class="pb-50">
-            <feather-icon
-              icon="CalendarIcon"
-              class="mr-75"
-            />
-            <span class="font-weight-bold">DOB</span>
-          </th>
-          <td class="pb-50">
-            {{ new Date(currentAffiliate.affiliate_info.dob).toDateString() }}
+            {{ currentAffiliate.bank.bank_name }}
           </td>
         </tr>
         <tr>
@@ -57,40 +45,29 @@
               icon="UserIcon"
               class="mr-75"
             />
-            <span class="font-weight-bold">Gender</span>
+            <span class="font-weight-bold">Account Name</span>
+          </th>
+          <td class="pb-50">
+            {{ currentAffiliate.bank.bank_acc_name }}
+          </td>
+        </tr>
+        <tr>
+          <th class="pb-50">
+            <feather-icon
+              icon="CreditCardIcon"
+              class="mr-75"
+            />
+            <span class="font-weight-bold">Account Number</span>
           </th>
           <td class="pb-50 text-capitalize">
-            {{ currentAffiliate.affiliate_info.gender }}
-          </td>
-        </tr>
-        <tr>
-          <th class="pb-50">
-            <feather-icon
-              icon="MapIcon"
-              class="mr-75"
-            />
-            <span class="font-weight-bold">Address</span>
-          </th>
-          <td class="pb-50">
-            {{ currentAffiliate.affiliate_info.address }}
-          </td>
-        </tr>
-        <tr>
-          <th class="pb-50">
-            <feather-icon
-              icon="FlagIcon"
-              class="mr-75"
-            />
-            <span class="font-weight-bold">Country</span>
-          </th>
-          <td class="pb-50">
-            {{ currentAffiliate.affiliate_info.country }}
+            {{ currentAffiliate.bank.bank_acc_number }}
           </td>
         </tr>
       </table>
     </b-card-body>
   </b-card>
 </template>
+
 <script>
 import {
   BCard, BButton, BAvatar, BRow, BCol, BBadge, BCardHeader, BCardTitle, BDropdown, BDropdownItem, BCardBody,

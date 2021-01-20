@@ -27,8 +27,18 @@
                 Edit
               </b-button>
               <b-button
+                v-if="this.$store.getters['affiliate/getCurrentAffiliate'].status === '0'"
+                variant="outline-success"
+                class="ml-1"
+                @click="clicked"
+              >
+                Reactivate
+              </b-button>
+              <b-button
+                v-else-if="this.$store.getters['affiliate/getCurrentAffiliate'].status === '1'"
                 variant="outline-danger"
                 class="ml-1"
+                @click="clicked"
               >
                 Deactivate
               </b-button>
@@ -153,11 +163,13 @@ import {
 } from 'bootstrap-vue'
 import { avatarText } from '@core/utils/filter'
 import { mapGetters } from 'vuex'
+import affiliate from '@/mixins/affiliate'
 
 export default {
   components: {
     BCard, BButton, BRow, BCol, BAvatar, BBadge,
   },
+  mixins: [affiliate],
   data() {
     return {
       avatarText,
@@ -167,6 +179,12 @@ export default {
     ...mapGetters({
       currentAffiliate: 'affiliate/getCurrentAffiliate',
     }),
+  },
+  methods: {
+    clicked() {
+      console.log(this.$store.getters['affiliate/getCurrentAffiliate'].status)
+      this.toggleStatus(this.$store.getters['affiliate/getCurrentAffiliate'].status, this.$store.getters['affiliate/getCurrentAffiliate'].affiliate_id)
+    },
   },
 }
 </script>

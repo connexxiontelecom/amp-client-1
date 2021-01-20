@@ -36,5 +36,47 @@ export default {
         this.toast('Get Affiliate', 'BellIcon', error.response.data.messages.error, 'danger')
       })
     },
+    // eslint-disable-next-line no-unused-vars
+    toggleStatus(status, affiliateID) {
+      if (status === '1') {
+        this.$bvModal.msgBoxConfirm('Please confirm that you want to deactivate this account?', {
+          title: 'Deactivate Account',
+          size: 'sm',
+          okVariant: 'primary',
+          okTitle: 'Confirm',
+          cancelTitle: 'Cancel',
+          cancelVariant: 'outline-secondary',
+          hideHeaderClose: false,
+          centered: true,
+        }).then(value => {
+          if (value) {
+            this.$store.dispatch('affiliate/toggleAffiliateStatus', { affiliateID }).then(() => {
+              this.toast('Deactivate Account', 'BellIcon', 'The affiliate was deactivated successfully', 'success')
+            }).catch(error => {
+              this.toast('Deactivate Account', 'BellIcon', error.response.data.messages.error, 'danger')
+            })
+          }
+        })
+      } else if (status === '0') {
+        this.$bvModal.msgBoxConfirm('Please confirm that you want to reactivate this account?', {
+          title: 'Reactivate Account',
+          size: 'sm',
+          okVariant: 'primary',
+          okTitle: 'Confirm',
+          cancelTitle: 'Cancel',
+          cancelVariant: 'outline-secondary',
+          hideHeaderClose: false,
+          centered: true,
+        }).then(value => {
+          if (value) {
+            this.$store.dispatch('affiliate/toggleAffiliateStatus', { affiliateID }).then(() => {
+              this.toast('Reactivate Account', 'BellIcon', 'The affiliate was reactivated successfully', 'success')
+            }).catch(error => {
+              this.toast('Reactivate Account', 'BellIcon', error.response.data.messages.error, 'danger')
+            })
+          }
+        })
+      }
+    },
   },
 }
