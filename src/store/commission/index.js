@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import axios from '@/libs/axios'
+import helpers from './commission-helpers'
 
 export default {
   namespaced: true,
@@ -45,6 +46,17 @@ export default {
     setCurrentGeneration({ commit }, payload) {
       return new Promise((resolve, reject) => {
         axios({ url: `commission/set_current_generation/${payload.commissionID}`, method: 'get' }).then(response => {
+          commit('SET_ALL_COMMISSIONS', { allCommissions: response.data.commissions })
+          commit('SET_CURRENT_GENERATION', { currentGeneration: response.data.current_generation })
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    editCommissions({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'commission/edit_commissions', data: helpers.getEditCommissionsForm(payload.form), method: 'post' }).then(response => {
           commit('SET_ALL_COMMISSIONS', { allCommissions: response.data.commissions })
           commit('SET_CURRENT_GENERATION', { currentGeneration: response.data.current_generation })
           resolve(response)
