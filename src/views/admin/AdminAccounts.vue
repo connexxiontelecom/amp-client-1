@@ -181,7 +181,7 @@ export default {
         { key: 'username', label: 'user', sortable: true },
         { key: 'status', label: 'status' },
         { key: 'since', label: 'Added', sortable: true },
-        { key: 'actions' },
+        { key: 'actions', thStyle: { width: '10%' } },
       ],
     }
   },

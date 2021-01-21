@@ -44,7 +44,7 @@ export default {
     HomeCommission,
   },
   mixins: [admin, product, affiliate, commission],
-  mounted() {
+  created() {
     this.getAdmins()
     this.getProducts()
     this.getAffiliates()

@@ -194,7 +194,7 @@ export default {
         { key: 'upstream_affiliate', sortable: true },
         { key: 'status', label: 'status' },
         { key: 'created_at', label: 'Added', sortable: true },
-        { key: 'actions' },
+        { key: 'actions', thStyle: { width: '10%' } },
       ],
     }
   },

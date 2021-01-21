@@ -294,7 +294,7 @@ export default {
         { key: 'plan_slug', label: 'slug', sortable: true },
         { key: 'plan_price', label: 'price', sortable: true },
         { key: 'plan_commission', label: 'commission', sortable: true },
-        { key: 'actions' },
+        { key: 'actions', thStyle: { width: '10%' } },
       ],
       planName: null,
       planPrice: null,

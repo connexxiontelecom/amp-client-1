@@ -35,6 +35,7 @@ import {
 import VueApexCharts from 'vue-apexcharts'
 import { $themeColors } from '@themeConfig'
 import { mapGetters } from 'vuex'
+import commission from '@/mixins/commission'
 
 const $earningsStrokeColor1 = '#28c76f99'
 const $earningsStrokeColor2 = '#28c76f88'
@@ -49,8 +50,10 @@ export default {
     BCardText,
     VueApexCharts,
   },
+  mixins: [commission],
   data() {
     const currGen = this.$store.getters['commission/getCurrentGeneration']
+    console.log(currGen)
     const series = [
       parseInt(currGen.gen_1),
       parseInt(currGen.gen_2),
@@ -151,9 +154,11 @@ export default {
   },
   computed: {
     ...mapGetters({
-      allCommissions: 'commission/getAllCommissions',
       currentGeneration: 'commission/getCurrentGeneration',
     }),
+  },
+  created() {
+    this.getCommissions()
   },
 }
 </script>

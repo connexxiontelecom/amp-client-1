@@ -5,6 +5,7 @@ import admin from './routes/admin'
 import product from './routes/product'
 import affiliate from './routes/affiliate'
 import commission from './routes/commission'
+import auth from './routes/auth'
 
 Vue.use(VueRouter)
 
@@ -31,31 +32,24 @@ const router = new VueRouter({
         ],
       },
     },
-    ...admin,
-    ...product,
-    ...affiliate,
-    ...commission,
-    {
-      path: '/login',
-      name: 'login',
-      component: () => import('@/views/Login.vue'),
-      meta: {
-        title: 'Login - AMP | Powered by Connexxion Telecom',
-        layout: 'full',
-      },
-    },
     {
       path: '/error-404',
       name: 'error-404',
       component: () => import('@/views/error/Error404.vue'),
       meta: {
         layout: 'full',
+        title: 'Error 404 - AMP | Powered by Connexxion Telecom',
       },
     },
     {
       path: '*',
       redirect: 'error-404',
     },
+    ...admin,
+    ...product,
+    ...affiliate,
+    ...commission,
+    ...auth,
   ],
 })
 

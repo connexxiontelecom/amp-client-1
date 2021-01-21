@@ -194,7 +194,7 @@ export default {
         { key: 'num_plans', label: 'product plans', sortable: true },
         { key: 'status' },
         { key: 'created_at', label: 'Added', sortable: true },
-        { key: 'actions' },
+        { key: 'actions', thStyle: { width: '10%' } },
       ],
     }
   },

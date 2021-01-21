@@ -50,5 +50,15 @@ export default {
       commit('CLEAR_SESSION')
       delete axios.defaults.headers.common['Authorization']
     },
+    // eslint-disable-next-line no-unused-vars
+    register({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'auth/register', data: helpers.getRegisterForm(payload.form), method: 'post' }).then(response => {
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
   },
 }
