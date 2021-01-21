@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import admin from './routes/admin'
 import product from './routes/product'
 import affiliate from './routes/affiliate'
+import commission from './routes/commission'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,7 @@ const router = new VueRouter({
     ...admin,
     ...product,
     ...affiliate,
+    ...commission,
     {
       path: '/login',
       name: 'login',

@@ -75,6 +75,39 @@
             </b-media-body>
           </b-media>
         </b-col>
+        <b-col
+          xl="3"
+          sm="6"
+        >
+          <b-media
+            no-body
+            class="cursor-pointer"
+            @click="$router.push({ name: 'affiliate-accounts' })"
+          >
+            <b-media-aside
+              class="mr-2"
+            >
+              <b-avatar
+                size="48"
+                variant="light-success"
+              >
+                <feather-icon
+                  size="24"
+                  icon="UsersIcon"
+                />
+              </b-avatar>
+            </b-media-aside>
+            <b-media-body class="my-auto">
+              <h4 class="font-weight-bolder mb-0">
+                {{ numAffiliates }}
+              </h4>
+              <b-card-text class="font-small-3 mb-0">
+                Affiliates
+              </b-card-text>
+            </b-media-body>
+          </b-media>
+        </b-col>
+
       </b-row>
     </b-card-body>
   </b-card>
@@ -104,6 +137,7 @@ export default {
     ...mapGetters({
       numAdmins: 'admin/getNumAdmins',
       numProducts: 'product/getNumProducts',
+      numAffiliates: 'affiliate/getNumAffiliates',
     }),
   },
 }

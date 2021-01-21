@@ -9,6 +9,7 @@ import auth from './auth'
 import admin from './admin'
 import product from './product'
 import affiliate from './affiliate'
+import commission from './commission'
 
 Vue.use(Vuex)
 
@@ -21,6 +22,7 @@ export default new Vuex.Store({
     admin,
     product,
     affiliate,
+    commission,
   },
   strict: process.env.DEV,
 })
