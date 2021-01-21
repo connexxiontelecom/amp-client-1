@@ -3,16 +3,16 @@
     <b-row>
       <b-col cols="6">
         <b-card-title class="mb-1">
-          1 Max Generations
+          {{ currentGeneration.num_gens }} Max Generations
         </b-card-title>
         <div class="font-small-2">
-          Retained Earnings
+          Total Earnings
         </div>
         <h5 class="mb-1">
           NGN 0
         </h5>
         <b-card-text class="text-muted font-small-2">
-          <span class="font-weight-bolder">40%</span><span> of earnings is sent to upstream affiliates.</span>
+          <span class="font-weight-bolder">{{ 100 - parseInt(currentGeneration.gen_1) }}%</span><span> of earnings is sent to upstream affiliates.</span>
         </b-card-text>
       </b-col>
       <b-col cols="6">
@@ -28,14 +28,18 @@
 </template>
 
 <script>
+/* eslint-disable radix */
 import {
   BCard, BRow, BCol, BCardTitle, BCardText,
 } from 'bootstrap-vue'
 import VueApexCharts from 'vue-apexcharts'
 import { $themeColors } from '@themeConfig'
+import { mapGetters } from 'vuex'
 
-const $earningsStrokeColor2 = '#28c76f66'
-const $earningsStrokeColor3 = '#28c76f33'
+const $earningsStrokeColor1 = '#28c76f99'
+const $earningsStrokeColor2 = '#28c76f88'
+const $earningsStrokeColor3 = '#28c76f66'
+const $earningsStrokeColor4 = '#28c76f44'
 export default {
   components: {
     BCard,
@@ -46,9 +50,17 @@ export default {
     VueApexCharts,
   },
   data() {
+    const currGen = this.$store.getters['commission/getCurrentGeneration']
+    const series = [
+      parseInt(currGen.gen_1),
+      parseInt(currGen.gen_2),
+      parseInt(currGen.gen_3),
+      parseInt(currGen.gen_4),
+      parseInt(currGen.gen_5),
+    ]
     return {
       earningsChart: {
-        series: [53, 16, 31],
+        series,
         chartOptions: {
           chart: {
             type: 'donut',
@@ -60,10 +72,10 @@ export default {
             enabled: false,
           },
           legend: { show: false },
-          comparedResult: [2, -3, 8],
-          labels: ['App', 'Service', 'Product'],
+          comparedResult: [2, -3, 8, 3, -2],
+          labels: ['Retained', '1st', '2nd', '3rd', '4th'],
           stroke: { width: 0 },
-          colors: [$earningsStrokeColor2, $earningsStrokeColor3, $themeColors.success],
+          colors: [$earningsStrokeColor1, $earningsStrokeColor2, $earningsStrokeColor3, $earningsStrokeColor4, $themeColors.success],
           grid: {
             padding: {
               right: -20,
@@ -90,9 +102,9 @@ export default {
                   total: {
                     show: true,
                     offsetY: 15,
-                    label: 'App',
+                    label: 'Retained',
                     formatter() {
-                      return '53%'
+                      return `${currGen.gen_1}%`
                     },
                   },
                 },
@@ -136,6 +148,12 @@ export default {
         },
       },
     }
+  },
+  computed: {
+    ...mapGetters({
+      allCommissions: 'commission/getAllCommissions',
+      currentGeneration: 'commission/getCurrentGeneration',
+    }),
   },
 }
 </script>

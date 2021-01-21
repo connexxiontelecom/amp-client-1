@@ -49,5 +49,10 @@ export default {
         })
       }
     },
+    getPlanCommissions() {
+      this.$store.dispatch('commission/getPlanCommissions').then().catch(error => {
+        this.toast('Get Plan Commissions', 'BellIcon', error.response.data.messages.error, 'danger')
+      })
+    },
   },
 }

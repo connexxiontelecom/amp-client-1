@@ -21,6 +21,7 @@
           <b-button
             variant="primary"
             class="shadow mt-1"
+            :to="{ name: 'plan-commissions' }"
           >
             <span>Plan Commissions </span>
             <feather-icon icon="ChevronsRightIcon" />

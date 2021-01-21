@@ -107,7 +107,38 @@
             </b-media-body>
           </b-media>
         </b-col>
-
+        <b-col
+          xl="3"
+          sm="6"
+        >
+          <b-media
+            no-body
+            class="cursor-pointer"
+            @click="$router.push({ name: 'plan-commissions' })"
+          >
+            <b-media-aside
+              class="mr-2"
+            >
+              <b-avatar
+                size="48"
+                variant="light-warning"
+              >
+                <feather-icon
+                  size="24"
+                  icon="ListIcon"
+                />
+              </b-avatar>
+            </b-media-aside>
+            <b-media-body class="my-auto">
+              <h4 class="font-weight-bolder mb-0">
+                {{ numPlans }}
+              </h4>
+              <b-card-text class="font-small-3 mb-0">
+                Pricing Plans
+              </b-card-text>
+            </b-media-body>
+          </b-media>
+        </b-col>
       </b-row>
     </b-card-body>
   </b-card>
@@ -138,6 +169,7 @@ export default {
       numAdmins: 'admin/getNumAdmins',
       numProducts: 'product/getNumProducts',
       numAffiliates: 'affiliate/getNumAffiliates',
+      numPlans: 'commission/getNumPlanCommissions',
     }),
   },
 }

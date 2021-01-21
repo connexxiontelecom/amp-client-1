@@ -48,6 +48,8 @@ export default {
     this.getAdmins()
     this.getProducts()
     this.getAffiliates()
+    this.getPlanCommissions()
+    this.getCommissions()
   },
 }
 </script>

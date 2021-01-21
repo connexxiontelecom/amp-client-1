@@ -65,5 +65,16 @@ export default {
         })
       })
     },
+    getPlanCommissions({ commit }) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'commission/get_plan_commissions', method: 'get' }).then(response => {
+          commit('SET_CURRENT_GENERATION', { currentGeneration: response.data.current_generation })
+          commit('SET_PLAN_COMMISSIONS', { planCommissions: response.data.plan_commissions })
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
   },
 }
