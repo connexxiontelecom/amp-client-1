@@ -42,5 +42,16 @@ export default {
         })
       })
     },
+    setCurrentGeneration({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({ url: `commission/set_current_generation/${payload.commissionID}`, method: 'get' }).then(response => {
+          commit('SET_ALL_COMMISSIONS', { allCommissions: response.data.commissions })
+          commit('SET_CURRENT_GENERATION', { currentGeneration: response.data.current_generation })
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
   },
 }

@@ -60,7 +60,7 @@
             icon="CheckCircleIcon"
             size="16"
             class="cursor-pointer mx-1"
-            @click="getAffiliate(data.item.affiliate_id)"
+            @click="setCurrentGeneration(data.item.commission_id)"
           />
           <feather-icon
             :id="`edit-${data.item.commission_id}`"
@@ -81,6 +81,7 @@ import {
 } from 'bootstrap-vue'
 import { mapGetters } from 'vuex'
 import { avatarText } from '@core/utils/filter'
+import commission from '@/mixins/commission'
 
 export default {
   components: {
@@ -94,11 +95,12 @@ export default {
   directives: {
     'b-tooltip': VBTooltip,
   },
+  mixins: [commission],
   data() {
     return {
       fields: [
         { key: 'num_gens', label: 'Max Generations' },
-        { key: 'current_gen', label: 'Selected' },
+        { key: 'current_gen', label: 'Current' },
         { key: 'gen_1', label: 'Retained' },
         { key: 'gen_2', label: '1st Gen' },
         { key: 'gen_3', label: '2nd Gen' },
