@@ -4,7 +4,7 @@
 import axios from 'axios'
 
 const baseURL = {
-  dev: 'http://localhost:8080',
+  dev: 'http://localhost:8082',
   prod: 'https://amp-api.connexxiontelecom.com/public/',
 }
 
