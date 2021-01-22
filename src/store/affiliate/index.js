@@ -130,5 +130,15 @@ export default {
         })
       })
     },
+    updateBank({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'affiliate/update_bank', data: helpers.getUpdateAffiliateBankForm(payload.form), method: 'post' }).then(response => {
+          commit('UPDATE_SESSION', { user: response.data.user, session: response.data.session })
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
   },
 }

@@ -195,5 +195,25 @@ export default {
         }
       })
     },
+    updateBank() {
+      this.$refs.editBankValidation.validate().then(success => {
+        if (success) {
+          const form = {
+            affiliateID: this.affiliateID,
+            bankID: this.bankID,
+            bankName: this.bankName,
+            bankAccountName: this.bankAccountName,
+            bankAccountNumber: this.bankAccountNumber,
+          }
+          this.$store.dispatch('affiliate/updateBank', { form }).then(() => {
+            this.toast('Update Bank', 'BellIcon', 'You have successfully updated your bank', 'success')
+          }).catch(error => {
+            this.toast('Update Bank', 'BellIcon', error.response.data.messages.error, 'danger')
+          })
+        } else {
+          this.toast('Update Bank Attempt', 'BellIcon', 'You must fill in all form fields correctly', 'warning')
+        }
+      })
+    },
   },
 }

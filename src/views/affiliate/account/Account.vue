@@ -37,6 +37,7 @@
         />
         <span class="font-weight-bold">Bank</span>
       </template>
+      <account-bank />
     </b-tab>
     <b-tab>
       <template #title>
@@ -57,10 +58,11 @@ import {
 } from 'bootstrap-vue'
 import AccountGeneral from './AccountGeneral.vue'
 import AccountInfo from './AccountInfo.vue'
+import AccountBank from './AccountBank.vue'
 
 export default {
   components: {
-    BTabs, BTab, AccountGeneral, AccountInfo,
+    BTabs, BTab, AccountGeneral, AccountInfo, AccountBank,
   },
 }
 </script>
