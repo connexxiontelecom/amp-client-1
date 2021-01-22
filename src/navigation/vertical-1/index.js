@@ -29,6 +29,7 @@ export default [
   },
   {
     title: 'Affiliates',
+    route: 'affiliates',
     icon: 'UsersIcon',
   },
 ]

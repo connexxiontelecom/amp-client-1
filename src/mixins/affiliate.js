@@ -215,5 +215,10 @@ export default {
         }
       })
     },
+    getDownstreamAffiliates(affiliateID) {
+      this.$store.dispatch('affiliate/getDownstreamAffiliates', { affiliateID }).then().catch(error => {
+        this.toast('Get Downstream Affiliates', 'BellIcon', error.response.data.messages.error, 'danger')
+      })
+    },
   },
 }

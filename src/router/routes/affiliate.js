@@ -73,4 +73,20 @@ export default [
       ],
     },
   },
+  {
+    path: '/affiliates',
+    name: 'affiliates',
+    component: () => import('@/views/affiliate/affiliates/Affiliates'),
+    meta: {
+      authRequired: true,
+      title: 'Affiliates - AMP | Powered by Connexxion Telecom',
+      pageTitle: 'Affiliates',
+      breadcrumb: [
+        {
+          text: 'Affiliates',
+          active: true,
+        },
+      ],
+    },
+  },
 ]

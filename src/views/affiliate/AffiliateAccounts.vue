@@ -184,7 +184,7 @@ export default {
       perPage: 5,
       perPageOptions: [5, 10, 25, 100],
       filter: null,
-      totalRows: this.$store.getters['admin/getNumAdmins'],
+      totalRows: this.$store.getters['affiliate/getNumAffiliates'],
       currentPage: 1,
       avatarText,
       fields: [
