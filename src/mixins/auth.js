@@ -23,8 +23,8 @@ export default {
       })
     },
     logout() {
-      this.$store.dispatch('auth/logout').then(() => {
-        this.$router.push({ name: 'login' }).then(() => {
+      this.$router.push({ name: 'login' }).then(() => {
+        this.$store.dispatch('auth/logout').then(() => {
           this.toast('Thank You', 'LogOutIcon', 'You have logged out successfully', 'success')
         })
       })

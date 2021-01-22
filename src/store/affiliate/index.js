@@ -110,5 +110,15 @@ export default {
         })
       })
     },
+    updateAccount({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'affiliate/update_account', data: helpers.getUpdateAccountForm(payload.form), method: 'post' }).then(response => {
+          commit('UPDATE_SESSION', { user: response.data.user, session: response.data.session })
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
   },
 }

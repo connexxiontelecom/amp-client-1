@@ -118,11 +118,34 @@
               />
             </b-form-group>
           </b-col>
-          <b-col class="text-right" cols="12">
+          <b-col
+            cols="12"
+            class="mt-75"
+          >
+            <b-alert
+              show
+              variant="warning"
+              class="mb-50"
+            >
+              <h4 class="alert-heading">
+                Your email is not confirmed. Please check your inbox.
+              </h4>
+              <div class="alert-body">
+                <b-link class="alert-link">
+                  Resend confirmation
+                </b-link>
+              </div>
+            </b-alert>
+          </b-col>
+          <b-col
+            class="text-right"
+            cols="12"
+          >
             <b-button
               v-ripple.400="'rgba(255, 255, 255, 0.15)'"
               variant="primary"
               class="mt-2 mr-1"
+              @click="updateAccount()"
             >
               Save Changes
             </b-button>
@@ -136,12 +159,13 @@
 
 <script>
 import {
-  BCard, BMedia, BMediaBody, BCardText, BButton, BMediaAside, BLink, BImg, BForm, BRow, BCol, BFormGroup, BFormInput,
+  BCard, BMedia, BMediaBody, BCardText, BButton, BMediaAside, BLink, BImg, BForm, BRow, BCol, BFormGroup, BFormInput, BAlert,
 } from 'bootstrap-vue'
 import Ripple from 'vue-ripple-directive'
 import { mapGetters } from 'vuex'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import { required, email } from '@validations'
+import affiliate from '@/mixins/affiliate'
 
 export default {
   components: {
@@ -160,10 +184,12 @@ export default {
     BCol,
     BFormGroup,
     BFormInput,
+    BAlert,
   },
   directives: {
     Ripple,
   },
+  mixins: [affiliate],
   data() {
     return {
       affiliateID: this.$store.getters['auth/getUser'].affiliate_id,

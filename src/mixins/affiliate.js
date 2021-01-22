@@ -154,5 +154,24 @@ export default {
         }
       })
     },
+    updateAccount() {
+      this.$refs.editInfoValidation.validate().then(success => {
+        if (success) {
+          const form = {
+            affiliateID: this.affiliateID,
+            firstname: this.firstname,
+            lastname: this.lastname,
+            email: this.emailAddr,
+          }
+          this.$store.dispatch('affiliate/updateAccount', { form }).then(() => {
+            this.toast('Update Account', 'BellIcon', ' You have successfully updated your account', 'success')
+          }).catch(error => {
+            this.toast('Update Account', 'BellIcon', error.response.data.messages.error, 'danger')
+          })
+        } else {
+          this.toast('Update Account Attempt', 'BellIcon', 'You must fill in all form fields correctly', 'warning')
+        }
+      })
+    },
   },
 }
