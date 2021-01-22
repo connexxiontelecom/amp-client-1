@@ -220,5 +220,26 @@ export default {
         this.toast('Get Downstream Affiliates', 'BellIcon', error.response.data.messages.error, 'danger')
       })
     },
+    addDownstreamAffiliate() {
+      this.$refs.addDownstreamAffiliateValidation.validate().then(success => {
+        if (success) {
+          const form = {
+            firstname: this.firstname,
+            lastname: this.lastname,
+            username: this.username,
+            email: this.emailAddr,
+            password: this.password,
+            upstreamAffiliate: this.upstreamAffiliate,
+          }
+          this.$store.dispatch('affiliate/addDownstreamAffiliate', { form }).then(() => {
+            this.toast('Add Affiliate', 'BellIcon', 'You have successfully added an affiliate', 'success')
+          }).catch(error => {
+            this.toast('Add Affiliate', 'BellIcon', error.response.data.messages.error, 'danger')
+          })
+        } else {
+          this.toast('Add Affiliate', 'BellIcon', 'You must fill in all form fields correctly', 'warning')
+        }
+      })
+    },
   },
 }

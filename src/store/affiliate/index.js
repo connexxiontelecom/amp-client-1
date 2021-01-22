@@ -150,5 +150,15 @@ export default {
         })
       })
     },
+    addDownstreamAffiliate({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'affiliate/add_downstream_affiliate', data: helpers.getAddAffiliateForm(payload.form), method: 'post' }).then(response => {
+          commit('SET_DOWNSTREAM_AFFILIATES', { downstreamAffiliates: response.data })
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
   },
 }

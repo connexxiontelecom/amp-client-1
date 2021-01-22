@@ -32,6 +32,7 @@
               />
               <b-button
                 variant="primary"
+                :to="{ name: 'add-downstream-affiliate' }"
               >
                 <span class="text-nowrap">Add Affiliate</span>
               </b-button>

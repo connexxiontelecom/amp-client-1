@@ -89,4 +89,25 @@ export default [
       ],
     },
   },
+  {
+    path: '/affiliates/add-affiliate',
+    name: 'add-downstream-affiliate',
+    component: () => import('@/views/affiliate/affiliates/AddAffiliate'),
+    meta: {
+      authRequired: true,
+      title: 'Add Affiliate - AMP | Powered by Connexxion Telecom',
+      pageTitle: 'Add Affiliate',
+      breadcrumb: [
+        {
+          text: 'Affiliates',
+          to: '/affiliates',
+        },
+        {
+          text: 'Add Affiliate',
+          active: true,
+        },
+      ],
+      navActiveLink: 'affiliates',
+    },
+  },
 ]
