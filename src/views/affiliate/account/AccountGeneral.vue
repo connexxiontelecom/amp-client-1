@@ -42,7 +42,7 @@
         <b-card-text>Allowed JPG, GIF or PNG. Max size of 800kB</b-card-text>
       </b-media-body>
     </b-media>
-    <validation-observer ref="editInfoValidation">
+    <validation-observer ref="editAccountValidation">
       <b-form
         class="mt-2"
         @submit.prevent

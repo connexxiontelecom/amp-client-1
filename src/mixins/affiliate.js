@@ -155,7 +155,7 @@ export default {
       })
     },
     updateAccount() {
-      this.$refs.editInfoValidation.validate().then(success => {
+      this.$refs.editAccountValidation.validate().then(success => {
         if (success) {
           const form = {
             affiliateID: this.affiliateID,
@@ -170,6 +170,28 @@ export default {
           })
         } else {
           this.toast('Update Account Attempt', 'BellIcon', 'You must fill in all form fields correctly', 'warning')
+        }
+      })
+    },
+    updateInfo() {
+      this.$refs.editInfoValidation.validate().then(success => {
+        if (success) {
+          const form = {
+            affiliateID: this.affiliateID,
+            affiliateInfoID: this.affiliateInfoID,
+            dob: this.dob,
+            mobile: this.mobile,
+            gender: this.gender,
+            address: this.address,
+            country: this.country,
+          }
+          this.$store.dispatch('affiliate/updateInfo', { form }).then(() => {
+            this.toast('Update Information', 'BellIcon', 'You have successfully updated your information', 'success')
+          }).catch(error => {
+            this.toast('Update Information', 'BellIcon', error.response.data.messages.error, 'danger')
+          })
+        } else {
+          this.toast('Update Information Attempt', 'BellIcon', 'You must fill in all form fields correctly', 'warning')
         }
       })
     },

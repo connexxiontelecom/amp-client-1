@@ -26,6 +26,7 @@
         />
         <span class="font-weight-bold">Information</span>
       </template>
+      <account-info />
     </b-tab>
     <b-tab>
       <template #title>
@@ -55,10 +56,11 @@ import {
   BTab, BTabs,
 } from 'bootstrap-vue'
 import AccountGeneral from './AccountGeneral.vue'
+import AccountInfo from './AccountInfo.vue'
 
 export default {
   components: {
-    BTabs, BTab, AccountGeneral,
+    BTabs, BTab, AccountGeneral, AccountInfo,
   },
 }
 </script>

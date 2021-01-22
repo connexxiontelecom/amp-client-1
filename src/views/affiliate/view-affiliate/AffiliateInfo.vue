@@ -251,7 +251,7 @@ export default {
     let affiliateInfoID = 0
     let dob = null
     let mobile = null
-    let gender = null
+    let gender = 'male'
     let address = null
     let country = null
     const affiliateInfo = this.$store.getters['affiliate/getCurrentAffiliate'].affiliate_info
