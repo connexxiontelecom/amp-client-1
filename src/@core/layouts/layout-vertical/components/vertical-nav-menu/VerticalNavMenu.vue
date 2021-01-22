@@ -72,7 +72,13 @@
       @ps-scroll-y="evt => { shallShadowBottom = evt.srcElement.scrollTop > 0 }"
     >
       <vertical-nav-menu-items
+        v-if="isAdmin"
         :items="navMenuItems"
+        class="navigation navigation-main"
+      />
+      <vertical-nav-menu-items
+        v-else-if="isAffiliate"
+        :items="affiliateMenuItems"
         class="navigation navigation-main"
       />
     </vue-perfect-scrollbar>
@@ -82,11 +88,13 @@
 
 <script>
 import navMenuItems from '@/navigation/vertical'
+import affiliateMenuItems from '@/navigation/vertical-1'
 import VuePerfectScrollbar from 'vue-perfect-scrollbar'
 import { BLink, BImg } from 'bootstrap-vue'
 import { provide, computed, ref } from '@vue/composition-api'
 import useAppConfig from '@core/app-config/useAppConfig'
 import { $themeConfig } from '@themeConfig'
+import { mapGetters } from 'vuex'
 import VerticalNavMenuItems from './components/vertical-nav-menu-items/VerticalNavMenuItems.vue'
 import useVerticalNavMenu from './useVerticalNavMenu'
 
@@ -135,6 +143,7 @@ export default {
 
     return {
       navMenuItems,
+      affiliateMenuItems,
       perfectScrollbarSettings,
       isVerticalMenuCollapsed,
       collapseTogglerIcon,
@@ -153,6 +162,12 @@ export default {
       appName,
       appLogoImage,
     }
+  },
+  computed: {
+    ...mapGetters({
+      isAdmin: 'auth/getIsAdmin',
+      isAffiliate: 'auth/getIsAffiliate',
+    }),
   },
 }
 </script>
