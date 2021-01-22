@@ -1,8 +1,17 @@
 <template>
   <b-card>
     <h5>Welcome, <strong class="text-primary">@{{ user.username }}!</strong> 🎉 </h5>
-    <b-card-text class="font-small-4">
+    <b-card-text
+      v-if="isAdmin"
+      class="font-small-4"
+    >
       This is your admin dashboard
+    </b-card-text>
+    <b-card-text
+      v-else-if="isAffiliate"
+      class="font-small-4"
+    >
+      This is your affiliate dashboard
     </b-card-text>
     <h3 class="mb-75 mt-2 pt-50">
       {{ new Date().toDateString() }}
@@ -28,6 +37,8 @@ export default {
   computed: {
     ...mapGetters({
       user: 'auth/getUser',
+      isAdmin: 'auth/getIsAdmin',
+      isAffiliate: 'auth/getIsAffiliate',
     }),
   },
 }

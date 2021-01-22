@@ -24,6 +24,7 @@ export default [
   },
   {
     title: 'Account',
+    route: 'account',
     icon: 'UserIcon',
   },
   {

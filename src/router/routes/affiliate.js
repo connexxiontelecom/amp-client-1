@@ -57,4 +57,20 @@ export default [
       navActiveLink: 'affiliate-accounts',
     },
   },
+  {
+    path: '/account',
+    name: 'account',
+    component: () => import('@/views/affiliate/account/Account'),
+    meta: {
+      authRequired: true,
+      title: 'Account - AMP | Powered by Connexxion Telecom',
+      pageTitle: 'Account',
+      breadcrumb: [
+        {
+          text: 'Account',
+          active: true,
+        },
+      ],
+    },
+  },
 ]
