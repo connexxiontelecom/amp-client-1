@@ -46,4 +46,12 @@ export default {
     formData.append('bank_acc_number', form.bankAccountNumber)
     return formData
   },
+  getChangePasswordForm(form) {
+    const formData = new FormData()
+    formData.append('affiliate_id', form.affiliateID)
+    formData.append('password', form.password)
+    formData.append('new_password', form.newPassword)
+    formData.append('confirm_password', form.confirmPassword)
+    return formData
+  },
 }

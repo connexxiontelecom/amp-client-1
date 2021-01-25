@@ -24,6 +24,7 @@
                   name="name"
                   placeholder="Bank Name"
                 />
+                <small class="text-danger">{{ errors[0] }}</small>
               </validation-provider>
             </b-form-group>
           </b-col>
@@ -43,6 +44,7 @@
                   name="acc-name"
                   placeholder="Bank Account Name"
                 />
+                <small class="text-danger">{{ errors[0] }}</small>
               </validation-provider>
             </b-form-group>
           </b-col>
@@ -61,6 +63,7 @@
                   name="acc-number"
                   placeholder="Bank Account Number"
                 />
+                <small class="text-danger">{{ errors[0] }}</small>
               </validation-provider>
             </b-form-group>
           </b-col>
@@ -89,6 +92,7 @@ import {
 } from 'bootstrap-vue'
 import Ripple from 'vue-ripple-directive'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
+import { required } from '@validations'
 import affiliate from '@/mixins/affiliate'
 
 export default {
@@ -126,6 +130,7 @@ export default {
       bankName,
       bankAccountName,
       bankAccountNumber,
+      required,
     }
   },
 }

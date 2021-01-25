@@ -248,5 +248,28 @@ export default {
         this.toast('Get Affiliate', 'BellIcon', error.response.data.messages.error, 'danger')
       })
     },
+    changePassword() {
+      this.$refs.changePasswordValidation.validate().then(success => {
+        if (success) {
+          const form = {
+            affiliateID: this.affiliateID,
+            password: this.password,
+            newPassword: this.newPassword,
+            confirmPassword: this.confirmPassword,
+          }
+          this.$store.dispatch('affiliate/changePassword', { form }).then(response => {
+            this.$router.push({ name: 'login' }).then(() => {
+              this.$store.dispatch('auth/logout').then(() => {
+                this.toast('Change Password', 'LogOutIcon', response.data, 'success')
+              })
+            })
+          }).catch(error => {
+            this.toast('Change Password', 'BellIcon', error.response.data.messages.error, 'danger')
+          })
+        } else {
+          this.toast('Change Password', 'BellIcon', 'You must fill in all form fields correctly', 'warning')
+        }
+      })
+    },
   },
 }

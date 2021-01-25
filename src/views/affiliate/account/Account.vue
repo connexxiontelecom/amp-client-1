@@ -48,6 +48,7 @@
         />
         <span class="font-weight-bold">Change Password</span>
       </template>
+      <account-password />
     </b-tab>
   </b-tabs>
 </template>
@@ -59,10 +60,11 @@ import {
 import AccountGeneral from './AccountGeneral.vue'
 import AccountInfo from './AccountInfo.vue'
 import AccountBank from './AccountBank.vue'
+import AccountPassword from './AccountPassword.vue'
 
 export default {
   components: {
-    BTabs, BTab, AccountGeneral, AccountInfo, AccountBank,
+    BTabs, BTab, AccountGeneral, AccountInfo, AccountBank, AccountPassword,
   },
 }
 </script>

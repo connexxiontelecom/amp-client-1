@@ -160,5 +160,14 @@ export default {
         })
       })
     },
+    changePassword({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'affiliate/change_password', data: helpers.getChangePasswordForm(payload.form), method: 'post' }).then(response => {
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
   },
 }
