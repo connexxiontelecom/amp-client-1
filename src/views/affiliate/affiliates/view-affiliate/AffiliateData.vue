@@ -53,7 +53,7 @@
             </b-avatar>
             <div class="ml-1">
               <h5 class="mb-0">
-                0
+                {{ numDownstreamAffiliates }}
               </h5>
               <small>Affiliates</small>
             </div>
@@ -172,6 +172,7 @@ export default {
   computed: {
     ...mapGetters({
       currentAffiliate: 'affiliate/getCurrentAffiliate',
+      numDownstreamAffiliates: 'affiliate/getNumDownstreamAffiliates',
     }),
   },
 }
