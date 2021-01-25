@@ -61,10 +61,12 @@
                 src=""
                 :text="avatarText(`${data.item.firstname +' '+ data.item.lastname}`)"
                 variant="light-success"
+                @click="getDownstreamAffiliate(data.item.affiliate_id)"
               />
             </template>
             <b-link
               class="font-weight-bold d-block text-nowrap"
+              @click="getDownstreamAffiliate(data.item.affiliate_id)"
             >
               {{ data.item.firstname +' '+ data.item.lastname }}
             </b-link>
@@ -100,14 +102,7 @@
               icon="EyeIcon"
               size="16"
               class="cursor-pointer mx-1"
-              @click="getAffiliate(data.item.affiliate_id)"
-            />
-            <feather-icon
-              :id="`edit-${data.item.affiliate_id}`"
-              v-b-tooltip.hover.top="'Edit'"
-              icon="EditIcon"
-              class="cursor-pointer"
-              size="16"
+              @click="getDownstreamAffiliate(data.item.affiliate_id)"
             />
           </div>
         </template>
@@ -202,7 +197,7 @@ export default {
     }),
   },
   created() {
-    this.getDownstreamAffiliates()
+    this.getDownstreamAffiliates(this.$store.getters['auth/getUser'].affiliate_id)
   },
   methods: {
     onFiltered(filteredItems) {

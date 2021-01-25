@@ -110,4 +110,25 @@ export default [
       navActiveLink: 'affiliates',
     },
   },
+  {
+    path: '/affiliates/view-affiliate',
+    name: 'view-downstream-affiliate',
+    component: () => import('@/views/affiliate/affiliates/view-affiliate/ViewAffiliate'),
+    meta: {
+      authRequired: true,
+      title: 'View Affiliate - AMP | Powered by Connexxion Telecom',
+      pageTitle: 'View Affiliate',
+      breadcrumb: [
+        {
+          text: 'Affiliates',
+          to: '/affiliates',
+        },
+        {
+          text: 'View Affiliate',
+          active: true,
+        },
+      ],
+      navActiveLink: 'affiliates',
+    },
+  },
 ]

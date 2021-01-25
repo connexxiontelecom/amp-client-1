@@ -241,5 +241,12 @@ export default {
         }
       })
     },
+    getDownstreamAffiliate(affiliateID) {
+      this.$store.dispatch('affiliate/getAffiliate', { affiliateID }).then(() => {
+        this.$router.push({ name: 'view-downstream-affiliate', params: { affiliateID } }).catch()
+      }).catch(error => {
+        this.toast('Get Affiliate', 'BellIcon', error.response.data.messages.error, 'danger')
+      })
+    },
   },
 }
