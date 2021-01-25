@@ -37,13 +37,13 @@
           cols="12"
           lg="6"
         >
-          <!-- <affiliate-info /> -->
+          <affiliate-info />
         </b-col>
         <b-col
           cols="12"
           lg="6"
         >
-          <!-- <affiliate-bank /> -->
+          <affiliate-bank />
         </b-col>
       </b-row>
     </template>
@@ -59,8 +59,8 @@ import { mapGetters } from 'vuex'
 import affiliate from '@/mixins/affiliate'
 import AffiliateData from './AffiliateData.vue'
 // import AffiliateUpstream from './AffiliateUpstream.vue'
-// import AffiliateInfo from './AffiliateInfo.vue'
-// import AffiliateBank from './AffiliateBank.vue'
+import AffiliateInfo from './AffiliateInfo.vue'
+import AffiliateBank from './AffiliateBank.vue'
 
 export default {
   components: {
@@ -72,8 +72,8 @@ export default {
     BLink,
     AffiliateData,
     // AffiliateUpstream,
-    // AffiliateInfo,
-    // AffiliateBank,
+    AffiliateInfo,
+    AffiliateBank,
   },
   directives: {
     'b-tooltip': VBTooltip,

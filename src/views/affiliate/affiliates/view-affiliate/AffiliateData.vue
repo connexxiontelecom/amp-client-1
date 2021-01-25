@@ -41,24 +41,6 @@
             </div>
           </div>
 
-          <div class="d-flex align-items-center mr-4">
-            <b-avatar
-              variant="light-primary"
-              rounded
-            >
-              <feather-icon
-                icon="TrendingUpIcon"
-                size="18"
-              />
-            </b-avatar>
-            <div class="ml-1">
-              <h5 class="mb-0">
-                &#8358; 0
-              </h5>
-              <small>Commission</small>
-            </div>
-          </div>
-
           <div class="d-flex align-items-center">
             <b-avatar
               variant="light-warning"
@@ -154,19 +136,16 @@
 
 <script>
 import {
-  BCard, BButton, BAvatar, BRow, BCol, BBadge, BModal, BForm, VBModal, VBTooltip, BFormGroup, BFormInput,
+  BCard, BAvatar, BRow, BCol, BBadge, VBModal, VBTooltip,
 } from 'bootstrap-vue'
 import { avatarText } from '@core/utils/filter'
 import { mapGetters } from 'vuex'
 import affiliate from '@/mixins/affiliate'
 import { required, email } from '@validations'
-import vSelect from 'vue-select'
-import { ValidationObserver, ValidationProvider } from 'vee-validate'
 
 export default {
   components: {
-    // eslint-disable-next-line vue/no-unused-components
-    BCard, BButton, BRow, BCol, BAvatar, BBadge, BModal, BForm, BFormGroup, BFormInput, ValidationProvider, ValidationObserver, vSelect,
+    BCard, BRow, BCol, BAvatar, BBadge,
   },
   directives: {
     'b-tooltip': VBTooltip,
@@ -186,8 +165,6 @@ export default {
       lastname: this.$store.getters['affiliate/getCurrentAffiliate'].lastname,
       emailAddr: this.$store.getters['affiliate/getCurrentAffiliate'].email,
       upstreamAffiliate,
-      upstream: null,
-      upstreamAffiliates: [],
       required,
       email,
     }
@@ -196,26 +173,6 @@ export default {
     ...mapGetters({
       currentAffiliate: 'affiliate/getCurrentAffiliate',
     }),
-  },
-  created() {
-    this.getAffiliateOptions()
-  },
-  methods: {
-    clicked() {
-      this.toggleStatus(this.$store.getters['affiliate/getCurrentAffiliate'].status, this.$store.getters['affiliate/getCurrentAffiliate'].affiliate_id)
-    },
-    getAffiliateOptions() {
-      const affiliates = this.$store.getters['affiliate/getAllAffiliates']
-      affiliates.forEach(_affiliate => {
-        if (_affiliate.affiliate_id !== this.affiliateID) {
-          this.upstreamAffiliates.push({ title: _affiliate.username, value: _affiliate.affiliate_id })
-        }
-      })
-    },
-    handleAccountUpdateOk(e) {
-      e.preventDefault()
-      this.updateAffiliateAccount()
-    },
   },
 }
 </script>
