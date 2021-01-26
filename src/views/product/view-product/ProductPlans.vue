@@ -99,7 +99,7 @@
             sm="6"
             class="d-flex align-items-center justify-content-center justify-content-sm-start"
           >
-            <span class="text-muted">There are {{ numProductPlans }} product plans</span>
+            <span class="text-muted">There are {{ numProductPlans }} product pricing plans</span>
           </b-col>
           <b-col
             cols="12"

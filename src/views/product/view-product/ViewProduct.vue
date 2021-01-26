@@ -51,6 +51,7 @@
                         v-if="currentProduct.status === '0'"
                         variant="outline-success"
                         class="ml-1"
+                        @click="clicked"
                       >
                         Reactivate
                       </b-button>
@@ -58,6 +59,7 @@
                         v-else-if="currentProduct.status === '1'"
                         variant="outline-danger"
                         class="ml-1"
+                        @click="clicked"
                       >
                         Deactivate
                       </b-button>
@@ -208,7 +210,6 @@ import {
 } from 'bootstrap-vue'
 import product from '@/mixins/product'
 import { mapGetters } from 'vuex'
-import api from '@/apiConfig'
 import { avatarText } from '@core/utils/filter'
 import ProductPlans from './ProductPlans.vue'
 
@@ -232,7 +233,6 @@ export default {
   data() {
     return {
       loaded: false,
-      api,
       avatarText,
     }
   },
@@ -244,8 +244,12 @@ export default {
   created() {
     if (this.$router.currentRoute.params.productID) {
       this.loaded = true
-      this.getProduct(this.$router.currentRoute.params.productID)
     }
+  },
+  methods: {
+    clicked() {
+      this.toggleStatus(this.$store.getters['product/getCurrentProduct'].status, this.$store.getters['product/getCurrentProduct'].product_id)
+    },
   },
 }
 </script>

@@ -61,12 +61,12 @@
                 :src="data.item.logo"
                 :text="avatarText(`${data.item.name}`)"
                 variant="light-info"
-                :to="{name: 'view-admin'}"
+                @click="getProduct(data.item.product_id)"
               />
             </template>
             <b-link
-              :to="{name: 'view-admin'}"
               class="font-weight-bold d-block text-nowrap text-uppercase"
+              @click="getProduct(data.item.product_id)"
             >
               {{ data.item.name }}
             </b-link>
@@ -113,7 +113,7 @@
               icon="EyeIcon"
               size="16"
               class="cursor-pointer mx-1"
-              @click="$router.push({ name: 'view-product', params: { productID: data.item.product_id }})"
+              @click="getProduct(data.item.product_id)"
             />
             <feather-icon
               :id="`edit-${data.item.product_id}`"

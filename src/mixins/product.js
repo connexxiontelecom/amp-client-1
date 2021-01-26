@@ -28,7 +28,9 @@ export default {
       })
     },
     getProduct(productID) {
-      this.$store.dispatch('product/getProduct', { productID }).then().catch(error => {
+      this.$store.dispatch('product/getProduct', { productID }).then(() => {
+        this.$router.push({ name: 'view-product', params: { productID } }).catch()
+      }).catch(error => {
         this.toast('Get Product Attempt', 'BellIcon', error.response.data.messages.error, 'danger')
       })
     },
@@ -60,6 +62,47 @@ export default {
           this.toast('Add Product Plan Attempt', 'BellIcon', 'You must fill in all form fields correctly', 'warning')
         }
       })
+    },
+    toggleStatus(status, productID) {
+      if (status === '1') {
+        this.$bvModal.msgBoxConfirm('Please confirm that you want to deactivate this product?', {
+          title: 'Deactivate Product',
+          size: 'sm',
+          okVariant: 'primary',
+          okTitle: 'Confirm',
+          cancelTitle: 'Cancel',
+          cancelVariant: 'outline-secondary',
+          hideHeaderClose: false,
+          centered: true,
+        }).then(value => {
+          if (value) {
+            this.$store.dispatch('product/toggleProductStatus', { productID }).then(() => {
+              this.toast('Deactivate Product', 'BellIcon', 'The product was deactivated successfully', 'success')
+            }).catch(error => {
+              this.toast('Deactivate Product', 'BellIcon', error.response.data.messages.error, 'danger')
+            })
+          }
+        })
+      } else if (status === '0') {
+        this.$bvModal.msgBoxConfirm('Please confirm that you want to reactivate this product?', {
+          title: 'Reactivate Product',
+          size: 'sm',
+          okVariant: 'primary',
+          okTitle: 'Confirm',
+          cancelTitle: 'Cancel',
+          cancelVariant: 'outline-secondary',
+          hideHeaderClose: false,
+          centered: true,
+        }).then(value => {
+          if (value) {
+            this.$store.dispatch('product/toggleProductStatus', { productID }).then(() => {
+              this.toast('Reactivate Product', 'BellIcon', 'The product was reactivated successfully', 'success')
+            }).catch(error => {
+              this.toast('Reactivate Product', 'BellIcon', error.response.data.messages.error, 'danger')
+            })
+          }
+        })
+      }
     },
   },
 }
