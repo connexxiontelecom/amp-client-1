@@ -41,7 +41,12 @@ export default {
     },
     addProduct({ commit }, payload) {
       return new Promise((resolve, reject) => {
-        axios({ url: 'product/add_product', data: helpers.getAddProductForm(payload.form), method: 'post' }).then(response => {
+        axios({
+          url: 'product/add_product',
+          data: helpers.getAddProductForm(payload.form),
+          method: 'post',
+          headers: { 'Content-Type': 'multipart/form-data' },
+        }).then(response => {
           commit('SET_ALL_PRODUCTS', { allProducts: response.data })
           resolve(response)
         }).catch(error => {

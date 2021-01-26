@@ -13,6 +13,7 @@ export default {
             url: this.productUrl,
             category: this.category.value,
             description: this.description,
+            logo: this.logo,
           }
           this.$store.dispatch('product/addProduct', { form }).then(() => {
             this.$router.push({ name: 'products' }).then(() => {

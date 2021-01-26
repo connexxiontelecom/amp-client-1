@@ -58,7 +58,7 @@
               <b-avatar
                 size="32"
                 rounded
-                src=""
+                :src="data.item.logo"
                 :text="avatarText(`${data.item.name}`)"
                 variant="light-info"
                 :to="{name: 'view-admin'}"
@@ -185,7 +185,7 @@ export default {
       perPage: 5,
       perPageOptions: [5, 10, 25, 100],
       filter: null,
-      totalRows: this.$store.getters['admin/getNumAdmins'],
+      totalRows: this.$store.getters['product/getNumProducts'],
       currentPage: 1,
       avatarText,
       fields: [

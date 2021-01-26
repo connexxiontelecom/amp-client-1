@@ -61,11 +61,30 @@
                   lg="8"
                   md="12"
                 >
+                  <b-form-group description="Allowed JPG, JPEG, PNG or GIF">
+                    <label for="logo">Product Logo </label><span style="color: red"> *</span>
+                    <validation-provider
+                      #default="{ errors }"
+                      name="product logo"
+                      rules="required"
+                    >
+                      <b-form-file
+                        v-model="logo"
+                        accept="image/jpeg, image/png, image/gif, image/jpg"
+                      />
+                      <small class="text-danger">{{ errors[0] }}</small>
+                    </validation-provider>
+                  </b-form-group>
+                </b-col>
+                <b-col
+                  lg="8"
+                  md="12"
+                >
                   <b-form-group>
                     <label for="url">Product URL </label>
                     <validation-provider
                       #default="{ errors }"
-                      name="productUrl"
+                      name="product URL"
                       rules="url"
                     >
                       <b-form-input
@@ -125,7 +144,7 @@
 
 <script>
 import {
-  BButton, BCard, BCol, BForm, BFormGroup, BFormInput, BCardSubTitle, BRow, BFormTextarea,
+  BButton, BCard, BCol, BForm, BFormGroup, BFormInput, BCardSubTitle, BRow, BFormTextarea, BFormFile,
 } from 'bootstrap-vue'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import Ripple from 'vue-ripple-directive'
@@ -144,6 +163,7 @@ export default {
     BButton,
     BCardSubTitle,
     BFormTextarea,
+    BFormFile,
     ValidationObserver,
     ValidationProvider,
     vSelect,
@@ -161,6 +181,7 @@ export default {
       categories: [
         { title: 'Software', value: 'Software' },
       ],
+      logo: null,
       required,
       url,
     }

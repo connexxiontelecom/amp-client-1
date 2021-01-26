@@ -3,7 +3,7 @@
     <b-card>
       <b-row>
         <b-col
-          cols="21"
+          cols="12"
           xl="6"
           class="d-flex justify-content-between flex-column"
         >

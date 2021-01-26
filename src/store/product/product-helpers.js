@@ -25,6 +25,7 @@ export default {
     formData.append('name', form.name)
     formData.append('url', form.url)
     formData.append('category', form.category)
+    formData.append('logo', form.logo)
     formData.append('description', form.description)
     return formData
   },
