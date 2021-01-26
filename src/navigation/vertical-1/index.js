@@ -13,6 +13,7 @@ export default [
   },
   {
     title: 'Commissions',
+    route: 'commissions',
     icon: 'PercentIcon',
   },
   {

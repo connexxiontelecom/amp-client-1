@@ -1,0 +1,6 @@
+
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/connexxtel/amp.connexxiontelecom.com/
+    - /bin/cp -R dist/* $DEPLOYPATH

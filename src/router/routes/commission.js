@@ -16,6 +16,22 @@ export default [
     },
   },
   {
+    path: '/commissions',
+    name: 'commissions',
+    component: () => import('@/views/commission/Commissions'),
+    meta: {
+      authRequired: true,
+      title: 'Commissions - AMP | Powered by Connexxion Telecom',
+      pageTitle: 'Commissions',
+      breadcrumb: [
+        {
+          text: 'Commissions',
+          active: true,
+        },
+      ],
+    },
+  },
+  {
     path: '/commission/plan-commissions',
     name: 'plan-commissions',
     component: () => import('@/views/commission/PlanCommissions'),
