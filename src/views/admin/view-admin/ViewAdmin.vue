@@ -5,7 +5,7 @@
 <script>
 export default {
   created() {
-    console.log(this.$router.currentRoute.params.adminID)
+    // console.log(this.$router.currentRoute.params.adminID)
   },
 }
 </script>

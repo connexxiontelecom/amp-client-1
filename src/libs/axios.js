@@ -11,7 +11,7 @@ const baseURL = {
 export default axios.create({
   // You can add your headers here
   // ================================
-  baseURL: baseURL.dev,
+  baseURL: baseURL.prod,
   // timeout: 1000,
   // headers: {'X-Custom-Header': 'foobar'}
 })

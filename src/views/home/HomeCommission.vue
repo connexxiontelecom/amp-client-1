@@ -53,7 +53,6 @@ export default {
   mixins: [commission],
   data() {
     const currGen = this.$store.getters['commission/getCurrentGeneration']
-    console.log(currGen)
     const series = [
       parseInt(currGen.gen_1),
       parseInt(currGen.gen_2),
