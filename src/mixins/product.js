@@ -67,7 +67,6 @@ export default {
       const form = {
         productID: this.productID,
       }
-      console.log(form)
       this.$store.dispatch('product/removeLogo', { form }).then(() => {
         this.toast('Remove Logo', 'BellIcon', 'You have successfully removed the product logo', 'success')
       }).catch(error => {
@@ -137,6 +136,30 @@ export default {
           })
         } else {
           this.toast('Update Product Plan Attempt', 'BellIcon', 'You must fill in all form fields correctly', 'warning')
+        }
+      })
+    },
+    deletePlan() {
+      this.$bvModal.msgBoxConfirm('Please confirm that you want to delete this product plan', {
+        title: 'Delete Plan',
+        size: 'sm',
+        okVariant: 'primary',
+        okTitle: 'Confirm',
+        cancelTitle: 'Cancel',
+        cancelVariant: 'outline-secondary',
+        hideHeaderClose: false,
+        centered: true,
+      }).then(value => {
+        if (value) {
+          const form = {
+            productID: this.productID,
+            productPlanID: this.productPlanID,
+          }
+          this.$store.dispatch('product/deletePlan', { form }).then(() => {
+            this.toast('Delete Plan', 'BellIcon', 'You have successfully deleted the product plan', 'success')
+          }).catch(error => {
+            this.toast('Delete Plan Attempt', 'BellIcon', error.response.data.messages.error, 'danger')
+          })
         }
       })
     },

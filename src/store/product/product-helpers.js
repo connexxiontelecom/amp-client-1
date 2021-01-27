@@ -20,6 +20,12 @@ export default {
     formData.append('plan_slug', form.planSlug)
     return formData
   },
+  getDeletePlanForm(form) {
+    const formData = new FormData()
+    formData.append('product_id', form.productID)
+    formData.append('product_plan_id', form.productPlanID)
+    return formData
+  },
   getAddProductForm(form) {
     const formData = new FormData()
     formData.append('name', form.name)

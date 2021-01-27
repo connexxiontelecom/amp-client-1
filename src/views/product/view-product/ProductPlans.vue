@@ -96,6 +96,7 @@
               icon="TrashIcon"
               class="ml-1 cursor-pointer"
               size="16"
+              @click="deleteProductPlan(data.item)"
             />
           </div>
         </template>
@@ -467,6 +468,11 @@ export default {
       this.productIDView = plan.product_id
       this.productPlanID = plan.product_plan_id
       this.editModal = true
+    },
+    deleteProductPlan(plan) {
+      this.productIDView = plan.product_id
+      this.productPlanID = plan.product_plan_id
+      this.deletePlan()
     },
   },
 }

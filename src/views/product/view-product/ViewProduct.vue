@@ -206,7 +206,7 @@
                       <span class="font-weight-bold">Pricing Plans</span>
                     </th>
                     <td class="pb-50">
-                      {{ currentProduct.num_plans }} Plans
+                      {{ numProductPlans }} Plans
                     </td>
                   </tr>
                   <tr>
@@ -395,6 +395,7 @@ export default {
   computed: {
     ...mapGetters({
       currentProduct: 'product/getCurrentProduct',
+      numProductPlans: 'product/getNumProductPlans',
     }),
   },
   created() {
