@@ -31,6 +31,7 @@
                 placeholder="Search..."
               />
               <b-button
+                v-if="isAdmin"
                 id="add-btn"
                 v-b-modal.add-plan
                 variant="primary"
@@ -54,7 +55,10 @@
         @filtered="onFiltered"
       >
         <template #cell(plan_name)="data">
-          <b-media vertical-align="center">
+          <b-media
+            v-if="isAdmin"
+            vertical-align="center"
+          >
             <template #aside>
               <b-avatar
                 size="32"
@@ -73,6 +77,28 @@
             </b-link>
             <small class="text-muted">{{ data.item.plan_link }}</small>
           </b-media>
+          <b-media
+            v-else-if="isAffiliate"
+            vertical-align="center"
+          >
+            <template #aside>
+              <b-avatar
+                size="32"
+                rounded
+                src=""
+                :text="avatarText(`${data.item.plan_name}`)"
+                variant="light-warning"
+                @click="copyReferralLink(data.item)"
+              />
+            </template>
+            <b-link
+              class="font-weight-bold d-block text-nowrap text-capitalize"
+              @click="copyReferralLink(data.item)"
+            >
+              {{ data.item.plan_name }}
+            </b-link>
+            <small class="text-muted">{{ data.item.plan_link }}</small>
+          </b-media>
         </template>
         <template #cell(plan_price)="data">
           &#8358; {{ parseInt(data.item.plan_price).toLocaleString('en') }}
@@ -83,6 +109,7 @@
         <template #cell(actions)="data">
           <div class="text-nowrap">
             <feather-icon
+              v-if="isAdmin"
               :id="`edit-${data.item.product_plan_id}`"
               v-b-tooltip.hover.top="'Edit'"
               icon="EditIcon"
@@ -91,12 +118,22 @@
               @click="openEditPlanModal(data.item)"
             />
             <feather-icon
+              v-if="isAdmin"
               :id="`delete-${data.item.product_plan_id}`"
               v-b-tooltip.hover.top="'Delete'"
               icon="TrashIcon"
               class="ml-1 cursor-pointer"
               size="16"
               @click="deleteProductPlan(data.item)"
+            />
+            <feather-icon
+              v-if="isAffiliate"
+              :id="`link-${data.item.product_plan_id}`"
+              v-b-tooltip.hover.top="'Copy Link'"
+              icon="CopyIcon"
+              class="ml-2 cursor-pointer"
+              size="16"
+              @click="copyReferralLink(data.item)"
             />
           </div>
         </template>
@@ -436,12 +473,16 @@ export default {
       planSlugView: null,
       productIDView: null,
       productPlanID: null,
+      viewModal: false,
+      referralLink: null,
     }
   },
   computed: {
     ...mapGetters({
       currentProductPlans: 'product/getCurrentProductPlans',
       numProductPlans: 'product/getNumProductPlans',
+      isAdmin: 'auth/getIsAdmin',
+      isAffiliate: 'auth/getIsAffiliate',
     }),
   },
   watch: {
@@ -473,6 +514,12 @@ export default {
       this.productIDView = plan.product_id
       this.productPlanID = plan.product_plan_id
       this.deletePlan()
+    },
+    copyReferralLink(plan) {
+      this.referralLink = `${plan.plan_link}/${this.$store.getters['auth/getUser'].ref_code}`
+      this.$copyText(this.referralLink).then(() => console.log(this.referralLink)).catch(e => console.log(e))
+      this.toast('Copied Referral Link!', 'CopyIcon', '', 'success')
+      // this.viewModal = !this.viewModal
     },
   },
 }

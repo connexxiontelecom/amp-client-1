@@ -14,6 +14,7 @@ import './global-components'
 import '@axios'
 import '@/libs/portal-vue'
 import '@/libs/toastification'
+import '@/libs/clipboard'
 
 // BSV Plugin Registration
 Vue.use(ToastPlugin)
@@ -37,9 +38,7 @@ new Vue({
   created() {
     this.reinitializeSession()
     // eslint-disable-next-line func-names
-    window.onbeforeunload = function () {
-      return 'Do not reload Vue app'
-    }
+    // window.onbeforeunload = () => 'Do not reload Vue app'
   },
   render: h => h(App),
 }).$mount('#app')

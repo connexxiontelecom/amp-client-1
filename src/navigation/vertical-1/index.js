@@ -9,6 +9,7 @@ export default [
   },
   {
     title: 'Products',
+    route: 'products',
     icon: 'PackageIcon',
   },
   {

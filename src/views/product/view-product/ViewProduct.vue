@@ -23,6 +23,7 @@
                 <b-card-title>Product Details</b-card-title>
               </div>
               <b-dropdown
+                v-if="isAdmin"
                 variant="link"
                 no-caret
                 class="chart-dropdown"
@@ -60,7 +61,7 @@
             <b-row class="py-2 px-3">
               <b-col
                 cols="12"
-                xl="5"
+                xl="4"
                 class="d-flex justify-content-between flex-column"
               >
                 <div class="d-flex justify-content-start">
@@ -79,7 +80,10 @@
                       </h4>
                       <span class="text-muted card-text">{{ currentProduct.category }}</span>
                     </div>
-                    <div class="d-flex flex-wrap">
+                    <div
+                      v-if="isAdmin"
+                      class="d-flex flex-wrap"
+                    >
                       <b-button
                         variant="primary"
                         size="sm"
@@ -131,7 +135,7 @@
               </b-col>
               <b-col
                 cols="12"
-                xl="7"
+                xl="8"
               >
                 <table class="mt-2 mt-xl-0 w-100">
                   <tr>
@@ -396,6 +400,7 @@ export default {
     ...mapGetters({
       currentProduct: 'product/getCurrentProduct',
       numProductPlans: 'product/getNumProductPlans',
+      isAdmin: 'auth/getIsAdmin',
     }),
   },
   created() {

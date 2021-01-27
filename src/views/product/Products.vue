@@ -31,6 +31,7 @@
                 placeholder="Search..."
               />
               <b-button
+                v-if="isAdmin"
                 variant="primary"
                 :to="{ name: 'add-product' }"
               >
@@ -197,6 +198,7 @@ export default {
     ...mapGetters({
       products: 'product/getAllProducts',
       numProducts: 'product/getNumProducts',
+      isAdmin: 'auth/getIsAdmin',
     }),
   },
   created() {
