@@ -118,6 +118,16 @@ export default {
         })
       })
     },
+    editPlan({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'product/edit_plan', data: helpers.getEditPlanForm(payload.form), method: 'post' }).then(response => {
+          commit('SET_CURRENT_PRODUCT', { product: response.data.product, plans: response.data.plans })
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
     toggleProductStatus({ commit }, payload) {
       return new Promise((resolve, reject) => {
         axios({ url: `product/toggle_product_status/${payload.productID}`, method: 'get' }).then(response => {

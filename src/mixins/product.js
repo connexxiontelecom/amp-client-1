@@ -110,6 +110,36 @@ export default {
         }
       })
     },
+    editPlan() {
+      this.$refs.editPlanValidation.validate().then(success => {
+        if (success) {
+          const form = {
+            productID: this.productIDView,
+            productPlanID: this.productPlanID,
+            planName: this.planNameView,
+            planPrice: this.planPriceView,
+            planLink: this.planLinkView,
+            planCommission: this.planCommissionView,
+            planSlug: this.planSlugView,
+          }
+          this.$store.dispatch('product/editPlan', { form }).then(() => {
+            this.toast('Update Product Plan', 'BellIcon', 'You have successfully updated the product plan', 'success')
+            this.$nextTick(() => {
+              this.$refs['edit-plan-modal'].toggle('#edit-btn')
+            })
+            this.planName = null
+            this.planPrice = null
+            this.planLink = null
+            this.planCommission = null
+            this.planSlug = null
+          }).catch(error => {
+            this.toast('Update Product Plan Attempt', 'BellIcon', error.response.data.messages.error, 'danger')
+          })
+        } else {
+          this.toast('Update Product Plan Attempt', 'BellIcon', 'You must fill in all form fields correctly', 'warning')
+        }
+      })
+    },
     toggleStatus(status, productID) {
       if (status === '1') {
         this.$bvModal.msgBoxConfirm('Please confirm that you want to deactivate this product?', {

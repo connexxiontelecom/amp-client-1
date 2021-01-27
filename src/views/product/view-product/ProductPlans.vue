@@ -62,12 +62,12 @@
                 src=""
                 :text="avatarText(`${data.item.plan_name}`)"
                 variant="light-warning"
-                :to="{name: 'view-admin'}"
+                @click="openEditPlanModal(data.item)"
               />
             </template>
             <b-link
-              :to="{name: 'view-admin'}"
               class="font-weight-bold d-block text-nowrap text-capitalize"
+              @click="openEditPlanModal(data.item)"
             >
               {{ data.item.plan_name }}
             </b-link>
@@ -87,6 +87,14 @@
               v-b-tooltip.hover.top="'Edit'"
               icon="EditIcon"
               class="cursor-pointer"
+              size="16"
+              @click="openEditPlanModal(data.item)"
+            />
+            <feather-icon
+              :id="`delete-${data.item.product_plan_id}`"
+              v-b-tooltip.hover.top="'Delete'"
+              icon="TrashIcon"
+              class="ml-1 cursor-pointer"
               size="16"
             />
           </div>
@@ -232,6 +240,123 @@
         </b-form>
       </validation-observer>
     </b-modal>
+    <b-modal
+      id="edit-plan"
+      ref="edit-plan-modal"
+      v-model="editModal"
+      cancel-variant="outline-secondary"
+      ok-title="Update Plan"
+      cancel-title="Close"
+      centered
+      title="Update Product Plan"
+      modal-class="modal-primary"
+      @ok="handleEditOk"
+    >
+      <validation-observer ref="editPlanValidation">
+        <b-form @submit.stop.prevent="handleEditOk">
+          <b-row>
+            <b-col cols="12">
+              <b-form-group>
+                <label for="name-view">Plan Name </label><span style="color: red"> *</span>
+                <validation-provider
+                  #default="{ errors }"
+                  name="name"
+                  rules="required"
+                >
+                  <b-form-input
+                    id="name-view"
+                    v-model="planNameView"
+                    :state="errors.length > 0 ? false:null"
+                    name="name"
+                    placeholder="Name"
+                  />
+                  <small class="text-danger">{{ errors[0] }}</small>
+                </validation-provider>
+              </b-form-group>
+            </b-col>
+            <b-col cols="12">
+              <b-form-group>
+                <label for="slug-view">Plan Slug </label><span style="color: red"> *</span>
+                <validation-provider
+                  #default="{ errors }"
+                  name="slug"
+                  rules="required"
+                >
+                  <b-form-input
+                    id="slug-view"
+                    v-model="planSlugView"
+                    :state="errors.length > 0 ? false:null"
+                    name="slug"
+                    placeholder="Slug"
+                  />
+                  <small class="text-danger">{{ errors[0] }}</small>
+                </validation-provider>
+              </b-form-group>
+            </b-col>
+            <b-col cols="12">
+              <b-form-group>
+                <label for="price-view">Plan Price </label><span style="color: red"> *</span>
+                <validation-provider
+                  #default="{ errors }"
+                  name="price"
+                  rules="required"
+                >
+                  <b-form-input
+                    id="price-view"
+                    v-model="planPriceView"
+                    type="number"
+                    :state="errors.length > 0 ? false:null"
+                    name="price"
+                    placeholder="Price"
+                  />
+                  <small class="text-danger">{{ errors[0] }}</small>
+                </validation-provider>
+              </b-form-group>
+            </b-col>
+            <b-col cols="12">
+              <b-form-group>
+                <label for="commission-view">Plan Commission </label><span style="color: red"> *</span>
+                <validation-provider
+                  #default="{ errors }"
+                  name="commission"
+                  rules="required"
+                >
+                  <b-form-input
+                    id="commission-view"
+                    v-model="planCommissionView"
+                    type="number"
+                    :state="errors.length > 0 ? false:null"
+                    name="commission"
+                    placeholder="Commission"
+                  />
+                  <small class="text-danger">{{ errors[0] }}</small>
+                </validation-provider>
+              </b-form-group>
+            </b-col>
+            <b-col cols="12">
+              <b-form-group>
+                <label for="link-view">Plan Link </label><span style="color: red"> *</span>
+                <validation-provider
+                  #default="{ errors }"
+                  name="link"
+                  rules="required|url"
+                >
+                  <b-form-input
+                    id="link-view"
+                    v-model="planLinkView"
+                    type="url"
+                    :state="errors.length > 0 ? false:null"
+                    name="link"
+                    placeholder="http://product-plan-link.com"
+                  />
+                  <small class="text-danger">{{ errors[0] }}</small>
+                </validation-provider>
+              </b-form-group>
+            </b-col>
+          </b-row>
+        </b-form>
+      </validation-observer>
+    </b-modal>
   </div>
 </template>
 
@@ -302,6 +427,14 @@ export default {
       planCommission: null,
       planSlug: null,
       productID: this.$router.currentRoute.params.productID,
+      editModal: false,
+      planNameView: null,
+      planPriceView: null,
+      planLinkView: null,
+      planCommissionView: null,
+      planSlugView: null,
+      productIDView: null,
+      productPlanID: null,
     }
   },
   computed: {
@@ -309,6 +442,8 @@ export default {
       currentProductPlans: 'product/getCurrentProductPlans',
       numProductPlans: 'product/getNumProductPlans',
     }),
+  },
+  watch: {
   },
   methods: {
     onFiltered(filteredItems) {
@@ -318,6 +453,20 @@ export default {
     handleAddOk(e) {
       e.preventDefault()
       this.addPlan()
+    },
+    handleEditOk(e) {
+      e.preventDefault()
+      this.editPlan()
+    },
+    openEditPlanModal(plan) {
+      this.planNameView = plan.plan_name
+      this.planPriceView = plan.plan_price
+      this.planLinkView = plan.plan_link
+      this.planCommissionView = plan.plan_commission
+      this.planSlugView = plan.plan_slug
+      this.productIDView = plan.product_id
+      this.productPlanID = plan.product_plan_id
+      this.editModal = true
     },
   },
 }
