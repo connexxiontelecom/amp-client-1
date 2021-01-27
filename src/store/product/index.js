@@ -54,6 +54,50 @@ export default {
         })
       })
     },
+    updateProduct({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({
+          url: 'product/update_product',
+          data: helpers.getUpdateProductForm(payload.form),
+          method: 'post',
+        }).then(response => {
+          commit('SET_CURRENT_PRODUCT', { product: response.data.product, plans: response.data.plans })
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    updateLogo({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({
+          url: 'product/update_logo',
+          data: helpers.getUpdateProductLogoForm(payload.form),
+          method: 'post',
+          headers: { 'Content-Type': 'multipart/form-data' },
+        }).then(response => {
+          commit('SET_CURRENT_PRODUCT', { product: response.data.product, plans: response.data.plans })
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    removeLogo({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({
+          url: 'product/remove_logo',
+          data: helpers.getRemoveProductLogo(payload.form),
+          method: 'post',
+        }).then(response => {
+          console.log(response)
+          commit('SET_CURRENT_PRODUCT', { product: response.data.product, plans: response.data.plans })
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
     getProduct({ commit }, payload) {
       return new Promise((resolve, reject) => {
         axios({ url: `product/get_product/${payload.productID}`, method: 'get' }).then(response => {

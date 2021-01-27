@@ -29,4 +29,25 @@ export default {
     formData.append('description', form.description)
     return formData
   },
+  getUpdateProductForm(form) {
+    const formData = new FormData()
+    formData.append('product_id', form.productID)
+    formData.append('name', form.name)
+    formData.append('url', form.url)
+    formData.append('category', form.category)
+    formData.append('description', form.description)
+    return formData
+  },
+  getUpdateProductLogoForm(form) {
+    const formData = new FormData()
+    formData.append('product_id', form.productID)
+    formData.append('logo', form.logo)
+    return formData
+  },
+  getRemoveProductLogo(form) {
+    const formData = new FormData()
+    console.log(form.productID)
+    formData.append('product_id', form.productID)
+    return formData
+  },
 }

@@ -17,7 +17,7 @@ export default {
           }
           this.$store.dispatch('product/addProduct', { form }).then(() => {
             this.$router.push({ name: 'products' }).then(() => {
-              this.toast('Add Admin', 'BellIcon', 'You have successfully added the product', 'success')
+              this.toast('Add Product', 'BellIcon', 'You have successfully added the product', 'success')
             })
           }).catch(error => {
             this.toast('Add Product Attempt', 'BellIcon', error.response.data.messages.error, 'danger')
@@ -25,6 +25,53 @@ export default {
         } else {
           this.toast('Add Product Attempt', 'BellIcon', 'You must fill in all form fields correctly', 'warning')
         }
+      })
+    },
+    updateProduct() {
+      this.$refs.updateProductValidation.validate().then(success => {
+        if (success) {
+          const form = {
+            productID: this.productID,
+            name: this.name,
+            url: this.productUrl,
+            category: this.category.value,
+            description: this.description,
+            logo: this.logo,
+          }
+          if (form.category === undefined) form.category = this.category
+          this.$store.dispatch('product/updateProduct', { form }).then(() => {
+            this.toast('Update Product', 'BellIcon', 'You have successfully updated product', 'success')
+            this.$nextTick(() => {
+              this.$refs['update-product-modal'].toggle('#edit-product-btn')
+            })
+          }).catch(error => {
+            this.toast('Update Product Attempt', 'BellIcon', error.response.data.messages.error, 'danger')
+          })
+        } else {
+          this.toast('Update Product Attempt', 'BellIcon', 'You must fill in all form fields correctly', 'warning')
+        }
+      })
+    },
+    updateProductLogo(logo) {
+      const form = {
+        productID: this.productID,
+        logo,
+      }
+      this.$store.dispatch('product/updateLogo', { form }).then(() => {
+        this.toast('Update Logo', 'BellIcon', 'You have successfully updated the product logo', 'success')
+      }).catch(error => {
+        this.toast('Update Logo Attempt', 'BellIcon', error.response.data.messages.error, 'danger')
+      })
+    },
+    removeProductLogo() {
+      const form = {
+        productID: this.productID,
+      }
+      console.log(form)
+      this.$store.dispatch('product/removeLogo', { form }).then(() => {
+        this.toast('Remove Logo', 'BellIcon', 'You have successfully removed the product logo', 'success')
+      }).catch(error => {
+        this.toast('Remove Logo Attempt', 'BellIcon', error.response.data.messages.error, 'danger')
       })
     },
     getProduct(productID) {

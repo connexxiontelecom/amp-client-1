@@ -17,8 +17,47 @@
         <b-col
           cols="12"
         >
-          <b-card>
-            <b-row>
+          <b-card no-body>
+            <b-card-header>
+              <div>
+                <b-card-title>Product Details</b-card-title>
+              </div>
+              <b-dropdown
+                variant="link"
+                no-caret
+                class="chart-dropdown"
+                toggle-class="p-0"
+                dropleft
+              >
+                <template #button-content>
+                  <feather-icon
+                    icon="MoreVerticalIcon"
+                    size="18"
+                    class="text-body cursor-pointer"
+                  />
+                </template>
+                <b-dropdown-item
+                  id="edit-product-btn"
+                  v-b-modal.update-product
+                >
+                  Update Product
+                </b-dropdown-item>
+                <b-dropdown-item
+                  v-if="currentProduct.status === '0'"
+                  @click="clicked"
+                >
+                  Reactivate Product
+                </b-dropdown-item>
+                <b-dropdown-item
+                  v-else-if="currentProduct.status === '1'"
+                  @click="clicked"
+                >
+                  Deactivate Product
+                </b-dropdown-item>
+              </b-dropdown>
+            </b-card-header>
+
+            <b-row class="py-2 px-3">
               <b-col
                 cols="12"
                 xl="5"
@@ -26,7 +65,8 @@
               >
                 <div class="d-flex justify-content-start">
                   <b-avatar
-                    :src="currentProduct.logo"
+                    ref="productLogo"
+                    :src="logo"
                     :text="avatarText(`${currentProduct.name}`)"
                     variant="light-success"
                     size="104px"
@@ -34,34 +74,37 @@
                   />
                   <div class="d-flex flex-column ml-1">
                     <div class="mb-1">
-                      <h4 class="mb-0">
+                      <h4 class="mb-0 text-uppercase">
                         {{ currentProduct.name }}
                       </h4>
                       <span class="text-muted card-text">{{ currentProduct.category }}</span>
                     </div>
                     <div class="d-flex flex-wrap">
                       <b-button
-                        id="edit-affiliate-btn"
-                        v-b-modal.update-affiliate
                         variant="primary"
+                        size="sm"
+                        @click="$refs.refInputEl.click()"
                       >
-                        Edit
+                        <input
+                          ref="refInputEl"
+                          type="file"
+                          class="d-none"
+                          accept="image/jpeg, image/png, image/gif, image/jpg"
+                          @change="updateLogo"
+                        >
+                        <span class="d-none d-sm-inline">Update</span>
+                        <feather-icon
+                          icon="EditIcon"
+                          class="d-inline d-sm-none"
+                        />
                       </b-button>
                       <b-button
-                        v-if="currentProduct.status === '0'"
-                        variant="outline-success"
+                        variant="outline-secondary"
+                        size="sm"
                         class="ml-1"
-                        @click="clicked"
+                        @click="removeImage"
                       >
-                        Reactivate
-                      </b-button>
-                      <b-button
-                        v-else-if="currentProduct.status === '1'"
-                        variant="outline-danger"
-                        class="ml-1"
-                        @click="clicked"
-                      >
-                        Deactivate
+                        Remove
                       </b-button>
                     </div>
                   </div>
@@ -202,20 +245,113 @@
         </b-col>
       </b-row>
     </div>
+    <b-modal
+      id="update-product"
+      ref="update-product-modal"
+      cancel-variant="outline-secondary"
+      ok-title="Update Product"
+      cancel-title="Close"
+      centered
+      title="Update Product"
+      modal-class="modal-primary"
+      @ok="handleProductUpdateOk"
+    >
+      <validation-observer ref="updateProductValidation">
+        <b-form @submit.prevent="handleProductUpdateOk">
+          <b-row>
+            <b-col cols="12">
+              <b-form-group>
+                <label for="name">Product Name </label><span style="color: red"> *</span>
+                <validation-provider
+                  #default="{ errors }"
+                  name="name"
+                  rules="required"
+                >
+                  <b-form-input
+                    id="name"
+                    v-model="name"
+                    :state="errors.length > 0 ? false:null"
+                    name="name"
+                    placeholder="Name"
+                  />
+                  <small class="text-danger">{{ errors[0] }}</small>
+                </validation-provider>
+              </b-form-group>
+            </b-col>
+            <b-col cols="12">
+              <b-form-group>
+                <label for="category">Product Category </label><span style="color: red"> *</span>
+                <validation-provider
+                  #default="{ errors }"
+                  name="category"
+                  rules="required"
+                >
+                  <v-select
+                    id="category"
+                    v-model="category"
+                    :options="categories"
+                    label="title"
+                  />
+                  <small class="text-danger">{{ errors[0] }}</small>
+                </validation-provider>
+              </b-form-group>
+            </b-col>
+            <b-col cols="12">
+              <b-form-group>
+                <label for="url">Product URL </label>
+                <validation-provider
+                  #default="{ errors }"
+                  name="product URL"
+                  rules="url"
+                >
+                  <b-form-input
+                    id="url"
+                    v-model="productUrl"
+                    :state="errors.length > 0 ? false:null"
+                    name="productUrl"
+                    placeholder="https://product-url.com"
+                  />
+                  <small class="text-danger">{{ errors[0] }}</small>
+                </validation-provider>
+              </b-form-group>
+            </b-col>
+            <b-col cols="12">
+              <b-form-group>
+                <label for="description">Description</label>
+                <b-form-textarea
+                  id="description"
+                  v-model="description"
+                  placeholder="Brief description of product"
+                  rows="3"
+                />
+              </b-form-group>
+            </b-col>
+          </b-row>
+        </b-form>
+      </validation-observer>
+    </b-modal>
   </div>
 </template>
 <script>
 import {
   BCard, BAlert, BLink, BRow, BCol, BBadge, VBTooltip, VBModal, BAvatar, BButton,
+  BForm, BFormGroup, BFormInput, BFormTextarea, BCardHeader, BDropdown, BDropdownItem, BCardTitle,
 } from 'bootstrap-vue'
 import product from '@/mixins/product'
 import { mapGetters } from 'vuex'
 import { avatarText } from '@core/utils/filter'
+import { ValidationObserver, ValidationProvider } from 'vee-validate'
+import api from '@/apiConfig'
+import vSelect from 'vue-select'
+import { required, url } from '@validations'
 import ProductPlans from './ProductPlans.vue'
 
 export default {
   components: {
     BCard,
+    BCardHeader,
+    BDropdown,
+    BDropdownItem,
     BAlert,
     BBadge,
     BRow,
@@ -224,6 +360,14 @@ export default {
     ProductPlans,
     BAvatar,
     BButton,
+    BForm,
+    BFormInput,
+    BFormGroup,
+    BFormTextarea,
+    BCardTitle,
+    ValidationObserver,
+    ValidationProvider,
+    vSelect,
   },
   directives: {
     'b-tooltip': VBTooltip,
@@ -232,8 +376,20 @@ export default {
   mixins: [product],
   data() {
     return {
+      api,
+      productID: this.$store.getters['product/getCurrentProduct'].product_id,
+      name: this.$store.getters['product/getCurrentProduct'].name,
+      productUrl: this.$store.getters['product/getCurrentProduct'].url,
+      category: this.$store.getters['product/getCurrentProduct'].category,
+      categories: [
+        { title: 'Software', value: 'Software' },
+      ],
+      description: this.$store.getters['product/getCurrentProduct'].description,
+      logo: `${api.endpoint}/uploads/${this.$store.getters['product/getCurrentProduct'].logo}`,
       loaded: false,
       avatarText,
+      required,
+      url,
     }
   },
   computed: {
@@ -250,6 +406,32 @@ export default {
     clicked() {
       this.toggleStatus(this.$store.getters['product/getCurrentProduct'].status, this.$store.getters['product/getCurrentProduct'].product_id)
     },
+    handleProductUpdateOk(e) {
+      e.preventDefault()
+      this.updateProduct()
+    },
+    updateLogo(e) {
+      const files = e.target.files || e.dataTransfer.files
+      if (!files.length) {
+        return
+      }
+      this.createImage(files[0])
+      this.updateProductLogo(files[0])
+    },
+    createImage(file) {
+      const reader = new FileReader()
+      reader.onload = e => {
+        this.logo = e.target.result
+      }
+      reader.readAsDataURL(file)
+    },
+    removeImage() {
+      this.logo = null
+      this.removeProductLogo()
+    },
   },
 }
 </script>
+<style lang="scss">
+@import '@core/scss/vue/libs/vue-select.scss';
+</style>

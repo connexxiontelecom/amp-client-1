@@ -58,7 +58,7 @@
               <b-avatar
                 size="32"
                 rounded
-                :src="data.item.logo"
+                :src="api.endpoint+'/uploads/'+data.item.logo"
                 :text="avatarText(`${data.item.name}`)"
                 variant="light-info"
                 @click="getProduct(data.item.product_id)"
@@ -115,13 +115,6 @@
               class="cursor-pointer mx-1"
               @click="getProduct(data.item.product_id)"
             />
-            <feather-icon
-              :id="`edit-${data.item.product_id}`"
-              v-b-tooltip.hover.top="'Edit'"
-              icon="EditIcon"
-              class="cursor-pointer"
-              size="16"
-            />
           </div>
         </template>
       </b-table>
@@ -159,6 +152,7 @@ import {
 import vSelect from 'vue-select'
 import product from '@/mixins/product'
 import { avatarText } from '@core/utils/filter'
+import api from '@/apiConfig'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -182,6 +176,7 @@ export default {
   mixins: [product],
   data() {
     return {
+      api,
       perPage: 5,
       perPageOptions: [5, 10, 25, 100],
       filter: null,

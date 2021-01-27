@@ -69,6 +69,7 @@
                       rules="required"
                     >
                       <b-form-file
+                        id="logo"
                         v-model="logo"
                         accept="image/jpeg, image/png, image/gif, image/jpg"
                       />
@@ -106,6 +107,7 @@
                     <label for="description">Description</label>
                     <b-form-textarea
                       id="description"
+                      v-model="description"
                       placeholder="Brief description of product"
                       rows="3"
                     />
