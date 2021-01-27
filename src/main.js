@@ -37,9 +37,9 @@ new Vue({
   created() {
     this.reinitializeSession()
     // eslint-disable-next-line func-names
-    // window.onbeforeunload = function () {
-    //   return 'Do not reload Vue app'
-    // }
+    window.onbeforeunload = function () {
+      return 'Do not reload Vue app'
+    }
   },
   render: h => h(App),
 }).$mount('#app')

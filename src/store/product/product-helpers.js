@@ -52,7 +52,6 @@ export default {
   },
   getRemoveProductLogo(form) {
     const formData = new FormData()
-    console.log(form.productID)
     formData.append('product_id', form.productID)
     return formData
   },
