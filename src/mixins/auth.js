@@ -1,4 +1,5 @@
 // import notify from '@/mixins/notify'
+import emailjs from 'emailjs-com'
 
 export default {
   // mixins: [notify],
@@ -38,9 +39,16 @@ export default {
             username: this.username,
             email: this.regEmail,
             password: this.password,
+            verifyCode: this.generateVerifyCode(10),
             confirmPassword: this.confirmPassword,
           }
           this.$store.dispatch('auth/register', { form }).then(response => {
+            emailjs.send('service_oeg9olb', 'template_ats6kji', {
+              firstname: form.firstname,
+              lastname: form.lastname,
+              verify_code: form.verifyCode,
+              to_email: form.email,
+            }, 'user_BcSkabdz4FX6q4l5oeeXI').catch(() => {})
             this.$router.push({ name: 'login' }).then(() => {
               this.toast('Register', 'LogInIcon', response.data, 'success')
             })

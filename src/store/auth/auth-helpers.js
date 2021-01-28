@@ -12,6 +12,7 @@ export default {
     formData.append('username', form.username)
     formData.append('email', form.email)
     formData.append('password', form.password)
+    formData.append('verify_code', form.verifyCode)
     formData.append('confirm_password', form.confirmPassword)
     return formData
   },

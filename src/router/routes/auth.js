@@ -17,4 +17,13 @@ export default [
       layout: 'full',
     },
   },
+  {
+    path: '/verify-*',
+    name: 'verify',
+    component: () => import('@/views/auth/Verify'),
+    meta: {
+      title: 'Verify - AMP | Powered by Connexxion Telecom',
+      layout: 'full',
+    },
+  },
 ]

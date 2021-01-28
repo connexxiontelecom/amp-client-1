@@ -271,5 +271,13 @@ export default {
         }
       })
     },
+    verifyAccount() {
+      const form = {
+        verifyCode: this.verifyCode,
+      }
+      this.$store.dispatch('affiliate/verifyAccount', { form }).then().catch(error => {
+        this.toast('Verify Account', 'BellIcon', error.response.data.messages.error, 'danger')
+      })
+    },
   },
 }

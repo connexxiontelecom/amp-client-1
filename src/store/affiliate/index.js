@@ -13,6 +13,7 @@ export default {
 
     downstreamAffiliates: [],
     numDownstreamAffiliates: 0,
+    isVerified: false,
   },
   getters: {
     getAllAffiliates: state => state.allAffiliates,
@@ -20,6 +21,7 @@ export default {
     getCurrentAffiliate: state => state.currentAffiliate,
     getDownstreamAffiliates: state => state.downstreamAffiliates,
     getNumDownstreamAffiliates: state => state.numDownstreamAffiliates,
+    getIsVerified: state => state.isVerified,
   },
   mutations: {
     UPDATE_SESSION(state, payload) {
@@ -37,6 +39,9 @@ export default {
     SET_DOWNSTREAM_AFFILIATES(state, payload) {
       state.downstreamAffiliates = payload.downstreamAffiliates
       state.numDownstreamAffiliates = payload.downstreamAffiliates.length
+    },
+    SET_IS_VERIFIED(state, payload) {
+      state.isVerified = payload.isVerified
     },
   },
   actions: {
@@ -163,6 +168,16 @@ export default {
     changePassword({ commit }, payload) {
       return new Promise((resolve, reject) => {
         axios({ url: 'affiliate/change_password', data: helpers.getChangePasswordForm(payload.form), method: 'post' }).then(response => {
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    verifyAccount({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'affiliate/verify_account', data: helpers.getVerifyCodeForm(payload.form), method: 'post' }).then(response => {
+          commit('SET_IS_VERIFIED', { isVerified: response.data.verified })
           resolve(response)
         }).catch(error => {
           reject(error)
