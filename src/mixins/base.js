@@ -11,6 +11,8 @@ export default {
         const decodedToken = jwtDecode(token)
         delete decodedToken.user.password
         this.$store.commit('auth/INIT_SESSION', { user: decodedToken.user, session: decodedToken.session })
+        // eslint-disable-next-line dot-notation
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
       }
     },
     generateVerifyCode(length) {
@@ -29,11 +31,14 @@ export default {
           if (error.response.status === 401) {
             this.$store.dispatch('auth/logout').then(() => {
               this.$router.push('/login').then(() => {
-                this.toast('Unauthorized', 'InfoIcon', 'Sorry. This action is unauthorized and you have been logged out of the system', 'danger')
+                this.toast('Unauthorized', 'InfoIcon', 'Sorry. That action is unauthorized and you have been logged out of the system', 'danger')
               }).catch(() => {})
             })
+          } else {
+            return Promise.reject(error)
           }
         }
+        return false
       })
     },
   },

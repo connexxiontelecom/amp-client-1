@@ -7,6 +7,7 @@ export default {
     formData.append('password', form.password)
     // eslint-disable-next-line no-unused-expressions
     form.status ? formData.append('status', '1') : formData.append('status', '0')
+    formData.append('roles', form.roles)
     return formData
   },
   getUpdateStatusForm(form) {
