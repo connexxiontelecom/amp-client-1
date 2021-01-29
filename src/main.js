@@ -36,6 +36,7 @@ new Vue({
   router,
   store,
   created() {
+    this.apiResponseHandler()
     this.reinitializeSession()
     // eslint-disable-next-line func-names
     // window.onbeforeunload = () => 'Do not reload Vue app'

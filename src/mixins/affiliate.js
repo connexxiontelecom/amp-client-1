@@ -1,3 +1,5 @@
+import emailjs from 'emailjs-com'
+
 export default {
   methods: {
     getAffiliates() {
@@ -17,9 +19,19 @@ export default {
             username: this.username,
             email: this.emailAddr,
             password: this.password,
+            verifyCode: this.generateVerifyCode(10),
             upstreamAffiliate,
           }
           this.$store.dispatch('affiliate/addAffiliate', { form }).then(() => {
+            emailjs.send('service_oeg9olb', 'template_kr3wkls', {
+              firstname: form.firstname,
+              lastname: form.lastname,
+              creator: 'administrator',
+              username: form.username,
+              password: form.password,
+              verify_code: form.verifyCode,
+              to_email: form.email,
+            }, 'user_BcSkabdz4FX6q4l5oeeXI').catch(() => {})
             this.$router.push({ name: 'affiliate-accounts' }).then(() => {
               this.toast('Add Affiliate', 'BellIcon', 'The affiliate was added successfully', 'success')
             })
@@ -232,6 +244,15 @@ export default {
             upstreamAffiliate: this.upstreamAffiliate,
           }
           this.$store.dispatch('affiliate/addDownstreamAffiliate', { form }).then(() => {
+            emailjs.send('service_oeg9olb', 'template_kr3wkls', {
+              firstname: form.firstname,
+              lastname: form.lastname,
+              creator: 'affiliate',
+              username: form.username,
+              password: form.password,
+              verify_code: form.verifyCode,
+              to_email: form.email,
+            }, 'user_BcSkabdz4FX6q4l5oeeXI').catch(() => {})
             this.toast('Add Affiliate', 'BellIcon', 'You have successfully added an affiliate', 'success')
           }).catch(error => {
             this.toast('Add Affiliate', 'BellIcon', error.response.data.messages.error, 'danger')

@@ -14,6 +14,7 @@ export default {
     formData.append('username', form.username)
     formData.append('email', form.email)
     formData.append('password', form.password)
+    formData.append('verify_code', form.verifyCode)
     formData.append('upstream_affiliate_id', form.upstreamAffiliate)
     return formData
   },
