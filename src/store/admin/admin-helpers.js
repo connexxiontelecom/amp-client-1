@@ -17,4 +17,12 @@ export default {
     form.status ? formData.append('status', '0') : formData.append('status', '1')
     return formData
   },
+  getUpdateAdminForm(form) {
+    const formData = new FormData()
+    formData.append('admin_id', form.adminID)
+    formData.append('firstname', form.firstname)
+    formData.append('lastname', form.lastname)
+    formData.append('roles', form.roles)
+    return formData
+  },
 }

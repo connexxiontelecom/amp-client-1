@@ -65,8 +65,8 @@
               />
             </template>
             <b-link
-              @click="getAdmin(data.item.admin_id)"
               class="font-weight-bold d-block text-nowrap"
+              @click="getAdmin(data.item.admin_id)"
             >
               {{ data.item.firstname +' '+ data.item.lastname }}
             </b-link>
@@ -110,6 +110,7 @@
               icon="EditIcon"
               class="cursor-pointer"
               size="16"
+              @click="editAdmin(data.item.admin_id)"
             />
           </div>
         </template>

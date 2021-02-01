@@ -53,5 +53,14 @@ export default {
         })
       })
     },
+    updateAdmin({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'admin/update_admin', data: helpers.getUpdateAdminForm(payload.form), method: 'post' }).then(response => {
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
   },
 }

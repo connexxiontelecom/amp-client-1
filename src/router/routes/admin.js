@@ -57,4 +57,25 @@ export default [
       navActiveLink: 'admin-accounts',
     },
   },
+  {
+    path: '/admin-accounts/edit-admin',
+    name: 'edit-admin',
+    component: () => import('@/views/admin/edit-admin/EditAdmin'),
+    meta: {
+      authRequired: true,
+      title: 'Edit Admin - AMP | Powered by Connexxion Telecom',
+      pageTitle: 'Edit Admin',
+      breadcrumb: [
+        {
+          text: 'Admin Accounts',
+          to: '/admin-accounts',
+        },
+        {
+          text: 'Edit Admin',
+          active: true,
+        },
+      ],
+      navActiveLink: 'admin-accounts',
+    },
+  },
 ]

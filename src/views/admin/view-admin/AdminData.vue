@@ -25,6 +25,7 @@
                 <b-button
                   id="edit-affiliate-btn"
                   variant="primary"
+                  @click="editAdmin(currentAdmin.admin_id)"
                 >
                   Edit
                 </b-button>
@@ -46,26 +47,6 @@
                 </b-button>
               </div>
             </div>
-          </div>
-          <div class="d-flex align-items-center mt-2">
-            <div class="d-flex align-items-center mr-2">
-              <b-avatar
-                variant="light-success"
-                rounded
-              >
-                <feather-icon
-                  icon="LockIcon"
-                  size="18"
-                />
-              </b-avatar>
-              <div class="ml-1">
-                <h5 class="mb-0">
-                  {{ currentAdmin.roles.length }}
-                </h5>
-                <small>Permissions</small>
-              </div>
-            </div>
-
           </div>
         </b-col>
         <b-col
@@ -136,7 +117,7 @@ import {
 } from 'bootstrap-vue'
 import { avatarText } from '@core/utils/filter'
 import { mapGetters } from 'vuex'
-import affiliate from '@/mixins/affiliate'
+import admin from '@/mixins/admin'
 
 export default {
   components: {
@@ -146,7 +127,7 @@ export default {
     'b-tooltip': VBTooltip,
     'b-modal': VBModal,
   },
-  mixins: [affiliate],
+  mixins: [admin],
   data() {
     return {
       avatarText,

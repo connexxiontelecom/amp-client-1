@@ -168,7 +168,7 @@
                 <template #cell(module)="data">
                   {{ data.value }}
                 </template>
-                <template #cell(options)="data">
+                <template #cell(roles)="data">
                   <b-form-checkbox-group
                     v-model="roles"
                     :options="data.value"
@@ -235,7 +235,7 @@ export default {
       permissionsData: [
         {
           module: 'Product',
-          options: [
+          roles: [
             { item: 'prd_r', name: 'Read' },
             { item: 'prd_w', name: 'Write' },
             { item: 'prd_c', name: 'Create' },
@@ -244,7 +244,7 @@ export default {
         },
         {
           module: 'Admin',
-          options: [
+          roles: [
             { item: 'adm_r', name: 'Read' },
             { item: 'adm_w', name: 'Write' },
             { item: 'adm_c', name: 'Create' },
@@ -253,7 +253,7 @@ export default {
         },
         {
           module: 'Commission',
-          options: [
+          roles: [
             { item: 'com_r', name: 'Read' },
             { item: 'com_w', name: 'Write' },
             { item: 'com_c', name: 'Create' },
@@ -262,7 +262,7 @@ export default {
         },
         {
           module: 'Affiliate',
-          options: [
+          roles: [
             { item: 'aff_r', name: 'Read' },
             { item: 'aff_w', name: 'Write' },
             { item: 'aff_c', name: 'Create' },
@@ -271,7 +271,7 @@ export default {
         },
         {
           module: 'Product Sale',
-          options: [
+          roles: [
             { item: 'pro_r', name: 'Read' },
             { item: 'pro_w', name: 'Write' },
             { item: 'pro_c', name: 'Create' },
@@ -280,7 +280,7 @@ export default {
         },
         {
           module: 'Payment',
-          options: [
+          roles: [
             { item: 'pay_r', name: 'Read' },
             { item: 'pay_w', name: 'Write' },
             { item: 'pay_c', name: 'Create' },
@@ -289,7 +289,7 @@ export default {
         },
         {
           module: 'Audit Log',
-          options: [
+          roles: [
             { item: 'log_r', name: 'Read' },
             { item: 'log_w', name: 'Write' },
             { item: 'log_c', name: 'Create' },
