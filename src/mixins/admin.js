@@ -22,5 +22,13 @@ export default {
         this.toast('Add Admin Attempt', 'BellIcon', error.response.data.messages.error, 'danger')
       })
     },
+    getAdmin(adminID) {
+      this.$store.dispatch('admin/getAdmin', { adminID }).then(response => {
+        console.log(response.data)
+        this.$router.push({ name: 'view-admin', params: { adminID } }).catch()
+      }).catch(error => {
+        this.toast('Get Affiliate', 'BellIcon', error.response.data.messages.error, 'danger')
+      })
+    },
   },
 }

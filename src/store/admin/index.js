@@ -7,15 +7,20 @@ export default {
   state: {
     allAdmins: [],
     numAdmins: 0,
+    currentAdmin: {},
   },
   getters: {
     getAllAdmins: state => state.allAdmins,
     getNumAdmins: state => state.numAdmins,
+    getCurrentAdmin: state => state.currentAdmin,
   },
   mutations: {
     SET_ALL_ADMINS(state, payload) {
       state.allAdmins = payload.allAdmins
       state.numAdmins = payload.allAdmins.length
+    },
+    SET_CURRENT_ADMIN(state, payload) {
+      state.currentAdmin = payload.currentAdmin
     },
   },
   actions: {
@@ -32,6 +37,16 @@ export default {
     addAdmin({ commit }, payload) {
       return new Promise((resolve, reject) => {
         axios({ url: 'admin/add_admin', data: helpers.getAddAdminForm(payload.form), method: 'post' }).then(response => {
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    getAdmin({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({ url: `admin/get_admin/${payload.adminID}`, method: 'get' }).then(response => {
+          commit('SET_CURRENT_ADMIN', { currentAdmin: response.data })
           resolve(response)
         }).catch(error => {
           reject(error)

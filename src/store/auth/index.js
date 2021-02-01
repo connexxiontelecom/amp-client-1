@@ -8,23 +8,27 @@ export default {
   state: {
     session: {
       user: {},
+      permissions: [],
       isAdmin: false,
       isAffiliate: false,
     },
   },
   getters: {
     getUser: state => state.session.user,
+    getPermissions: state => state.session.permissions,
     getIsAdmin: state => state.session.isAdmin,
     getIsAffiliate: state => state.session.isAffiliate,
   },
   mutations: {
     INIT_SESSION(state, payload) {
       state.session.user = payload.user
+      state.session.permissions = payload.permissions
       state.session.isAdmin = payload.session.admin
       state.session.isAffiliate = payload.session.affiliate
     },
     CLEAR_SESSION(state) {
       state.session.user = {}
+      state.session.permissions = []
       state.session.isAdmin = false
       state.session.isAffiliate = false
     },
@@ -36,8 +40,7 @@ export default {
           const token = response.data
           localStorage.setItem('t', token)
           const decodedToken = jwtDecode(token)
-          delete decodedToken.user.password
-          commit('INIT_SESSION', { user: decodedToken.user, session: decodedToken.session })
+          commit('INIT_SESSION', { user: decodedToken.user, session: decodedToken.session, permissions: decodedToken.permissions })
           axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
           resolve(response)
         }).catch(error => {

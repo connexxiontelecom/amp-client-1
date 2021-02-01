@@ -61,11 +61,11 @@
                 src=""
                 :text="avatarText(`${data.item.firstname +' '+ data.item.lastname}`)"
                 variant="light-primary"
-                :to="{name: 'view-admin'}"
+                @click="getAdmin(data.item.admin_id)"
               />
             </template>
             <b-link
-              :to="{name: 'view-admin'}"
+              @click="getAdmin(data.item.admin_id)"
               class="font-weight-bold d-block text-nowrap"
             >
               {{ data.item.firstname +' '+ data.item.lastname }}
@@ -102,7 +102,7 @@
               icon="EyeIcon"
               size="16"
               class="cursor-pointer mx-1"
-              @click="$router.push({ name: 'view-admin', params: { adminID: data.item.admin_id }})"
+              @click="getAdmin(data.item.admin_id)"
             />
             <feather-icon
               :id="`edit-${data.item.admin_id}`"
