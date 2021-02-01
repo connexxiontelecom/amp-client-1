@@ -90,7 +90,6 @@ export default {
           data: helpers.getRemoveProductLogo(payload.form),
           method: 'post',
         }).then(response => {
-          console.log(response)
           commit('SET_CURRENT_PRODUCT', { product: response.data.product, plans: response.data.plans })
           resolve(response)
         }).catch(error => {

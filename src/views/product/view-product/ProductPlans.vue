@@ -485,8 +485,6 @@ export default {
       isAffiliate: 'auth/getIsAffiliate',
     }),
   },
-  watch: {
-  },
   methods: {
     onFiltered(filteredItems) {
       this.totalRows = filteredItems.length
@@ -517,7 +515,7 @@ export default {
     },
     copyReferralLink(plan) {
       this.referralLink = `${plan.plan_link}/${this.$store.getters['auth/getUser'].ref_code}`
-      this.$copyText(this.referralLink).then(() => console.log(this.referralLink)).catch(e => console.log(e))
+      this.$copyText(this.referralLink).then().catch()
       this.toast('Copied Referral Link!', 'CopyIcon', '', 'success')
       // this.viewModal = !this.viewModal
     },

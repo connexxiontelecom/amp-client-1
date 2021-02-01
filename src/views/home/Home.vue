@@ -14,14 +14,6 @@
         <home-statistics />
       </b-col>
     </b-row>
-    <b-row>
-      <b-col
-        xl="4"
-        md="4"
-      >
-        <home-commission />
-      </b-col>
-    </b-row>
   </section>
 </template>
 
@@ -29,7 +21,6 @@
 import { BRow, BCol } from 'bootstrap-vue'
 import HomeWelcome from '@/views/home/HomeWelcome.vue'
 import HomeStatistics from '@/views/home/HomeStatistics.vue'
-import HomeCommission from '@/views/home/HomeCommission.vue'
 import admin from '@/mixins/admin'
 import product from '@/mixins/product'
 import affiliate from '@/mixins/affiliate'
@@ -41,15 +32,17 @@ export default {
     BCol,
     HomeWelcome,
     HomeStatistics,
-    HomeCommission,
   },
   mixins: [admin, product, affiliate, commission],
   created() {
-    this.getAdmins()
-    this.getProducts()
-    this.getAffiliates()
-    this.getPlanCommissions()
-    this.getCommissions()
+    if (this.$store.getters['auth/getIsAdmin']) {
+      this.getAdmins()
+      this.getAffiliates()
+      this.getPlanCommissions()
+      this.getCommissions()
+    } else if (this.$store.getters['auth/getIsAffiliate']) {
+      this.getProducts()
+    }
   },
 }
 </script>

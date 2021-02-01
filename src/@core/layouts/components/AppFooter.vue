@@ -10,7 +10,7 @@
       <span class="d-none d-sm-inline-block">, All Rights Reserved</span>
     </span>
 
-    <span class="float-md-left d-none d-md-block">Affiliate Marketing Portal <strong class="text-danger">v0.1.2</strong></span>
+    <span class="float-md-left d-none d-md-block">Affiliate Marketing Portal <strong class="text-danger">v0.1.3</strong></span>
   </p>
 </template>
 
