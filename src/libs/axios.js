@@ -1,5 +1,5 @@
 // import Vue from 'vue'
-import api from '@/apiConfig'
+import api from '@/api-config'
 
 // axios
 import axios from 'axios'

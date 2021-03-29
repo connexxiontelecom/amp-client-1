@@ -345,7 +345,7 @@ import product from '@/mixins/product'
 import { mapGetters } from 'vuex'
 import { avatarText } from '@core/utils/filter'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
-import api from '@/apiConfig'
+import api from '@/api-config'
 import vSelect from 'vue-select'
 import { required, url } from '@validations'
 import ProductPlans from './ProductPlans.vue'
@@ -389,7 +389,7 @@ export default {
         { title: 'Software', value: 'Software' },
       ],
       description: this.$store.getters['product/getCurrentProduct'].description,
-      logo: `${api.endpoint}/uploads/${this.$store.getters['product/getCurrentProduct'].logo}`,
+      logo: `${api.endpoint}/uploads/products/${this.$store.getters['product/getCurrentProduct'].logo}`,
       loaded: false,
       avatarText,
       required,

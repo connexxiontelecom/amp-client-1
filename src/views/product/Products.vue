@@ -59,7 +59,7 @@
               <b-avatar
                 size="32"
                 rounded
-                :src="api.endpoint+'/uploads/'+data.item.logo"
+                :src="api.endpoint+'/uploads/products/'+data.item.logo"
                 :text="avatarText(`${data.item.name}`)"
                 variant="light-info"
                 @click="getProduct(data.item.product_id)"
@@ -153,7 +153,7 @@ import {
 import vSelect from 'vue-select'
 import product from '@/mixins/product'
 import { avatarText } from '@core/utils/filter'
-import api from '@/apiConfig'
+import api from '@/api-config'
 import { mapGetters } from 'vuex'
 
 export default {
