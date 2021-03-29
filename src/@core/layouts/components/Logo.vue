@@ -1,7 +1,14 @@
 <template>
   <img
+    id="logo"
     :src="require('@/assets/images/logo/amp-12.png')"
     alt="amp-logo"
-    width="60"
   >
 </template>
+
+<style scoped>
+#logo {
+  max-width: 60px;
+  max-height: 90px;
+}
+</style>
