@@ -12,7 +12,7 @@ export default {
         delete decodedToken.user.password
         this.$store.commit('auth/INIT_SESSION', { user: decodedToken.user, session: decodedToken.session })
         // eslint-disable-next-line dot-notation
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+        axios.defaults.headers['Authorization'] = `Bearer ${token}`
       }
     },
     generateVerifyCode(length) {

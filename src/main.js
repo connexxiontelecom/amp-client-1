@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { ToastPlugin, ModalPlugin } from 'bootstrap-vue'
+import BootstrapVue from 'bootstrap-vue'
 import VueCompositionAPI from '@vue/composition-api'
 
 import base from '@/mixins/base'
@@ -17,9 +17,10 @@ import '@/libs/toastification'
 import '@/libs/clipboard'
 
 // BSV Plugin Registration
-Vue.use(ToastPlugin)
-Vue.use(ModalPlugin)
+// Vue.use(ToastPlugin)
+// Vue.use(ModalPlugin)
 
+Vue.use(BootstrapVue)
 // Composition API
 Vue.use(VueCompositionAPI)
 

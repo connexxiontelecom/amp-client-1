@@ -55,14 +55,14 @@
 /* eslint-disable global-require */
 import { BLink, BButton } from 'bootstrap-vue'
 import VuexyLogo from '@core/layouts/components/Logo.vue'
-import affiliate from '@/mixins/affiliate'
 import { mapGetters } from 'vuex'
+import auth from '@/mixins/auth'
 
 export default {
   components: {
     BLink, BButton, VuexyLogo,
   },
-  mixins: [affiliate],
+  mixins: [auth],
   data() {
     return {
       downImg: require('@/assets/images/pages/not-authorized.svg'),
@@ -71,7 +71,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      isVerified: 'affiliate/getIsVerified',
+      isVerified: 'auth/getIsVerified',
     }),
   },
   created() {

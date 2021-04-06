@@ -18,6 +18,15 @@ export default [
     },
   },
   {
+    path: '/privacy-policy',
+    name: 'privacy',
+    component: () => import('@/views/auth/PrivacyPolicy'),
+    meta: {
+      title: 'Privacy Policy - AMP | Powered by Connexxion Telecom',
+      layout: 'full',
+    },
+  },
+  {
     path: '/verify-*',
     name: 'verify',
     component: () => import('@/views/auth/Verify'),

@@ -1,4 +1,5 @@
 import emailjs from 'emailjs-com'
+import api from '@/api-config'
 
 export default {
   methods: {
@@ -23,13 +24,13 @@ export default {
             upstreamAffiliate,
           }
           this.$store.dispatch('affiliate/addAffiliate', { form }).then(() => {
-            emailjs.send('service_oeg9olb', 'template_kr3wkls', {
+            emailjs.send('service_dmcc3uc', 'template_kr3wkls', {
               firstname: form.firstname,
               lastname: form.lastname,
               creator: 'administrator',
               username: form.username,
               password: form.password,
-              verify_code: form.verifyCode,
+              verification_link: `${api.frontend}/verify-${form.verifyCode}`,
               to_email: form.email,
             }, 'user_BcSkabdz4FX6q4l5oeeXI').catch(() => {})
             this.$router.push({ name: 'affiliate-accounts' }).then(() => {
@@ -244,13 +245,13 @@ export default {
             upstreamAffiliate: this.upstreamAffiliate,
           }
           this.$store.dispatch('affiliate/addDownstreamAffiliate', { form }).then(() => {
-            emailjs.send('service_oeg9olb', 'template_kr3wkls', {
+            emailjs.send('service_dmcc3uc', 'template_kr3wkls', {
               firstname: form.firstname,
               lastname: form.lastname,
               creator: 'affiliate',
               username: form.username,
               password: form.password,
-              verify_code: form.verifyCode,
+              verification_link: `${api.frontend}/verify-${form.verifyCode}`,
               to_email: form.email,
             }, 'user_BcSkabdz4FX6q4l5oeeXI').catch(() => {})
             this.toast('Add Affiliate', 'BellIcon', 'You have successfully added an affiliate', 'success')
@@ -292,13 +293,15 @@ export default {
         }
       })
     },
-    verifyAccount() {
-      const form = {
-        verifyCode: this.verifyCode,
-      }
-      this.$store.dispatch('affiliate/verifyAccount', { form }).then().catch(error => {
-        this.toast('Verify Account', 'BellIcon', error.response.data.messages.error, 'danger')
-      })
+    resendConfirmation() {
+      emailjs.send('service_dmcc3uc', 'template_ats6kji', {
+        firstname: this.firstname,
+        lastname: this.lastname,
+        verification_link: `${api.frontend}/verify-${this.verifyCode}`,
+        to_email: this.emailAddr,
+      }, 'user_BcSkabdz4FX6q4l5oeeXI').then(() => {
+        this.toast('Resend Confirmation', 'BellIcon', 'Confirmation email was successfully resent. Please check your inbox', 'success')
+      }).catch(err => console.log(err))
     },
   },
 }

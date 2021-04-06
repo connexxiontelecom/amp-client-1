@@ -123,6 +123,7 @@
             class="mt-75"
           >
             <b-alert
+              v-if="profile === '0'"
               show
               variant="warning"
               class="mb-50"
@@ -131,7 +132,10 @@
                 Your email is not confirmed. Please check your inbox.
               </h4>
               <div class="alert-body">
-                <b-link class="alert-link">
+                <b-link
+                  class="alert-link"
+                  @click="resendConfirmation"
+                >
                   Resend confirmation
                 </b-link>
               </div>
@@ -197,6 +201,8 @@ export default {
       lastname: this.$store.getters['auth/getUser'].lastname,
       emailAddr: this.$store.getters['auth/getUser'].email,
       referralCode: this.$store.getters['auth/getUser'].ref_code,
+      profile: this.$store.getters['auth/getUser'].profile,
+      verifyCode: this.$store.getters['auth/getUser'].verify_code,
       required,
       email,
     }

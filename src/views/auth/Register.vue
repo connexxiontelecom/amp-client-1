@@ -44,10 +44,8 @@
               </b-col>
               <b-col lg="6">
                 <!-- lastname -->
-                <b-form-group
-                  label="Lastname"
-                  label-for="lastname"
-                >
+                <b-form-group>
+                  <label for="lastname">Lastname</label><span style="color: red"> *</span>
                   <validation-provider
                     #default="{ errors }"
                     name="lastname"
@@ -68,10 +66,8 @@
             <b-row>
               <b-col lg="6">
                 <!-- username -->
-                <b-form-group
-                  label="Username"
-                  label-for="username"
-                >
+                <b-form-group>
+                  <label for="username">Username</label><span style="color: red"> *</span>
                   <validation-provider
                     #default="{ errors }"
                     name="Username"
@@ -90,10 +86,8 @@
               </b-col>
               <b-col lg="6">
                 <!-- email -->
-                <b-form-group
-                  label="Email"
-                  label-for="email"
-                >
+                <b-form-group>
+                  <label for="email">Email</label><span style="color: red"> *</span>
                   <validation-provider
                     #default="{ errors }"
                     name="Email"
@@ -114,10 +108,8 @@
             <b-row>
               <b-col lg="6">
                 <!-- password -->
-                <b-form-group
-                  label="Password"
-                  label-for="password"
-                >
+                <b-form-group>
+                  <label for="password">Password</label><span style="color: red"> *</span>
                   <validation-provider
                     #default="{ errors }"
                     name="password"
@@ -150,10 +142,8 @@
               </b-col>
               <b-col lg="6">
                 <!-- confirm password -->
-                <b-form-group
-                  label="Confirm Password"
-                  label-for="confirm-password"
-                >
+                <b-form-group>
+                  <label for="confirm-password">Confirm Password</label><span style="color: red"> *</span>
                   <validation-provider
                     #default="{ errors }"
                     name="confirm password"
@@ -193,8 +183,10 @@
                 name="checkbox-1"
                 class="mt-1"
               >
-                I agree to
-                <b-link>privacy policy & terms</b-link>
+                I have read and understood the
+                <b-link to="/privacy-policy">
+                  Privacy Policy
+                </b-link>
               </b-form-checkbox>
             </b-form-group>
 

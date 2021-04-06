@@ -1,5 +1,6 @@
 // import notify from '@/mixins/notify'
 import emailjs from 'emailjs-com'
+import api from '@/api-config'
 
 export default {
   // mixins: [notify],
@@ -43,12 +44,12 @@ export default {
             confirmPassword: this.confirmPassword,
           }
           this.$store.dispatch('auth/register', { form }).then(response => {
-            emailjs.send('service_oeg9olb', 'template_ats6kji', {
+            emailjs.send('service_dmcc3uc', 'template_ats6kji', {
               firstname: form.firstname,
               lastname: form.lastname,
-              verify_code: form.verifyCode,
+              verification_link: `${api.frontend}/verify-${form.verifyCode}`,
               to_email: form.email,
-            }, 'user_BcSkabdz4FX6q4l5oeeXI').catch(() => {})
+            }, 'user_BcSkabdz4FX6q4l5oeeXI').catch(err => console.log(err))
             this.$router.push({ name: 'login' }).then(() => {
               this.toast('Register', 'LogInIcon', response.data, 'success')
             })
@@ -58,6 +59,14 @@ export default {
         } else {
           this.toast('Register Attempt', 'LogInIcon', 'You must fill in all form fields correctly', 'warning')
         }
+      })
+    },
+    verifyAccount() {
+      const form = {
+        verifyCode: this.verifyCode,
+      }
+      this.$store.dispatch('auth/verifyAccount', { form }).then().catch(error => {
+        this.toast('Verify Account', 'BellIcon', error.response.data.messages.error, 'danger')
       })
     },
   },

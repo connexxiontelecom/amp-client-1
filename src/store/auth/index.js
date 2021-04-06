@@ -11,6 +11,7 @@ export default {
       permissions: [],
       isAdmin: false,
       isAffiliate: false,
+      isVerified: false,
     },
   },
   getters: {
@@ -18,6 +19,7 @@ export default {
     getPermissions: state => state.session.permissions,
     getIsAdmin: state => state.session.isAdmin,
     getIsAffiliate: state => state.session.isAffiliate,
+    getIsVerified: state => state.session.isVerified,
   },
   mutations: {
     INIT_SESSION(state, payload) {
@@ -32,6 +34,9 @@ export default {
       state.session.isAdmin = false
       state.session.isAffiliate = false
     },
+    SET_IS_VERIFIED(state, payload) {
+      state.session.isVerified = payload.isVerified
+    },
   },
   actions: {
     login({ commit }, payload) {
@@ -41,7 +46,7 @@ export default {
           localStorage.setItem('t', token)
           const decodedToken = jwtDecode(token)
           commit('INIT_SESSION', { user: decodedToken.user, session: decodedToken.session, permissions: decodedToken.permissions })
-          axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+          axios.defaults.headers['Authorization'] = `Bearer ${token}`
           resolve(response)
         }).catch(error => {
           reject(error)
@@ -51,12 +56,22 @@ export default {
     logout({ commit }) {
       localStorage.clear()
       commit('CLEAR_SESSION')
-      delete axios.defaults.headers.common['Authorization']
+      delete axios.defaults.headers['Authorization']
     },
     // eslint-disable-next-line no-unused-vars
     register({ commit }, payload) {
       return new Promise((resolve, reject) => {
         axios({ url: 'auth/register', data: helpers.getRegisterForm(payload.form), method: 'post' }).then(response => {
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    verifyAccount({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'auth/verify_account', data: helpers.getVerifyCodeForm(payload.form), method: 'post' }).then(response => {
+          commit('SET_IS_VERIFIED', { isVerified: response.data.verified })
           resolve(response)
         }).catch(error => {
           reject(error)

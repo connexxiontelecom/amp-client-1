@@ -16,4 +16,9 @@ export default {
     formData.append('confirm_password', form.confirmPassword)
     return formData
   },
+  getVerifyCodeForm(form) {
+    const formData = new FormData()
+    formData.append('verify_code', form.verifyCode)
+    return formData
+  },
 }
