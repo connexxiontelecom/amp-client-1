@@ -23,13 +23,13 @@ const router = new VueRouter({
       meta: {
         authRequired: true,
         title: 'Home - AMP | Powered by Connexxion Telecom',
-        pageTitle: 'Home',
-        breadcrumb: [
-          {
-            text: 'Home',
-            active: true,
-          },
-        ],
+        // pageTitle: 'Home',
+        // breadcrumb: [
+        //   {
+        //     text: 'Home',
+        //     active: true,
+        //   },
+        // ],
       },
     },
     {

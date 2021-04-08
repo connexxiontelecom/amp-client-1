@@ -56,5 +56,9 @@ export default {
       Object.assign(state.layout.footer, obj)
     },
   },
-  actions: {},
+  actions: {
+    loadAffiliatePortal({ commit }) {
+      commit('UPDATE_NAV_MENU_HIDDEN', { val: true })
+    },
+  },
 }

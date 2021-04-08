@@ -13,6 +13,8 @@ export default {
             password: this.password,
           }
           this.$store.dispatch('auth/login', { form }).then(() => {
+            // return the session type and chose which one..
+            this.$store.dispatch('appConfig/loadAffiliatePortal').then().catch()
             this.$router.push({ name: 'home' }).then(() => {
               this.toast('Welcome', 'LogInIcon', 'You have logged in successfully', 'success')
             })
