@@ -67,7 +67,7 @@
             >
               Track product sales made through your referrals and your total commission due for the sales.
             </b-card-text>
-            <b-link to="/affiliates">
+            <b-link to="/product-sales">
               Product Sales
               <feather-icon
                 size="16"
@@ -150,6 +150,7 @@
 <!--        </p>-->
         <b-button
           variant="primary"
+          to="/product-sales"
         >
           Product Sales
         </b-button>

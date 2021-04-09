@@ -9,6 +9,7 @@ export default [
   },
   {
     title: 'Product Sales',
+    route: 'product-sales',
     icon: 'BookIcon',
   },
   {

@@ -6,6 +6,7 @@ import product from './routes/product'
 import affiliate from './routes/affiliate'
 import commission from './routes/commission'
 import auth from './routes/auth'
+import productSales from './routes/product-sales'
 
 Vue.use(VueRouter)
 
@@ -50,6 +51,7 @@ const router = new VueRouter({
     ...affiliate,
     ...commission,
     ...auth,
+    ...productSales,
   ],
 })
 
