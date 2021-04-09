@@ -20,7 +20,7 @@ export const $themeConfig = {
     type: 'vertical', // vertical, horizontal
     contentWidth: 'boxed', // full, boxed
     menu: {
-      hidden: true,
+      hidden: false,
       isCollapsed: true,
     },
     navbar: {

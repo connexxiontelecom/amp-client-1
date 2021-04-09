@@ -11,6 +11,9 @@ export default {
         const decodedToken = jwtDecode(token)
         delete decodedToken.user.password
         this.$store.commit('auth/INIT_SESSION', { user: decodedToken.user, session: decodedToken.session })
+        if (this.$store.getters['auth/getIsAffiliate']) {
+          this.$store.dispatch('appConfig/loadAffiliatePortal').then().catch()
+        }
         // eslint-disable-next-line dot-notation
         axios.defaults.headers['Authorization'] = `Bearer ${token}`
       }

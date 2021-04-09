@@ -60,5 +60,8 @@ export default {
     loadAffiliatePortal({ commit }) {
       commit('UPDATE_NAV_MENU_HIDDEN', { val: true })
     },
+    loadAdminPortal({ commit }) {
+      commit('UPDATE_NAV_MENU_HIDDEN', { val: false })
+    },
   },
 }
