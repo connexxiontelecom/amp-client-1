@@ -30,6 +30,7 @@ export default {
     const formData = new FormData()
     formData.append('name', form.name)
     formData.append('url', form.url)
+    formData.append('registration_link', form.link)
     formData.append('category', form.category)
     formData.append('logo', form.logo)
     formData.append('description', form.description)
@@ -40,6 +41,7 @@ export default {
     formData.append('product_id', form.productID)
     formData.append('name', form.name)
     formData.append('url', form.url)
+    formData.append('registration_link', form.link)
     formData.append('category', form.category)
     formData.append('description', form.description)
     return formData

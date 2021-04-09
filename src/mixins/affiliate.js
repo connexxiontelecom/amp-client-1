@@ -301,7 +301,7 @@ export default {
         to_email: this.emailAddr,
       }, 'user_BcSkabdz4FX6q4l5oeeXI').then(() => {
         this.toast('Resend Confirmation', 'BellIcon', 'Confirmation email was successfully resent. Please check your inbox', 'success')
-      }).catch(err => console.log(err))
+      }).catch()
     },
   },
 }

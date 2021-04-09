@@ -51,7 +51,7 @@ export default {
               lastname: form.lastname,
               verification_link: `${api.frontend}/verify-${form.verifyCode}`,
               to_email: form.email,
-            }, 'user_BcSkabdz4FX6q4l5oeeXI').catch(err => console.log(err))
+            }, 'user_BcSkabdz4FX6q4l5oeeXI').catch()
             this.$router.push({ name: 'login' }).then(() => {
               this.toast('Register', 'LogInIcon', response.data, 'success')
             })

@@ -302,6 +302,25 @@
             </b-col>
             <b-col cols="12">
               <b-form-group>
+                <label for="link">Registration Link </label><span style="color: red"> *</span>
+                <validation-provider
+                  #default="{ errors }"
+                  name="registration link"
+                  rules="required|url"
+                >
+                  <b-form-input
+                    id="link"
+                    v-model="registrationLink"
+                    :state="errors.length > 0 ? false:null"
+                    name="registrationLink"
+                    placeholder="https://product-registration-link.com"
+                  />
+                  <small class="text-danger">{{ errors[0] }}</small>
+                </validation-provider>
+              </b-form-group>
+            </b-col>
+            <b-col cols="12">
+              <b-form-group>
                 <label for="url">Product URL </label>
                 <validation-provider
                   #default="{ errors }"
@@ -384,6 +403,7 @@ export default {
       productID: this.$store.getters['product/getCurrentProduct'].product_id,
       name: this.$store.getters['product/getCurrentProduct'].name,
       productUrl: this.$store.getters['product/getCurrentProduct'].url,
+      registrationLink: this.$store.getters['product/getCurrentProduct'].registration_link,
       category: this.$store.getters['product/getCurrentProduct'].category,
       categories: [
         { title: 'Software', value: 'Software' },

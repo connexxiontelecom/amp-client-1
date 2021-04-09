@@ -82,6 +82,14 @@
             {{ data.item.url }}
           </a>
         </template>
+        <template #cell(registration_link)="data">
+          <a
+            :href="data.item.registration_link"
+            target="_blank"
+          >
+            {{ data.item.registration_link }}
+          </a>
+        </template>
         <template #cell(num_plans)="data">
           {{ data.item.num_plans }} plans
         </template>
@@ -187,6 +195,7 @@ export default {
       fields: [
         { key: 'name', sortable: true },
         { key: 'url', sortable: true },
+        { key: 'registration_link', sortable: true },
         { key: 'num_plans', label: 'product plans', sortable: true },
         { key: 'status' },
         { key: 'created_at', label: 'Added', sortable: true },

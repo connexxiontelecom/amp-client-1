@@ -11,6 +11,7 @@ export default {
           const form = {
             name: this.name,
             url: this.productUrl,
+            link: this.registrationLink,
             category: this.category.value,
             description: this.description,
             logo: this.logo,
@@ -34,6 +35,7 @@ export default {
             productID: this.productID,
             name: this.name,
             url: this.productUrl,
+            link: this.registrationLink,
             category: this.category.value,
             description: this.description,
             logo: this.logo,

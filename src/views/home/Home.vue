@@ -124,6 +124,7 @@
               icon="CopyIcon"
               size="14"
               class="cursor-pointer"
+              @click="copyReferralLink(product)"
             />
           </b-card-header>
           <!-- chart -->
@@ -149,6 +150,7 @@ export default {
       greeting: null,
       avatarText,
       api,
+      referralLink: null,
     }
   },
   computed: {
@@ -177,6 +179,12 @@ export default {
       if (hrs < 12) this.greeting = 'Good morning'
       else if (hrs >= 12 && hrs <= 17) this.greeting = 'Good afternoon'
       else if (hrs >= 17 && hrs <= 24) this.greeting = 'Good Evening'
+    },
+    copyReferralLink(currentProduct) {
+      // console.log(currentProduct)
+      this.referralLink = `${currentProduct.registration_link}/${this.$store.getters['auth/getUser'].ref_code}`
+      this.$copyText(this.referralLink).then().catch()
+      this.toast('Copied Referral Link!', 'CopyIcon', '', 'success')
     },
   },
 }
