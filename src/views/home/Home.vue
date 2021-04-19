@@ -25,7 +25,7 @@
                 <b-badge
                   variant="light-primary"
                 >
-                  0 sales
+                  {{ numProductSales }} total sales
                 </b-badge>
               </span>
             </h5>
@@ -56,6 +56,7 @@
               Verify your account
               <span class="float-right ml-auto">
                 <b-badge
+                  v-if="user.profile === '1'"
                   variant="light-success"
                 >
                   <feather-icon
@@ -63,6 +64,16 @@
                     class="mr-25"
                   />
                   verified
+                </b-badge>
+                <b-badge
+                  v-else-if="user.profile === '0'"
+                  variant="light-warning"
+                >
+                  <feather-icon
+                    icon="XIcon"
+                    class="mr-25"
+                  />
+                  unverified
                 </b-badge>
               </span>
             </h5>
@@ -92,7 +103,7 @@
                 <b-badge
                   variant="light-primary"
                 >
-                  0 affiliates
+                  {{ numDownstreamAffiliates }} affiliates
                 </b-badge>
               </span>
             </h5>
@@ -122,7 +133,7 @@
                 <b-badge
                   variant="light-primary"
                 >
-                  0 products
+                  {{ numProducts }} products
                 </b-badge>
               </span>
             </h5>
@@ -269,12 +280,13 @@ import admin from '@/mixins/admin'
 import product from '@/mixins/product'
 import affiliate from '@/mixins/affiliate'
 import commission from '@/mixins/commission'
+import productSales from '@/mixins/product-sales'
 import { mapGetters } from 'vuex'
 import { avatarText } from '@core/utils/filter'
 import api from '@/api-config'
 
 export default {
-  mixins: [admin, product, affiliate, commission],
+  mixins: [admin, product, affiliate, commission, productSales],
   data() {
     return {
       greeting: null,
@@ -288,7 +300,9 @@ export default {
       user: 'auth/getUser',
       isAdmin: 'auth/getIsAdmin',
       isAffiliate: 'auth/getIsAffiliate',
-      products: 'product/getAllProducts',
+      numProducts: 'product/getNumProducts',
+      numProductSales: 'productSales/getNumProductSales',
+      numDownstreamAffiliates: 'affiliate/getNumDownstreamAffiliates',
     }),
   },
   created() {
@@ -300,6 +314,9 @@ export default {
       this.getCommissions()
     } else if (this.$store.getters['auth/getIsAffiliate']) {
       this.getProducts()
+      // console.log(this.$store.getters['auth/getUser'])
+      this.getAffiliateProductSales(this.$store.getters['auth/getUser'].ref_code)
+      this.getDownstreamAffiliates(this.$store.getters['auth/getUser'].affiliate_id)
     }
   },
   methods: {

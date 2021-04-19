@@ -1,6 +1,6 @@
 {
-  "name": "amp",
-  "version": "0.1.0",
+  "name": "amp-client-1",
+  "version": "0.1.4",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --port 8081",
