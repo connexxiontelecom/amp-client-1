@@ -39,67 +39,56 @@
     </b-col>
 
     <!-- Content Right -->
-    <b-col
-      class="content-header-right text-md-right d-md-block d-none mb-1"
-      md="3"
-      cols="12"
-    >
-      <b-dropdown
-        variant="link"
-        no-caret
-        toggle-class="p-0"
-        right
-      >
+<!--    <b-col-->
+<!--      class="content-header-right text-md-right d-md-block d-none mb-1"-->
+<!--      md="3"-->
+<!--      cols="12"-->
+<!--    >-->
+<!--      <b-dropdown-->
+<!--        variant="link"-->
+<!--        no-caret-->
+<!--        toggle-class="p-0"-->
+<!--        right-->
+<!--      >-->
 
-        <template #button-content>
-          <b-button
-            v-ripple.400="'rgba(255, 255, 255, 0.15)'"
-            variant="primary"
-            class="btn-icon"
-          >
-            <feather-icon icon="SettingsIcon" />
-          </b-button>
-        </template>
-
-        <b-dropdown-item>
-          <feather-icon
-            icon="CheckSquareIcon"
-            size="16"
-          />
-          <span class="align-middle ml-50">Todo</span>
-        </b-dropdown-item>
-
-        <b-dropdown-item>
-          <feather-icon
-            icon="MessageSquareIcon"
-            size="16"
-          />
-          <span class="align-middle ml-50">Chat</span>
-        </b-dropdown-item>
-
-        <b-dropdown-item>
-          <feather-icon
-            icon="MailIcon"
-            size="16"
-          />
-          <span class="align-middle ml-50">Email</span>
-        </b-dropdown-item>
-
-        <b-dropdown-item >
-          <feather-icon
-            icon="CalendarIcon"
-            size="16"
-          />
-          <span class="align-middle ml-50">Calendar</span>
-        </b-dropdown-item>
-      </b-dropdown>
-    </b-col>
+<!--        <template #button-content>-->
+<!--          <b-button-->
+<!--            v-ripple.400="'rgba(255, 255, 255, 0.15)'"-->
+<!--            variant="primary"-->
+<!--            class="btn-icon"-->
+<!--          >-->
+<!--            <feather-icon icon="MenuIcon" />-->
+<!--          </b-button>-->
+<!--        </template>-->
+<!--        <b-dropdown-item to="/">-->
+<!--          <feather-icon-->
+<!--            icon="HomeIcon"-->
+<!--            size="16"-->
+<!--          />-->
+<!--          <span class="align-middle ml-50">Home</span>-->
+<!--        </b-dropdown-item>-->
+<!--        <b-dropdown-item to="/products">-->
+<!--          <feather-icon-->
+<!--            icon="PackageIcon"-->
+<!--            size="16"-->
+<!--          />-->
+<!--          <span class="align-middle ml-50">Products</span>-->
+<!--        </b-dropdown-item>-->
+<!--        <b-dropdown-item to="/product-sales">-->
+<!--          <feather-icon-->
+<!--            icon="BookIcon"-->
+<!--            size="16"-->
+<!--          />-->
+<!--          <span class="align-middle ml-50">Sales</span>-->
+<!--        </b-dropdown-item>-->
+<!--      </b-dropdown>-->
+<!--    </b-col>-->
   </b-row>
 </template>
 
 <script>
 import {
-  BBreadcrumb, BBreadcrumbItem, BRow, BCol, BDropdown, BDropdownItem, BButton,
+  BBreadcrumb, BBreadcrumbItem, BRow, BCol,
 } from 'bootstrap-vue'
 import Ripple from 'vue-ripple-directive'
 
@@ -112,9 +101,6 @@ export default {
     BBreadcrumbItem,
     BRow,
     BCol,
-    BDropdown,
-    BDropdownItem,
-    BButton,
   },
 }
 </script>

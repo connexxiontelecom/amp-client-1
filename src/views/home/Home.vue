@@ -19,7 +19,53 @@
           xl="3"
         >
           <b-card>
-            <h5>Verify your account </h5>
+            <h5 class="mb-1">
+              Manage sales
+              <span class="float-right">
+                <b-badge
+                  variant="light-primary"
+                >
+                  0 sales
+                </b-badge>
+              </span>
+            </h5>
+            <b-card-text
+              class="font-small-4"
+            >
+              <h3 class="mt-1 mb-1">
+                &#8358; 0.00
+              </h3>
+              Your commission earnings for <strong>{{ new Date().toLocaleString('default', { month: 'long' }) }}</strong>
+            </b-card-text>
+            <b-link to="/product-sales">
+              Product Sales
+              <feather-icon
+                size="16"
+                icon="ArrowRightIcon"
+              />
+            </b-link>
+          </b-card>
+        </b-col>
+        <b-col
+          md="5"
+          lg="5"
+          xl="3"
+        >
+          <b-card>
+            <h5 class="mb-1">
+              Verify your account
+              <span class="float-right ml-auto">
+                <b-badge
+                  variant="light-success"
+                >
+                  <feather-icon
+                    icon="CheckIcon"
+                    class="mr-25"
+                  />
+                  verified
+                </b-badge>
+              </span>
+            </h5>
             <b-card-text
               class="font-small-4"
             >
@@ -40,7 +86,16 @@
           xl="3"
         >
           <b-card>
-            <h5>Manage affiliates</h5>
+            <h5 class="mb-1">
+              Manage affiliates
+              <span class="float-right">
+                <b-badge
+                  variant="light-primary"
+                >
+                  0 affiliates
+                </b-badge>
+              </span>
+            </h5>
             <b-card-text
               class="font-small-4"
             >
@@ -61,75 +116,28 @@
           xl="3"
         >
           <b-card>
-            <h5>View product sales</h5>
+            <h5 class="mb-1">
+              View products
+              <span class="float-right">
+                <b-badge
+                  variant="light-primary"
+                >
+                  0 products
+                </b-badge>
+              </span>
+            </h5>
             <b-card-text
               class="font-small-4"
             >
-              Track product sales made through your referrals and your total commission due for the sales.
+              View active Connexxion Telecom products and copy your referral link for your clients.
             </b-card-text>
-            <b-link to="/product-sales">
-              Product Sales
+            <b-link to="/products">
+              Products
               <feather-icon
                 size="16"
                 icon="ArrowRightIcon"
               />
             </b-link>
-          </b-card>
-        </b-col>
-      </b-row>
-      <b-alert
-        variant="dark"
-        show=""
-        class="mt-1 mb-2"
-      >
-        <h4 class="alert-heading">
-          Market Products Quickly
-        </h4>
-        <div class="alert-body">
-          Copy the referral link from any of our products below and give to your prospective clients. <br>
-          Any purchase made through your referral link is credited to you and you will receive 10% of the proceeds as commission up to your 5th client.
-          <br>
-          <span class="font-weight-bolder">For every 5th client every month, you will receive 100% of the proceeds.</span>
-        </div>
-      </b-alert>
-      <b-row>
-        <b-col
-          v-for="product in products"
-          :key="product.product_id"
-          lg="2"
-          cols="6"
-        >
-          <b-card
-            no-body
-          >
-            <b-card-header>
-              <div>
-                <b-card-title>
-                  <b-avatar
-                    rounded=""
-                    size="32"
-                    :src="api.endpoint+'/uploads/products/'+product.logo"
-                    :text="avatarText(`${product.name}`)"
-                    variant="light-info"
-                  />
-                  <span class="ml-25 font-medium-1 text-uppercase">
-                    <b-link
-                      :href="product.url"
-                      target="_blank"
-                    >
-                      {{ product.name }}
-                    </b-link>
-                  </span>
-                </b-card-title>
-              </div>
-              <feather-icon
-                v-b-tooltip.hover.top="'Copy Link'"
-                icon="CopyIcon"
-                size="14"
-                class="cursor-pointer"
-                @click="copyReferralLink(product)"
-              />
-            </b-card-header>
           </b-card>
         </b-col>
       </b-row>
@@ -300,7 +308,7 @@ export default {
       const hrs = today.getHours()
       if (hrs < 12) this.greeting = 'Good morning'
       else if (hrs >= 12 && hrs <= 17) this.greeting = 'Good afternoon'
-      else if (hrs >= 17 && hrs <= 24) this.greeting = 'Good Evening'
+      else if (hrs >= 17 && hrs <= 24) this.greeting = 'Good evening'
     },
     copyReferralLink(currentProduct) {
       // console.log(currentProduct)

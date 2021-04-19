@@ -18,10 +18,17 @@
 
     <!-- Left Col -->
     <div class="bookmark-wrapper align-items-center flex-grow-1 d-none d-lg-flex">
-      <dark-Toggler class="d-none d-lg-block" />
+      <b-badge
+        variant="primary"
+        class="badge-glow"
+      >
+        Affiliate Portal
+      </b-badge>
     </div>
 
     <b-navbar-nav class="nav align-items-center ml-auto">
+      <dark-toggler class="d-lg-block" />
+      <notification-dropdown />
       <b-nav-item-dropdown
         right
         toggle-class="d-flex align-items-center dropdown-user-link"
@@ -44,40 +51,16 @@
           />
         </template>
 
-        <b-dropdown-item link-class="d-flex align-items-center">
+        <b-dropdown-item
+          link-class="d-flex align-items-center"
+          to="/account"
+        >
           <feather-icon
             size="16"
             icon="UserIcon"
             class="mr-50"
           />
-          <span>Profile</span>
-        </b-dropdown-item>
-
-        <b-dropdown-item link-class="d-flex align-items-center">
-          <feather-icon
-            size="16"
-            icon="MailIcon"
-            class="mr-50"
-          />
-          <span>Inbox</span>
-        </b-dropdown-item>
-
-        <b-dropdown-item link-class="d-flex align-items-center">
-          <feather-icon
-            size="16"
-            icon="CheckSquareIcon"
-            class="mr-50"
-          />
-          <span>Task</span>
-        </b-dropdown-item>
-
-        <b-dropdown-item link-class="d-flex align-items-center">
-          <feather-icon
-            size="16"
-            icon="MessageSquareIcon"
-            class="mr-50"
-          />
-          <span>Chat</span>
+          <span>Account</span>
         </b-dropdown-item>
 
         <b-dropdown-divider />
@@ -102,6 +85,7 @@
 import {
   BLink, BNavbarNav, BNavItemDropdown, BDropdownItem, BDropdownDivider, BAvatar,
 } from 'bootstrap-vue'
+import NotificationDropdown from '@core/layouts/components/app-navbar/components/NotificationDropdown.vue'
 import DarkToggler from '@core/layouts/components/app-navbar/components/DarkToggler.vue'
 import auth from '@/mixins/auth'
 import { mapGetters } from 'vuex'
@@ -116,6 +100,8 @@ export default {
     BAvatar,
 
     // Navbar Components
+    // Bookmarks,
+    NotificationDropdown,
     DarkToggler,
   },
   mixins: [auth],

@@ -1,6 +1,5 @@
 <template>
   <div class="navbar-container d-flex content align-items-center">
-
     <!-- Nav Menu Toggler -->
     <ul class="nav navbar-nav d-xl-none">
       <li class="nav-item">
@@ -25,7 +24,7 @@
 
     <b-navbar-nav class="nav align-items-center ml-auto">
       <locale />
-      <dark-Toggler class="d-none d-lg-block" />
+      <dark-toggler class="d-none d-lg-block" />
       <search-bar />
       <cart-dropdown />
       <notification-dropdown />

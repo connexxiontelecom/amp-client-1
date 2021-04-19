@@ -13,12 +13,8 @@ export default [
     icon: 'PackageIcon',
   },
   {
-    title: 'Commissions',
-    route: 'commissions',
-    icon: 'PercentIcon',
-  },
-  {
     title: 'Product Sales',
+    route: 'product-sales',
     icon: 'BookIcon',
   },
   {

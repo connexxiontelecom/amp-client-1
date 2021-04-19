@@ -5,8 +5,9 @@
     right
   >
     <template #button-content>
+      <!--    badge="6"-->
+
       <feather-icon
-        badge="6"
         badge-classes="bg-danger"
         class="text-body"
         icon="BellIcon"
@@ -24,7 +25,7 @@
           pill
           variant="light-primary"
         >
-          6 New
+          0 New
         </b-badge>
       </div>
     </li>
@@ -37,61 +38,27 @@
       tagname="li"
     >
       <!-- Account Notification -->
-      <b-link
-        v-for="notification in notifications"
-        :key="notification.subtitle"
-      >
-        <b-media>
-          <template #aside>
-            <b-avatar
-              size="32"
-              :src="notification.avatar"
-              :text="notification.avatar"
-              :variant="notification.type"
-            />
-          </template>
-          <p class="media-heading">
-            <span class="font-weight-bolder">
-              {{ notification.title }}
-            </span>
-          </p>
-          <small class="notification-text">{{ notification.subtitle }}</small>
-        </b-media>
-      </b-link>
-
-      <!-- System Notification Toggler -->
-      <div class="media d-flex align-items-center">
-        <h6 class="font-weight-bolder mr-auto mb-0">
-          System Notifications
-        </h6>
-        <b-form-checkbox
-          :checked="true"
-          switch
-        />
-      </div>
-
-      <!-- System Notifications -->
-      <b-link
-        v-for="notification in systemNotifications"
-        :key="notification.subtitle"
-      >
-        <b-media>
-          <template #aside>
-            <b-avatar
-              size="32"
-              :variant="notification.type"
-            >
-              <feather-icon :icon="notification.icon" />
-            </b-avatar>
-          </template>
-          <p class="media-heading">
-            <span class="font-weight-bolder">
-              {{ notification.title }}
-            </span>
-          </p>
-          <small class="notification-text">{{ notification.subtitle }}</small>
-        </b-media>
-      </b-link>
+<!--      <b-link-->
+<!--        v-for="notification in notifications"-->
+<!--        :key="notification.subtitle"-->
+<!--      >-->
+<!--        <b-media>-->
+<!--          <template #aside>-->
+<!--            <b-avatar-->
+<!--              size="32"-->
+<!--              :src="notification.avatar"-->
+<!--              :text="notification.avatar"-->
+<!--              :variant="notification.type"-->
+<!--            />-->
+<!--          </template>-->
+<!--          <p class="media-heading">-->
+<!--            <span class="font-weight-bolder">-->
+<!--              {{ notification.title }}-->
+<!--            </span>-->
+<!--          </p>-->
+<!--          <small class="notification-text">{{ notification.subtitle }}</small>-->
+<!--        </b-media>-->
+<!--      </b-link>-->
     </vue-perfect-scrollbar>
 
     <!-- Cart Footer -->
@@ -105,22 +72,12 @@
 </template>
 
 <script>
-import {
-  BNavItemDropdown, BBadge, BMedia, BLink, BAvatar, BButton, BFormCheckbox,
-} from 'bootstrap-vue'
 import VuePerfectScrollbar from 'vue-perfect-scrollbar'
 import Ripple from 'vue-ripple-directive'
 
 export default {
   components: {
-    BNavItemDropdown,
-    BBadge,
-    BMedia,
-    BLink,
-    BAvatar,
     VuePerfectScrollbar,
-    BButton,
-    BFormCheckbox,
   },
   directives: {
     Ripple,
