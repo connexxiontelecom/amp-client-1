@@ -33,7 +33,7 @@
               class="font-small-4"
             >
               <h3 class="mt-1 mb-1">
-                &#8358; 0.00
+                &#8358; {{ monthlyCommission.toLocaleString() }}
               </h3>
               Your commission earnings for <strong>{{ new Date().toLocaleString('default', { month: 'long' }) }}</strong>
             </b-card-text>
@@ -303,6 +303,7 @@ export default {
       numProducts: 'product/getNumProducts',
       numProductSales: 'productSales/getNumProductSales',
       numDownstreamAffiliates: 'affiliate/getNumDownstreamAffiliates',
+      monthlyCommission: 'productSales/getMonthlyCommission',
     }),
   },
   created() {
@@ -315,6 +316,7 @@ export default {
     } else if (this.$store.getters['auth/getIsAffiliate']) {
       this.getProducts()
       // console.log(this.$store.getters['auth/getUser'])
+      this.getMonthlyCommission(this.$store.getters['auth/getUser'].ref_code)
       this.getAffiliateProductSales(this.$store.getters['auth/getUser'].ref_code)
       this.getDownstreamAffiliates(this.$store.getters['auth/getUser'].affiliate_id)
     }
