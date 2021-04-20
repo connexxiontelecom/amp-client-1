@@ -10,5 +10,10 @@ export default {
         this.toast('Get Product Sales Attempt', 'BellIcon', error.response.data.messages.error, 'danger')
       })
     },
+    getMonthlyCommission(referralCode) {
+      this.$store.dispatch('productSales/getMonthlyCommission', { referralCode }).then().catch(error => {
+        this.toast('Get Monthly COmmission Attempt', 'BellIcon', error.response.data.messages.error, 'danger')
+      })
+    },
   },
 }
