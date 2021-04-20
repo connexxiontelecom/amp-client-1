@@ -46,7 +46,6 @@ export default {
     getMonthlyCommission({ commit }, payload) {
       return new Promise((resolve, reject) => {
         axios({ url: `get-monthly-commission/${payload.referralCode}`, method: 'get' }).then(response => {
-          console.log(response)
           commit('SET_MONTHLY_COMMISSION', { monthlyCommission: response.data })
           resolve(response)
         }).catch(error => {
