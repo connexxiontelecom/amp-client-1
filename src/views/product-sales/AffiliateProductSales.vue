@@ -40,7 +40,7 @@
             <h3 class="mt-1 mb-1">
               &#8358; {{ yearlyCommission.toLocaleString() }}
             </h3>
-            Total commission earnings for <strong>2021</strong>
+            Total commission earnings for <strong>{{ new Date().getFullYear() }}</strong>
           </b-card-text>
         </b-card>
       </b-col>

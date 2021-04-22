@@ -5,6 +5,11 @@ export default {
         this.toast('Get All Products Attempt', 'BellIcon', error.response.data.messages.error, 'danger')
       })
     },
+    getAffiliateProducts() {
+      this.$store.dispatch('product/getAffiliateProducts').then().catch(error => {
+        this.toast('Get All Products Attempt', 'BellIcon', error.response.data.messages.error, 'danger')
+      })
+    },
     addProduct() {
       this.$refs.addProductValidation.validate().then(success => {
         if (success) {

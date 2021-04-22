@@ -39,6 +39,16 @@ export default {
         })
       })
     },
+    getAffiliateProducts({ commit }) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'product/all_affiliate_products', method: 'get' }).then(response => {
+          commit('SET_ALL_PRODUCTS', { allProducts: response.data })
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
     addProduct({ commit }, payload) {
       return new Promise((resolve, reject) => {
         axios({
