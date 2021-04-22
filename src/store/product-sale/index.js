@@ -7,11 +7,13 @@ export default {
     productSales: [],
     numProductSales: 0,
     monthlyCommission: 0,
+    yearlyCommission: 0,
   },
   getters: {
     getAllProductSales: state => state.productSales,
     getNumProductSales: state => state.numProductSales,
     getMonthlyCommission: state => state.monthlyCommission,
+    getYearlyCommission: state => state.yearlyCommission,
   },
   mutations: {
     SET_ALL_PRODUCT_SALES(state, payload) {
@@ -20,6 +22,9 @@ export default {
     },
     SET_MONTHLY_COMMISSION(state, payload) {
       state.monthlyCommission = payload.monthlyCommission
+    },
+    SET_YEARLY_COMMISSION(state, payload) {
+      state.yearlyCommission = payload.yearlyCommission
     },
   },
   actions: {
@@ -47,6 +52,16 @@ export default {
       return new Promise((resolve, reject) => {
         axios({ url: `get-monthly-commission/${payload.referralCode}`, method: 'get' }).then(response => {
           commit('SET_MONTHLY_COMMISSION', { monthlyCommission: response.data })
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    getYearlyCommission({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({ url: `get-yearly-commission/${payload.referralCode}`, method: 'get' }).then(response => {
+          commit('SET_YEARLY_COMMISSION', { yearlyCommission: response.data })
           resolve(response)
         }).catch(error => {
           reject(error)

@@ -10,26 +10,6 @@
       >
         <b-card>
           <h5 class="mb-1">
-            Total sales
-            <span class="float-right">
-            </span>
-          </h5>
-          <b-card-text
-            class="font-small-4"
-          >
-            <h3 class="mt-1 mb-1">
-              &#8358; 0.00
-            </h3>
-            Total commission earnings on AMP
-          </b-card-text>
-        </b-card>
-      </b-col>
-      <b-col
-        lg="3"
-        sm="6"
-      >
-        <b-card>
-          <h5 class="mb-1">
             Monthly sales
             <span class="float-right">
             </span>
@@ -41,6 +21,26 @@
               &#8358; {{ monthlyCommission.toLocaleString() }}
             </h3>
             Total commission earnings for <strong>{{ new Date().toLocaleString('default', { month: 'long' }) }}</strong>
+          </b-card-text>
+        </b-card>
+      </b-col>
+      <b-col
+        lg="3"
+        sm="6"
+      >
+        <b-card>
+          <h5 class="mb-1">
+            Yearly sales
+            <span class="float-right">
+            </span>
+          </h5>
+          <b-card-text
+            class="font-small-4"
+          >
+            <h3 class="mt-1 mb-1">
+              &#8358; {{ yearlyCommission.toLocaleString() }}
+            </h3>
+            Total commission earnings for <strong>2021</strong>
           </b-card-text>
         </b-card>
       </b-col>
@@ -261,15 +261,14 @@ export default {
       productSales: 'productSales/getAllProductSales',
       numProductSales: 'productSales/getNumProductSales',
       monthlyCommission: 'productSales/getMonthlyCommission',
+      yearlyCommission: 'productSales/getYearlyCommission',
     }),
   },
   created() {
-    if (this.$store.getters['auth/getIsAdmin']) {
-      this.getProductSales()
-    } else if (this.$store.getters['auth/getIsAffiliate']) {
-      this.getMonthlyCommission(this.$store.getters['auth/getUser'].ref_code)
-      this.getAffiliateProductSales(this.$store.getters['auth/getUser'].ref_code)
-    }
+    const referralCode = this.$store.getters['auth/getUser'].ref_code
+    this.getMonthlyCommission(referralCode)
+    this.getYearlyCommission(referralCode)
+    this.getAffiliateProductSales(referralCode)
   },
   methods: {
     onFiltered(filteredItems) {

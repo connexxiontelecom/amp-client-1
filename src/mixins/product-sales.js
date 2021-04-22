@@ -12,7 +12,12 @@ export default {
     },
     getMonthlyCommission(referralCode) {
       this.$store.dispatch('productSales/getMonthlyCommission', { referralCode }).then().catch(error => {
-        this.toast('Get Monthly COmmission Attempt', 'BellIcon', error.response.data.messages.error, 'danger')
+        this.toast('Get Monthly Commission Attempt', 'BellIcon', error.response.data.messages.error, 'danger')
+      })
+    },
+    getYearlyCommission(referralCode) {
+      this.$store.dispatch('productSales/getYearlyCommission', { referralCode }).then().catch(error => {
+        this.toast('Get Yearly Commission Attempt', 'BellIcon', error.response.data.messages.error, 'danger')
       })
     },
   },
