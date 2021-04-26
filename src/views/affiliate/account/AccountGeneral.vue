@@ -2,44 +2,39 @@
   <b-card>
     <b-media no-body>
       <b-media-aside>
-        <b-link>
-          <b-img
-            ref="avatar"
-            rounded
-            :src="require('@/assets/images/avatars/0.png')"
-            height="80"
-          />
-        </b-link>
+        <b-avatar
+          ref="profilePicture"
+          :src="profilePicture"
+          :text="avatarText(firstname+' '+lastname)"
+          variant="light-primary"
+          size="104px"
+          rounded=""
+        />
       </b-media-aside>
       <b-media-body class="mt-75 ml-75">
         <b-button
-          v-ripple.400="'rgba(255, 255, 255, 0.15)'"
           variant="primary"
           size="sm"
           class="mb-75 mr-75"
+          @click="$refs.refInputEl2.click()"
         >
+          <input
+            ref="refInputEl2"
+            type="file"
+            class="d-none"
+            accept="image/jpeg, image/png, image/gif, image/jpg"
+            @change="updatePicture"
+          >
           Upload
         </b-button>
-        <!--<b-form-file-->
-        <!--  ref="refInputEl"-->
-        <!--  v-model="profileFile"-->
-        <!--  accept=".jpg, .png, .gif"-->
-        <!--  :hidden="true"-->
-        <!--  plain-->
-        <!--  @input="inputImageRenderer"-->
-        <!--/>-->
-        <!--/ upload button -->
-
-        <!-- reset -->
         <b-button
-          v-ripple.400="'rgba(186, 191, 199, 0.15)'"
           variant="outline-secondary"
           size="sm"
           class="mb-75 mr-75"
+          @click="removeImage"
         >
-          Reset
+          Remove
         </b-button>
-        <b-card-text>Allowed JPG, GIF or PNG. Max size of 800kB</b-card-text>
       </b-media-body>
     </b-media>
     <validation-observer ref="editAccountValidation">
@@ -163,24 +158,24 @@
 
 <script>
 import {
-  BCard, BMedia, BMediaBody, BCardText, BButton, BMediaAside, BLink, BImg, BForm, BRow, BCol, BFormGroup, BFormInput, BAlert,
+  BCard, BMedia, BMediaBody, BButton, BMediaAside, BLink, BForm, BRow, BCol, BFormGroup, BFormInput, BAlert,
 } from 'bootstrap-vue'
 import Ripple from 'vue-ripple-directive'
 import { mapGetters } from 'vuex'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
+import { avatarText } from '@core/utils/filter'
 import { required, email } from '@validations'
 import affiliate from '@/mixins/affiliate'
+import api from '@/api-config'
 
 export default {
   components: {
     BCard,
     BMedia,
     BMediaBody,
-    BCardText,
     BButton,
     BMediaAside,
     BLink,
-    BImg,
     ValidationObserver,
     ValidationProvider,
     BForm,
@@ -196,6 +191,7 @@ export default {
   mixins: [affiliate],
   data() {
     return {
+      avatarText,
       affiliateID: this.$store.getters['auth/getUser'].affiliate_id,
       firstname: this.$store.getters['auth/getUser'].firstname,
       lastname: this.$store.getters['auth/getUser'].lastname,
@@ -203,6 +199,7 @@ export default {
       referralCode: this.$store.getters['auth/getUser'].ref_code,
       profile: this.$store.getters['auth/getUser'].profile,
       verifyCode: this.$store.getters['auth/getUser'].verify_code,
+      profilePicture: `${api.endpoint}/uploads/affiliates/${this.$store.getters['auth/getUser'].profile_pic}`,
       required,
       email,
     }
@@ -211,6 +208,27 @@ export default {
     ...mapGetters({
       user: 'auth/getUser',
     }),
+  },
+  methods: {
+    updatePicture(e) {
+      const files = e.target.files || e.dataTransfer.files
+      if (!files.length) {
+        return
+      }
+      this.createImage(files[0])
+      this.updateProfilePicture(files[0])
+    },
+    createImage(file) {
+      const reader = new FileReader()
+      reader.onload = e => {
+        this.profilePicture = e.target.result
+      }
+      reader.readAsDataURL(file)
+    },
+    removeImage() {
+      this.profilePicture = null
+      this.removeProfilePicture()
+    },
   },
 }
 </script>

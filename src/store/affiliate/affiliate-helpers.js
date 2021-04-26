@@ -55,4 +55,15 @@ export default {
     formData.append('confirm_password', form.confirmPassword)
     return formData
   },
+  getUpdateProfilePictureForm(form) {
+    const formData = new FormData()
+    formData.append('affiliate_id', form.affiliateID)
+    formData.append('profile_pic', form.profilePicture)
+    return formData
+  },
+  getRemoveProfilePictureForm(form) {
+    const formData = new FormData()
+    formData.append('affiliate_id', form.affiliateID)
+    return formData
+  },
 }

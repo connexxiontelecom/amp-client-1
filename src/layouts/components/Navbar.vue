@@ -45,7 +45,8 @@
             size="40"
             variant="light-primary"
             badge
-            :src="require('@/assets/images/avatars/0.png')"
+            :src="profilePicture"
+            :text="avatarText(user.firstname+' '+user.lastname)"
             class="badge-minimal"
             badge-variant="success"
           />
@@ -87,8 +88,10 @@ import {
 } from 'bootstrap-vue'
 import NotificationDropdown from '@core/layouts/components/app-navbar/components/NotificationDropdown.vue'
 import DarkToggler from '@core/layouts/components/app-navbar/components/DarkToggler.vue'
+import { avatarText } from '@core/utils/filter'
 import auth from '@/mixins/auth'
 import { mapGetters } from 'vuex'
+import api from '@/api-config'
 
 export default {
   components: {
@@ -110,6 +113,12 @@ export default {
       type: Function,
       default: () => {},
     },
+  },
+  data() {
+    return {
+      avatarText,
+      profilePicture: `${api.endpoint}/uploads/affiliates/${this.$store.getters['auth/getUser'].profile_pic}`,
+    }
   },
   computed: {
     ...mapGetters({

@@ -140,6 +140,26 @@ export default {
         })
       })
     },
+    updateProfilePicture({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'affiliate/update_image', data: helpers.getUpdateProfilePictureForm(payload.form), method: 'post' }).then(response => {
+          commit('UPDATE_SESSION', { user: response.data.user, session: response.data.session })
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    removeProfilePicture({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'affiliate/remove_image', data: helpers.getRemoveProfilePictureForm(payload.form), method: 'post' }).then(response => {
+          commit('UPDATE_SESSION', { user: response.data.user, session: response.data.session })
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
     getDownstreamAffiliates({ commit }, payload) {
       return new Promise((resolve, reject) => {
         axios({ url: `affiliate/get_downstream_affiliates/${payload.affiliateID}`, method: 'get' }).then(response => {

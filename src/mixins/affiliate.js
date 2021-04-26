@@ -303,5 +303,26 @@ export default {
         this.toast('Resend Confirmation', 'BellIcon', 'Confirmation email was successfully resent. Please check your inbox', 'success')
       }).catch()
     },
+    updateProfilePicture(profilePicture) {
+      const form = {
+        affiliateID: this.affiliateID,
+        profilePicture,
+      }
+      this.$store.dispatch('affiliate/updateProfilePicture', { form }).then(() => {
+        this.toast('Update Profile Picture', 'BellIcon', 'You have successfully updated the profile picture', 'success')
+      }).catch(error => {
+        this.toast('Update Profile Picture Attempt', 'BellIcon', error.response.data.messages.error, 'danger')
+      })
+    },
+    removeProfilePicture() {
+      const form = {
+        affiliateID: this.affiliateID,
+      }
+      this.$store.dispatch('affiliate/removeProfilePicture', { form }).then(() => {
+        this.toast('Remove Profile Picture', 'BellIcon', 'You have successfully removed the profile picture', 'success')
+      }).catch(error => {
+        this.toast('Remove Profile Picture Attempt', 'BellIcon', error.response.data.messages.error, 'danger')
+      })
+    },
   },
 }
