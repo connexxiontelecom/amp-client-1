@@ -1,7 +1,7 @@
 const path = require('path')
 
 module.exports = {
-  publicPath: '/',
+  publicPath: '/app/',
   css: {
     loaderOptions: {
       sass: {
