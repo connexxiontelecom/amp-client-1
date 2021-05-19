@@ -1,5 +1,5 @@
-import emailjs from 'emailjs-com'
-import api from '@/api-config'
+// import emailjs from 'emailjs-com'
+// import api from '@/api-config'
 
 export default {
   methods: {
@@ -24,18 +24,7 @@ export default {
             upstreamAffiliate,
           }
           this.$store.dispatch('affiliate/addAffiliate', { form }).then(() => {
-            emailjs.send('service_dmcc3uc', 'template_kr3wkls', {
-              firstname: form.firstname,
-              lastname: form.lastname,
-              creator: 'administrator',
-              username: form.username,
-              password: form.password,
-              verification_link: `${api.frontend}/verify-${form.verifyCode}`,
-              to_email: form.email,
-            }, 'user_BcSkabdz4FX6q4l5oeeXI').catch(() => {})
-            this.$router.push({ name: 'affiliate-accounts' }).then(() => {
-              this.toast('Add Affiliate', 'BellIcon', 'The affiliate was added successfully', 'success')
-            })
+            this.toast('Add Affiliate', 'BellIcon', 'The affiliate was added successfully', 'success')
           }).catch(error => {
             this.toast('Add Admin Attempt', 'BellIcon', error.response.data.messages.error, 'danger')
           })
@@ -245,15 +234,6 @@ export default {
             upstreamAffiliate: this.upstreamAffiliate,
           }
           this.$store.dispatch('affiliate/addDownstreamAffiliate', { form }).then(() => {
-            emailjs.send('service_dmcc3uc', 'template_kr3wkls', {
-              firstname: form.firstname,
-              lastname: form.lastname,
-              creator: 'affiliate',
-              username: form.username,
-              password: form.password,
-              verification_link: `${api.frontend}/verify-${form.verifyCode}`,
-              to_email: form.email,
-            }, 'user_BcSkabdz4FX6q4l5oeeXI').catch(() => {})
             this.toast('Add Affiliate', 'BellIcon', 'You have successfully added an affiliate', 'success')
           }).catch(error => {
             this.toast('Add Affiliate', 'BellIcon', error.response.data.messages.error, 'danger')
