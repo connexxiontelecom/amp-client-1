@@ -166,6 +166,7 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import { avatarText } from '@core/utils/filter'
 import { required, email } from '@validations'
 import affiliate from '@/mixins/affiliate'
+import auth from '@/mixins/auth'
 import api from '@/api-config'
 
 export default {
@@ -188,7 +189,7 @@ export default {
   directives: {
     Ripple,
   },
-  mixins: [affiliate],
+  mixins: [affiliate, auth],
   data() {
     return {
       avatarText,

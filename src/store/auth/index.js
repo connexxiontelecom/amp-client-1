@@ -78,5 +78,15 @@ export default {
         })
       })
     },
+    // eslint-disable-next-line no-unused-vars
+    resendConfirmation({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'auth/resend_confirmation', data: helpers.getResendConfirmationForm(payload.form), method: 'post' }).then(response => {
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
   },
 }

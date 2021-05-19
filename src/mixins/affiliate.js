@@ -293,16 +293,6 @@ export default {
         }
       })
     },
-    resendConfirmation() {
-      emailjs.send('service_dmcc3uc', 'template_ats6kji', {
-        firstname: this.firstname,
-        lastname: this.lastname,
-        verification_link: `${api.frontend}/verify-${this.verifyCode}`,
-        to_email: this.emailAddr,
-      }, 'user_BcSkabdz4FX6q4l5oeeXI').then(() => {
-        this.toast('Resend Confirmation', 'BellIcon', 'Confirmation email was successfully resent. Please check your inbox', 'success')
-      }).catch()
-    },
     updateProfilePicture(profilePicture) {
       const form = {
         affiliateID: this.affiliateID,

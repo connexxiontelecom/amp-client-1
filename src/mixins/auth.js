@@ -2,6 +2,9 @@
 // import emailjs from 'emailjs-com'
 // import api from '@/api-config'
 
+import emailjs from "emailjs-com";
+import api from "@/api-config";
+
 export default {
   // mixins: [notify],
   methods: {
@@ -62,6 +65,19 @@ export default {
       }
       this.$store.dispatch('auth/verifyAccount', { form }).then().catch(error => {
         this.toast('Verify Account', 'BellIcon', error.response.data.messages.error, 'danger')
+      })
+    },
+    resendConfirmation() {
+      const form = {
+        firstname: this.firstname,
+        lastname: this.lastname,
+        verifyCode: this.verifyCode,
+        email: this.emailAddr,
+      }
+      this.$store.dispatch('auth/resendConfirmation', { form }).then(() => {
+        this.toast('Resend Confirmation', 'BellIcon', 'Confirmation email sent successful', 'success')
+      }).catch(() => {
+        this.toast('Resend Confirmation', 'BellIcon', 'Confirmation email could not be sent. Try again later', 'danger')
       })
     },
   },
