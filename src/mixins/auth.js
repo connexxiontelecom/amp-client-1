@@ -2,9 +2,6 @@
 // import emailjs from 'emailjs-com'
 // import api from '@/api-config'
 
-import emailjs from "emailjs-com";
-import api from "@/api-config";
-
 export default {
   // mixins: [notify],
   methods: {
