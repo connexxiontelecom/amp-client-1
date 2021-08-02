@@ -35,4 +35,22 @@ export default [
       layout: 'full',
     },
   },
+  {
+    path: '/forgot-password',
+    name: 'forgot-password',
+    component: () => import('@/views/auth/ForgotPassword'),
+    meta: {
+      title: 'Forgot Password - AMP | Powered by Connexxion Telecom',
+      layout: 'full',
+    },
+  },
+  {
+    path: '/reset-password-*',
+    name: 'reset-password',
+    component: () => import('@/views/auth/ResetPassword'),
+    meta: {
+      title: 'Reset Password - AMP | Powered by Connexxion Telecom',
+      layout: 'full',
+    },
+  },
 ]

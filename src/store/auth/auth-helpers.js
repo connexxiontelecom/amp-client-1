@@ -29,4 +29,16 @@ export default {
     formData.append('verify_code', form.verifyCode)
     return formData
   },
+  getSendResetPasswordLinkForm(form) {
+    const formData = new FormData()
+    formData.append('email', form.email)
+    return formData
+  },
+  getResetPasswordForm(form) {
+    const formData = new FormData()
+    formData.append('verification_code', form.verificationCode)
+    formData.append('password', form.password)
+    formData.append('confirm_password', form.cPassword)
+    return formData
+  },
 }

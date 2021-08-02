@@ -77,5 +77,41 @@ export default {
         this.toast('Resend Confirmation', 'BellIcon', 'Confirmation email could not be sent. Try again later', 'danger')
       })
     },
+    forgotPassword() {
+      this.$refs.forgotPasswordValidation.validate().then(success => {
+        if (success) {
+          const form = {
+            email: this.userEmail,
+          }
+          this.$store.dispatch('auth/sendResetPasswordLink', { form }).then(response => {
+            this.toast('Send Reset Password Link', 'BellIcon', response.data, 'success')
+          }).catch(error => {
+            this.toast('Send Reset Password Link', 'BellIcon', error.response.data.messages.error, 'danger')
+          })
+        } else {
+          this.toast('Forgot Password', 'LogInIcon', 'You must fill in all form fields correctly', 'warning')
+        }
+      })
+    },
+    resetPassword() {
+      this.$refs.resetPasswordValidation.validate().then(success => {
+        if (success) {
+          const form = {
+            verificationCode: this.verificationCode,
+            password: this.password,
+            cPassword: this.cPassword,
+          }
+          this.$store.dispatch('auth/resetPassword', { form }).then(response => {
+            this.$router.push({ name: 'login' }).then(() => {
+              this.toast('Reset Password', 'BellIcon', response.data, 'success')
+            })
+          }).catch(error => {
+            this.toast('Reset Password', 'BellIcon', error.response.data.messages.error, 'danger')
+          })
+        } else {
+          this.toast('Reset Password', 'LogInIcon', 'You must fill in all form fields correctly', 'warning')
+        }
+      })
+    },
   },
 }

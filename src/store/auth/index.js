@@ -88,5 +88,25 @@ export default {
         })
       })
     },
+    // eslint-disable-next-line no-unused-vars
+    sendResetPasswordLink({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'auth/send_reset_password_link', data: helpers.getSendResetPasswordLinkForm(payload.form), method: 'post' }).then(response => {
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    // eslint-disable-next-line no-unused-vars
+    resetPassword({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'auth/reset_password', data: helpers.getResetPasswordForm(payload.form), method: 'post' }).then(response => {
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
   },
 }
